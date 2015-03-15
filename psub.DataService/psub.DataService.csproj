@@ -1,0 +1,127 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{0D176C99-D32E-451E-9820-037FB2577C96}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Psub.DataService</RootNamespace>
+    <AssemblyName>Psub.DataService</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AutoMapper">
+      <HintPath>..\packages\AutoMapper.3.3.0\lib\net40\AutoMapper.dll</HintPath>
+    </Reference>
+    <Reference Include="AutoMapper.Net4">
+      <HintPath>..\packages\AutoMapper.3.3.0\lib\net40\AutoMapper.Net4.dll</HintPath>
+    </Reference>
+    <Reference Include="Iesi.Collections, Version=1.0.1.0, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Iesi.Collections.3.2.0.1001\lib\Net35\Iesi.Collections.dll</HintPath>
+    </Reference>
+    <Reference Include="NHibernate, Version=3.3.1.4000, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\NHibernate.3.3.3.4001\lib\Net35\NHibernate.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Http, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Web.Http.WebHost, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Web.Mvc, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Abstract\IActionLogService.cs" />
+    <Compile Include="Abstract\IControlObjectService.cs" />
+    <Compile Include="Abstract\IDataParameterService.cs" />
+    <Compile Include="Abstract\IDrawingService.cs" />
+    <Compile Include="Abstract\IPublicationSectionService.cs" />
+    <Compile Include="Abstract\IPublicationService.cs" />
+    <Compile Include="Abstract\IRelayDataService.cs" />
+    <Compile Include="Abstract\IStatisticService.cs" />
+    <Compile Include="Abstract\IUserService.cs" />
+    <Compile Include="Abstract\IPublicationMainSectionService.cs" />
+    <Compile Include="AutoMapperStartup.cs" />
+    <Compile Include="Concrete\AccessService.cs" />
+    <Compile Include="Concrete\ActionLogService.cs" />
+    <Compile Include="Concrete\ControlObjectService.cs" />
+    <Compile Include="Concrete\DataParameterService.cs" />
+    <Compile Include="Concrete\DrawingService.cs" />
+    <Compile Include="Concrete\PublicationSectionService.cs" />
+    <Compile Include="Concrete\PublicationService.cs" />
+    <Compile Include="Concrete\RelayDataService.cs" />
+    <Compile Include="Concrete\StatisticService.cs" />
+    <Compile Include="Concrete\UserService.cs" />
+    <Compile Include="Concrete\PublicationMainSectionService.cs" />
+    <Compile Include="HandlerPerQuery\Abstract\IQuery.cs" />
+    <Compile Include="HandlerPerQuery\Abstract\IQueryHandler.cs" />
+    <Compile Include="HandlerPerQuery\Abstract\Result.cs" />
+    <Compile Include="HandlerPerQuery\CommentProcess\Entities\CommentDetailsViewModel.cs" />
+    <Compile Include="HandlerPerQuery\CommentProcess\Handlers\CommentDetailsHandler.cs" />
+    <Compile Include="HandlerPerQuery\Mediator.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\psub.DataAccess\psub.DataAccess.csproj">
+      <Project>{3994f672-0bf5-4c59-84a5-863d31418b7b}</Project>
+      <Name>psub.DataAccess</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\psub.Domain\psub.Domain.csproj">
+      <Project>{aed5bc0b-bb4e-4fb6-b388-2daf803ed30d}</Project>
+      <Name>psub.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\psub.DTO\psub.DTO.csproj">
+      <Project>{2be667dc-42bf-42e9-a972-d3c6d58fb1af}</Project>
+      <Name>psub.DTO</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\psub.Shared\psub.Shared.csproj">
+      <Project>{2010d0d6-fa78-4df7-8656-3d4180a92131}</Project>
+      <Name>psub.Shared</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="..\packages\AutoMapper.3.3.0\tools\AutoMapper.targets" Condition="Exists('..\packages\AutoMapper.3.3.0\tools\AutoMapper.targets')" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

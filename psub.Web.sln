@@ -1,0 +1,88 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "psub.Web", "psub.Web\psub.Web.csproj", "{A504E4D2-5375-4EA3-A59F-864DC56AA98C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "psub.Controllers", "psub.Controllers\psub.Controllers.csproj", "{289D626A-3759-46B8-A7D3-3EE59C5EAA0C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "psub.DataAccess", "psub.DataAccess\psub.DataAccess.csproj", "{3994F672-0BF5-4C59-84A5-863D31418B7B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "psub.DataService", "psub.DataService\psub.DataService.csproj", "{0D176C99-D32E-451E-9820-037FB2577C96}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "psub.Domain", "psub.Domain\psub.Domain.csproj", "{AED5BC0B-BB4E-4FB6-B388-2DAF803ED30D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "psub.DTO", "psub.DTO\psub.DTO.csproj", "{2BE667DC-42BF-42E9-A972-D3C6D58FB1AF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "psub.Shared", "psub.Shared\psub.Shared.csproj", "{2010D0D6-FA78-4DF7-8656-3D4180A92131}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{6E1850E8-3F17-4A13-89C5-15309BC01A97}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\packages.config = .nuget\packages.config
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 8
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://pashaiva.visualstudio.com/defaultcollection
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = psub.Controllers\\psub.Controllers.csproj
+		SccProjectName1 = psub.Controllers
+		SccLocalPath1 = psub.Controllers
+		SccProjectUniqueName2 = psub.DataAccess\\psub.DataAccess.csproj
+		SccProjectName2 = psub.DataAccess
+		SccLocalPath2 = psub.DataAccess
+		SccProjectUniqueName3 = psub.DataService\\psub.DataService.csproj
+		SccProjectName3 = psub.DataService
+		SccLocalPath3 = psub.DataService
+		SccProjectUniqueName4 = psub.Domain\\psub.Domain.csproj
+		SccProjectName4 = psub.Domain
+		SccLocalPath4 = psub.Domain
+		SccProjectUniqueName5 = psub.DTO\\psub.DTO.csproj
+		SccProjectName5 = psub.DTO
+		SccLocalPath5 = psub.DTO
+		SccProjectUniqueName6 = psub.Shared\\psub.Shared.csproj
+		SccProjectName6 = psub.Shared
+		SccLocalPath6 = psub.Shared
+		SccProjectUniqueName7 = psub.Web\\psub.Web.csproj
+		SccProjectName7 = psub.Web
+		SccLocalPath7 = psub.Web
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A504E4D2-5375-4EA3-A59F-864DC56AA98C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A504E4D2-5375-4EA3-A59F-864DC56AA98C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A504E4D2-5375-4EA3-A59F-864DC56AA98C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A504E4D2-5375-4EA3-A59F-864DC56AA98C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{289D626A-3759-46B8-A7D3-3EE59C5EAA0C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{289D626A-3759-46B8-A7D3-3EE59C5EAA0C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{289D626A-3759-46B8-A7D3-3EE59C5EAA0C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{289D626A-3759-46B8-A7D3-3EE59C5EAA0C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3994F672-0BF5-4C59-84A5-863D31418B7B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3994F672-0BF5-4C59-84A5-863D31418B7B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3994F672-0BF5-4C59-84A5-863D31418B7B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3994F672-0BF5-4C59-84A5-863D31418B7B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0D176C99-D32E-451E-9820-037FB2577C96}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0D176C99-D32E-451E-9820-037FB2577C96}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0D176C99-D32E-451E-9820-037FB2577C96}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0D176C99-D32E-451E-9820-037FB2577C96}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AED5BC0B-BB4E-4FB6-B388-2DAF803ED30D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AED5BC0B-BB4E-4FB6-B388-2DAF803ED30D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AED5BC0B-BB4E-4FB6-B388-2DAF803ED30D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AED5BC0B-BB4E-4FB6-B388-2DAF803ED30D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2BE667DC-42BF-42E9-A972-D3C6D58FB1AF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2BE667DC-42BF-42E9-A972-D3C6D58FB1AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2BE667DC-42BF-42E9-A972-D3C6D58FB1AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2BE667DC-42BF-42E9-A972-D3C6D58FB1AF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2010D0D6-FA78-4DF7-8656-3D4180A92131}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2010D0D6-FA78-4DF7-8656-3D4180A92131}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2010D0D6-FA78-4DF7-8656-3D4180A92131}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2010D0D6-FA78-4DF7-8656-3D4180A92131}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

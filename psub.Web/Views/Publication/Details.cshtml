@@ -1,0 +1,57 @@
+﻿@model Psub.DTO.Entities.PublicationDTO
+
+@{
+    ViewBag.Title = Model.Title;
+    ViewBag.Description = Model.Title;
+    ViewBag.Keywords = Model.Keywords;
+}
+
+<h1>@Model.Title</h1>
+
+<div style="background: mintcream; opacity: 0.9; padding: 10px;" class="radius">
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.Name): @Html.DisplayFor(model => model.Name)
+    </div>
+
+    <h2 style="text-align: center;">@Html.DisplayFor(model => model.Title)</h2>
+    <br />
+    <div class="display-field">
+        @Html.Raw(Model.Text)
+    </div>
+    <br />
+
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.CreateDateString)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.CreateDateString)
+    </div>
+
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.EditDateString)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.EditDateString)
+    </div>
+    @if (Model.Files.Any())
+    {
+        <div class="display-label">
+            @Html.DisplayNameFor(model => model.Files)
+        </div>
+        <div class="display-field">
+            @foreach (var file in Model.Files)
+            {
+                <a href="@Url.Action("GetFile", "Publication", new { guid = file.Guid, id = Model.Id })">@file.Name</a>
+                <br />
+            }
+        </div>
+    }
+
+    <div class="display-field">
+        <p class="Category">
+            <b>@Html.LabelFor(modelItem => modelItem.PublicationMainSectionName) @Html.DisplayFor(modelItem => modelItem.PublicationMainSectionName)>>>@Html.DisplayFor(modelItem => modelItem.PublicationSectionName)</b>
+        </p>
+    </div>
+</div>
+
+<button  onclick="JavaScript:document.location='@Url.Action("Edit", "Publication", new { id = Model.Id })';" class="btn btn-info">Изменить</button>

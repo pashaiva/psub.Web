@@ -1,0 +1,6 @@
+﻿User-agent: *
+Disallow: /User
+Disallow: /Views/User
+
+Host: www.psub.net
+Sitemap: http://psub.net/sitemap.xml

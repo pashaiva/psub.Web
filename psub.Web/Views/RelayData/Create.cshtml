@@ -1,0 +1,57 @@
+﻿@model Psub.DTO.Entities.RelayDataDTO
+
+@{
+    ViewBag.Title = "Создать управляющий вывод";
+}
+
+<h2>Создать управляющий вывод</h2>
+
+@using (Html.BeginForm("Create", "RelayData", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+    @Html.HiddenFor(model => model.ControlObject.Id)
+    <fieldset>
+        <legend>Создать</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Name)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Name)
+            @Html.ValidationMessageFor(model => model.Name)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PinName)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.PinName)
+            @Html.ValidationMessageFor(model => model.PinName)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Value)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Value)
+            @Html.ValidationMessageFor(model => model.Value)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.LastUpdate)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.LastUpdate)
+            @Html.ValidationMessageFor(model => model.LastUpdate)
+        </div>
+
+        <p>
+            <input type="submit" value="Создать" />
+        </p>
+    </fieldset>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

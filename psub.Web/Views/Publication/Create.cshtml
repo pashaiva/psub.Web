@@ -1,0 +1,177 @@
+﻿@model Psub.DTO.Entities.PublicationDTO
+@{
+    ViewBag.Title = "Создать публикацию";
+}
+<script src="@Url.Content("~/Scripts/plupload/plupload.full.min.js")"></script>
+
+<h2>Сознание новой записи</h2>
+
+<script src="@Url.Content("~/Scripts/CKEditor/ckeditor.js")"></script>
+<script src="@Url.Content("~/Scripts/plupload/plupload.min.js")"></script>
+<script src="@Url.Content("~/Scripts/plupload/plupload.full.min.js")"></script>
+<script src="@Url.Content("~/Scripts/plupload/jquery.plupload.queue/jquery.plupload.queue.min.js")"></script>
+<link href="@Url.Content("~/Scripts/plupload/jquery.plupload.queue/css/jquery.plupload.queue.css")" rel="stylesheet" />
+<script src="@Url.Content("~/Scripts/plupload/i18n/ru.js")"></script>
+<script src="@Url.Content("~/Scripts/plupload/moxie.min.js")"></script>
+
+@using (Html.BeginForm("Create", "Publication", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.ValidationSummary(true)
+    <fieldset>
+        @Html.HiddenFor(m => m.Guid)
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Title)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Title)
+            @Html.ValidationMessageFor(model => model.Title)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Text)
+        </div>
+        <div class="editor-field">
+            @Html.TextAreaFor(model => model.Text)
+            @Html.ValidationMessageFor(model => model.Text)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Keywords)
+        </div>
+        <div class="editor-field">
+            @Html.TextAreaFor(model => model.Keywords)
+            @Html.ValidationMessageFor(model => model.Keywords)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PublicationMainSectionId)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownListFor(m => m.PublicationMainSectionId, new SelectList(Model.PublicationMainSection, "Id", "Name"))
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PublicationSectionId)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownListFor(m => m.PublicationSectionId, new SelectList(Model.PublicationSection, "Id", "Name"))
+        </div>
+        <div class="editor-field">
+            <span>Файлы</span>
+            <div id="container">
+                <div id="filelist">
+                    <div class="editor-field">
+                        <div id="uploader">
+                            <p>Браузер не поддерживает Flash, Silverlight, Gears, BrowserPlus или HTML5. Загрузка файлов недоступна!</p>
+                            <div id="fileField">
+                                <input type="file" name="filex" id="filex" />
+                            </div>
+                            <br />
+                            <a class="button" id="buttonAddFile">
+                                <img src="@Url.Content("~/Images/add.png")" alt="Добавить файл" title="Добавить файл" style="width:15px;height:15px;"/></a>
+                            <br />
+                            <br />
+                        </div>
+                    </div>
+                    @if (Model.Files != null && Model.Files.Count > 0)
+                    {
+                        <span>Уже прикрепленные файлы:</span>
+                        foreach (var file in Model.Files)
+                        {   
+                        <div>
+                            <a href='@Url.Action("GetFile", "Publication", new { guid = file.Guid, id = Model.Id })'>
+                                @Html.DisplayFor(modelItem => file.Name)
+                            </a>
+                            <a class="deleteFile">
+                                <img src="@Url.Content("~/Images/remove.png")" alt="Удалить" height="15px" width="15px" />
+                            </a>
+                            <input type="hidden" class="hidderDelFileId" value="@Model.Id" />
+                            <input type="hidden" class="hidderDelFileGuid" value="@file.Guid" />
+                            <br />
+                        </div>
+                        }
+                    }
+                    <br />
+                </div>
+                <br />
+            </div>
+        </div>
+        <p>
+            <button type="submit" class="btn btn-info">Создать</button>
+        </p>
+    </fieldset>
+}
+
+<script type="text/javascript">
+    $(function () {
+        $("#buttonAddFile").click(function () {
+            var file = $('<input/>').attr('type', 'file').attr('name', 'someName');
+            file.css('display', 'none');
+            $("#fileField").append($("<br>"));
+            $("#fileField").append($("<br>"));
+            $("#fileField").append(file);
+            file.show(300);
+        });
+
+        $("#uploader").pluploadQueue({
+            runtimes: 'html5,gears,flash,silverlight,browserplus',
+            url: '@Url.Action("File", "Publication")' + '?id=@Model.Id&guid=@Model.Guid',
+            max_file_size: '10mb',
+            unique_names: true,
+            filters: [
+                { title: "Image files", extensions: "jpg,gif,png" },
+                { title: "Zip files", extensions: "zip" },
+                { title: "Pdf files", extensions: "pdf" },
+                  { title: "Office", extensions: "pdf,dwf,dwg,doc,docx,xls,xlsx,xml" }
+            ],
+            flash_swf_url: '/plupload/Moxie.swf',
+            silverlight_xap_url: '/plupload/Moxie.xap',
+            buttons: { browse: true, start: false, stop: false }
+        });
+
+        $('form').submit(function (e) {
+            var uploader = $('#uploader').pluploadQueue();
+            var uploaderFullEquipmentFiles = $('#uploaderFullEquipmentFiles').pluploadQueue();
+            if (uploader.files.length > 0) {
+                uploader.bind('StateChanged', function () {
+                    if (uploader.files.length === (uploader.total.uploaded + uploader.total.failed)) {
+                        $('form')[0].submit();
+                    }
+                });
+                uploader.start();
+            } else {
+                return true;
+            }
+            return false;
+        });
+
+        $(".deleteFile").click(function () {
+            var isDelete = confirm('Файл будет безвозвратно удален!');
+            if (isDelete) {
+                deleteFile($(this).parent().find('.hidderDelFileId').val(), $(this).parent().find('.hidderDelFileGuid').val(), $(this).parent());
+            };
+        });
+
+        CKEDITOR.replace("Text", {
+            filebrowserImageUploadUrl: '/Publication/UploadImage'
+        });
+
+        $("#PublicationMainSectionId").change(function () {
+            $.post('@Url.Action("GetPublicationSectionDTOListByMainId", "PublicationSection")?id=' + $("select#PublicationMainSectionId").val(),
+             function (res) {
+                 $("#PublicationSectionId").empty();
+                 $(res).each(function (index, element) {
+                     $('<option>').val(element.Id).html(element.Name).appendTo("#PublicationSectionId");
+                 });
+             });
+        });
+    });
+
+    function deleteFile(id, guid, fileDiv) {
+        $.post('@Url.Action("DeleteFile", "Publication")' + '?id=' + id + '&Guid=' + guid,
+              function (res) {
+                  if (res) {
+                      fileDiv.hide(400);
+                  } else {
+
+                  }
+              });
+    }
+</script>
