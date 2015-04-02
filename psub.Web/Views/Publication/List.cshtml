@@ -1,0 +1,36 @@
+﻿@model IEnumerable<Psub.DTO.Entities.PublicationDTO>
+@{
+    ViewBag.Title = "Публикации";
+}
+
+<h1>Публикации</h1>
+
+<p>
+    <button onclick="JavaScript:document.location='@Url.Action("Create")';" class="btn btn-info">
+        Создать
+    </button>
+</p>
+<table class="noBerder">
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                <div style="background: mintcream; opacity: 0.9; padding: 10px;" class="radius">
+                    <a class="head" href="@Url.Action("Details", "Publication", new { id = item.Id })">@Html.DisplayFor(modelItem => item.Title)</a>
+                    <br />
+                    <h4><i>Автор: @Html.DisplayFor(modelItem => item.Name)</i></h4>
+                    <br />
+                    <p>
+                        @Html.Raw(item.Text)
+                    </p>
+                    <br />
+                    <p class="Category">
+                        <b>@Html.DisplayFor(modelItem => item.PublicationMainSectionName)>>>@Html.DisplayFor(modelItem => item.PublicationSectionName)</b>
+                    </p>
+                </div>
+                <br />
+            </td>
+        </tr>
+    }
+
+</table>

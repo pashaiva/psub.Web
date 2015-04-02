@@ -1,0 +1,12 @@
+﻿<% if(data.length == 0) { %>
+<tr>
+  <td>Нет разделов</td>
+</tr>  
+<% } else { %>
+
+  <% for(var i=0; i<data.length; i++) { %>
+      <tr >
+	    <td><%= data[i].Name %> <a href="#" class="delete" data-id="<%= data[i].Id %>" data-url="<%= deleteUrl %>"> Удалить</a></td>	    
+      </tr>
+<% } %>
+<% } %>

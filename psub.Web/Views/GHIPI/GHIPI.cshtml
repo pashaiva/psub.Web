@@ -1,0 +1,15 @@
+﻿@model List<string>
+@{
+    ViewBag.Title = "GHIPI";
+}
+
+<table>
+    <tr>
+        @foreach (var folder in Model)
+        {
+            <td><a href="@Url.Action("GHIPIAlbum", "GHIPI", new { dateTime = folder })">@folder</a></td>
+        }
+    </tr>
+
+</table>
+

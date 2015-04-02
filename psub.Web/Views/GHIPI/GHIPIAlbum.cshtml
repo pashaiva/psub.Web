@@ -1,0 +1,36 @@
+﻿@model IEnumerable<Psub.Domain.Entities.File>
+@{
+    ViewBag.Title = "GHIPIAlbum";
+}
+<script src="@Url.Content("~/Scripts/fancybox/jquery.mousewheel-3.0.4.pack.js")"></script>
+<script src="@Url.Content("~/Scripts/fancybox/jquery.fancybox-1.3.4.pack.js")"></script>
+<link href="@Url.Content("~/Scripts/fancybox/jquery.fancybox-1.3.4.css")" rel="stylesheet" />
+<script src="@Url.Content("~/Scripts/fancybox/jquery.fancybox-1.3.4.js")"></script>
+<table>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td align="center">
+                <center>
+                         <a class="imgpreview" href="http://psub.net/GHIPI/File/15.12.2013/@item.Name" title="@item.Name">
+                    <img  style="  margin:10px 5% 0 5%; width:500px;" src="http://psub.net/GHIPI/File/15.12.2013/@item.Name" alt="Изображение для предпросмотра отсутствует" />
+                </a>
+                </center>
+            </td>
+        </tr>
+    }
+
+</table>
+<script type="text/javascript">
+    $(function () {
+
+        $(".imgpreview").each(function (index, element) {
+            $(element).fancybox({
+                'opacity': true,
+                'transitionIn': 'elastic',
+                'transitionOut': 'none',
+                'href': $(element).attr('href')
+            });
+        });
+    });
+</script>
