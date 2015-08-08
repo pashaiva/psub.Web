@@ -10,11 +10,11 @@ namespace Psub.Shared.Concrete
 {
     public class FileService : Abstract.IFileService
     {
-        public IEnumerable<Psub.Domain.Entities.File> Files(DateTime dateTime)
+        public IEnumerable<File> Files(DateTime dateTime)
         {
             var dirInfo = new DirectoryInfo(HttpContext.Current.Server.MapPath(string.Format("{0}/{1}", WebConfigurationManager.AppSettings["Files"], dateTime.ToShortDateString())));
 
-            var files = dirInfo.GetFiles().Select(file => new Domain.Entities.File
+            var files = dirInfo.GetFiles().Select(file => new File
                 {
                     Name = file.Name,
                     DateTime = dateTime

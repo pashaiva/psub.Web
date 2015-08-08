@@ -1,4 +1,4 @@
-﻿@model Psub.DTO.Entities.PublicationDTO
+﻿@model Psub.DataService.HandlerPerQuery.PublicationProcess.Entities.PublicationCreateViewModel
 @{
     ViewBag.Title = "Создать публикацию";
 }
@@ -19,40 +19,9 @@
     @Html.ValidationSummary(true)
     <fieldset>
         @Html.HiddenFor(m => m.Guid)
-        <div class="editor-label">
-            @Html.LabelFor(model => model.Title)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.Title)
-            @Html.ValidationMessageFor(model => model.Title)
-        </div>
+        
+          @Html.EditorForModel()
 
-        <div class="editor-label">
-            @Html.LabelFor(model => model.Text)
-        </div>
-        <div class="editor-field">
-            @Html.TextAreaFor(model => model.Text)
-            @Html.ValidationMessageFor(model => model.Text)
-        </div>
-        <div class="editor-label">
-            @Html.LabelFor(model => model.Keywords)
-        </div>
-        <div class="editor-field">
-            @Html.TextAreaFor(model => model.Keywords)
-            @Html.ValidationMessageFor(model => model.Keywords)
-        </div>
-        <div class="editor-label">
-            @Html.LabelFor(model => model.PublicationMainSectionId)
-        </div>
-        <div class="editor-field">
-            @Html.DropDownListFor(m => m.PublicationMainSectionId, new SelectList(Model.PublicationMainSection, "Id", "Name"))
-        </div>
-        <div class="editor-label">
-            @Html.LabelFor(model => model.PublicationSectionId)
-        </div>
-        <div class="editor-field">
-            @Html.DropDownListFor(m => m.PublicationSectionId, new SelectList(Model.PublicationSection, "Id", "Name"))
-        </div>
         <div class="editor-field">
             <span>Файлы</span>
             <div id="container">
@@ -76,13 +45,13 @@
                         foreach (var file in Model.Files)
                         {   
                         <div>
-                            <a href='@Url.Action("GetFile", "Publication", new { guid = file.Guid, id = Model.Id })'>
+                            <a href='@Url.Action("GetFile", "Publication", new { guid = file.Guid, id = 0 })'>
                                 @Html.DisplayFor(modelItem => file.Name)
                             </a>
                             <a class="deleteFile">
                                 <img src="@Url.Content("~/Images/remove.png")" alt="Удалить" height="15px" width="15px" />
                             </a>
-                            <input type="hidden" class="hidderDelFileId" value="@Model.Id" />
+                            <input type="hidden" class="hidderDelFileId" value="0" />
                             <input type="hidden" class="hidderDelFileGuid" value="@file.Guid" />
                             <br />
                         </div>
@@ -112,7 +81,7 @@
 
         $("#uploader").pluploadQueue({
             runtimes: 'html5,gears,flash,silverlight,browserplus',
-            url: '@Url.Action("File", "Publication")' + '?id=@Model.Id&guid=@Model.Guid',
+            url: '@Url.Action("File", "Publication")' + '?id=0&guid=@Model.Guid',
             max_file_size: '10mb',
             unique_names: true,
             filters: [

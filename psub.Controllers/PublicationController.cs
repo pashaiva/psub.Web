@@ -9,6 +9,8 @@ using Psub.DTO.Entities;
 using Psub.DataAccess.Attributes;
 using Psub.DataService.Abstract;
 using Psub.DataService.Concrete;
+using Psub.DataService.HandlerPerQuery;
+using Psub.DataService.HandlerPerQuery.PublicationProcess.Entities;
 using Psub.Domain.Entities;
 using Psub.Shared;
 using Psub.Shared.Abstract;
@@ -21,20 +23,23 @@ namespace Psub.Controllers
         private readonly IUserService _userService;
         private readonly IFileService _fileService;
         private const string FileExtension = "pdf zip jpg gif png";
+        private readonly IMediator _mediator;
 
         public PublicationController(IPublicationService publicationService,
             IUserService userService,
-            IFileService fileService)
+            IFileService fileService,
+            IMediator mediator)
         {
             _publicationService = publicationService;
             _userService = userService;
             _fileService = fileService;
+            _mediator = mediator;
         }
 
         [AccessService]
         public ActionResult Create()
         {
-            return View(_publicationService.GetPublicationById(0));
+            return View(new PublicationCreateViewModel());
         }
 
         [AccessService]

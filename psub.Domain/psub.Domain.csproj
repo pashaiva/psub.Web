@@ -57,7 +57,6 @@
     <Compile Include="Entities\Like.cs" />
     <Compile Include="Entities\Publication.cs" />
     <Compile Include="Entities\PublicationComment.cs" />
-    <Compile Include="Entities\Publication.cs" />
     <Compile Include="Entities\PublicationSection.cs" />
     <Compile Include="Entities\RelayData.cs" />
     <Compile Include="Entities\Statistic.cs" />

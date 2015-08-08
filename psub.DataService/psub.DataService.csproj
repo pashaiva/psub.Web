@@ -68,6 +68,8 @@
     <Compile Include="Abstract\IControlObjectService.cs" />
     <Compile Include="Abstract\IDataParameterService.cs" />
     <Compile Include="Abstract\IDrawingService.cs" />
+    <Compile Include="Abstract\IPublicationCommentService.cs" />
+    <Compile Include="Abstract\IPublicationLikeService.cs" />
     <Compile Include="Abstract\IPublicationSectionService.cs" />
     <Compile Include="Abstract\IPublicationService.cs" />
     <Compile Include="Abstract\IRelayDataService.cs" />
@@ -80,6 +82,8 @@
     <Compile Include="Concrete\ControlObjectService.cs" />
     <Compile Include="Concrete\DataParameterService.cs" />
     <Compile Include="Concrete\DrawingService.cs" />
+    <Compile Include="Concrete\LikeService.cs" />
+    <Compile Include="Concrete\PublicationCommentService.cs" />
     <Compile Include="Concrete\PublicationSectionService.cs" />
     <Compile Include="Concrete\PublicationService.cs" />
     <Compile Include="Concrete\RelayDataService.cs" />
@@ -91,7 +95,20 @@
     <Compile Include="HandlerPerQuery\Abstract\Result.cs" />
     <Compile Include="HandlerPerQuery\CommentProcess\Entities\CommentDetailsViewModel.cs" />
     <Compile Include="HandlerPerQuery\CommentProcess\Handlers\CommentDetailsHandler.cs" />
+    <Compile Include="HandlerPerQuery\LikeProcess\Entities\LikeCreateViewModel.cs" />
+    <Compile Include="HandlerPerQuery\LikeProcess\Handlers\LikeCreateHandler.cs" />
     <Compile Include="HandlerPerQuery\Mediator.cs" />
+    <Compile Include="HandlerPerQuery\PublicationCommentProcess\Entities\PublicationCommentListViewModel.cs" />
+    <Compile Include="HandlerPerQuery\PublicationCommentProcess\Handlers\PublicationCommentListHandler.cs" />
+    <Compile Include="HandlerPerQuery\PublicationProcess\Entities\PublicationCreateViewModel.cs" />
+    <Compile Include="HandlerPerQuery\PublicationProcess\Entities\PublicationDetailsViewModel.cs" />
+    <Compile Include="HandlerPerQuery\PublicationProcess\Entities\PublicationEditViewModel.cs" />
+    <Compile Include="HandlerPerQuery\PublicationProcess\Entities\PublicationListViewModel.cs" />
+    <Compile Include="HandlerPerQuery\PublicationProcess\Handlers\PublicationCreateHandler.cs" />
+    <Compile Include="HandlerPerQuery\PublicationProcess\Handlers\PublicationDetailsHandler.cs" />
+    <Compile Include="HandlerPerQuery\PublicationProcess\Handlers\PublicationEditGetHandler.cs" />
+    <Compile Include="HandlerPerQuery\PublicationProcess\Handlers\PublicationEditPostHandler.cs" />
+    <Compile Include="HandlerPerQuery\PublicationProcess\Handlers\PublicationListHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
