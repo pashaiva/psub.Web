@@ -49,6 +49,16 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\NHibernate.3.3.3.4001\lib\Net35\NHibernate.dll</HintPath>
     </Reference>
+    <Reference Include="Ninject">
+      <HintPath>..\packages\Ninject.3.0.1.10\lib\net40\Ninject.dll</HintPath>
+    </Reference>
+    <Reference Include="Ninject.Extensions.Conventions, Version=3.0.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Ninject.Extensions.Conventions.3.0.0.11\lib\net40\Ninject.Extensions.Conventions.dll</HintPath>
+    </Reference>
+    <Reference Include="Ninject.Extensions.Infrastructure">
+      <HintPath>..\packages\ninject.extensions.infrastructure.2.0.0.3\lib\net40-full\Ninject.Extensions.Infrastructure.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
@@ -90,6 +100,7 @@
     <Compile Include="Concrete\StatisticService.cs" />
     <Compile Include="Concrete\UserService.cs" />
     <Compile Include="Concrete\PublicationMainSectionService.cs" />
+    <Compile Include="DataServiceNinjectModule.cs" />
     <Compile Include="HandlerPerQuery\Abstract\IQuery.cs" />
     <Compile Include="HandlerPerQuery\Abstract\IQueryHandler.cs" />
     <Compile Include="HandlerPerQuery\Abstract\Result.cs" />

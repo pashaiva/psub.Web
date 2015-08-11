@@ -111,7 +111,8 @@ namespace Psub.DataService.Concrete
                 return new UserDTO
                     {
                         Name = "Guest",
-                        NickName = "Guest"
+                        NickName = "Guest",
+                        UserGuid = "Guest"
                     };
             }
         }

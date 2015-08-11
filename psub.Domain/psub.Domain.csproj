@@ -52,6 +52,7 @@
     <Compile Include="Entities\Comment.cs" />
     <Compile Include="Entities\ControlObject.cs" />
     <Compile Include="Entities\DataParameter.cs" />
+    <Compile Include="Entities\Enums.cs" />
     <Compile Include="Entities\File.cs" />
     <Compile Include="Entities\FullDataParameter.cs" />
     <Compile Include="Entities\Like.cs" />

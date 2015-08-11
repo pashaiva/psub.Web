@@ -19,6 +19,7 @@ namespace Psub.DataAccess.Map
             References(m => m.Publication);
 
             HasMany(x => x.Likes).Fetch.Join().Inverse().Cascade.SaveUpdate();
+            HasMany(x => x.Replys).KeyColumn("AnswerToId").KeyNullable();
         }
     }
 }

@@ -30,5 +30,7 @@ namespace Psub.DataService.HandlerPerQuery.PublicationCommentProcess.Entities
         public int DisLikeCount { get; set; }
         public string LikeUsers { get; set; }
         public string DisLikeUsers { get; set; }
+
+        public List<PublicationCommentListItem> Replys { get; set; }
     }
 }

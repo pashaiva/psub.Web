@@ -1,5 +1,6 @@
 ﻿using FluentNHibernate.Cfg;
 using FluentNHibernate.Cfg.Db;
+using FluentNHibernate.Conventions.Helpers;
 using NHibernate;
 using NHibernate.Context;
 using NHibernate.Tool.hbm2ddl;
@@ -16,9 +17,12 @@ namespace Psub.DataAccess
                 return _sessionFactory ?? (_sessionFactory = Fluently.Configure()
                                                                      .Database(MsSqlConfiguration.MsSql2008.ShowSql()
                                                                      .ConnectionString(c => c.FromConnectionStringWithKey("Base")))
-                                                                     .Mappings(x => x.FluentMappings.AddFromAssembly(System.Reflection.Assembly.Load("psub.DataAccess")))
-                                                                     .ExposeConfiguration(config => config.SetProperty(NHibernate.Cfg.Environment.CurrentSessionContextClass,"web"))
-                                                                     .ExposeConfiguration(cfg => new SchemaUpdate(cfg).Execute(true, true))
+                                                                     .Mappings(x => x.FluentMappings.AddFromAssembly(System.Reflection.Assembly.Load("psub.DataAccess"))
+                                                                            .Conventions.Add(PrimaryKey.Name.Is(key => key.Name))
+                                                                            .Conventions.Add(ForeignKey.EndsWith("Id")))
+                                                                     .ExposeConfiguration(config => config.SetProperty(NHibernate.Cfg.Environment.CurrentSessionContextClass, "web"))
+                    //.ExposeConfiguration(cfg => new SchemaUpdate(cfg).Execute(true, true))
+
                                                                      .BuildSessionFactory());
             }
         }

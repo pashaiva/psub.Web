@@ -1,0 +1,15 @@
+﻿@model psub.Web.ViewModels.Shared.EntityViewModel
+
+<div style="margin-top: 5px; overflow: auto;">
+    <div id="commentContainer"></div>
+</div>
+<script>
+    $(function () {
+        var comment = new CommentsBuilder($("#commentContainer"),
+            '@Url.Action("GetComments", new { id = Model.Id })',
+            '@Url.Action("SaveComment", new { objectId = Model.Id })',
+            '@Url.Action("UploadImage", "File")',
+            '~/Scripts/ckeditor/config.js',
+            '@Url.Action("SetLike", "Like")');
+    });
+</script>

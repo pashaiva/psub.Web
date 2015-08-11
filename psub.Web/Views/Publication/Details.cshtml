@@ -1,4 +1,6 @@
-﻿@model Psub.DTO.Entities.PublicationDTO
+﻿@using Psub.Domain.Entities
+@using psub.Web.ViewModels.Shared
+@model Psub.DTO.Entities.PublicationDTO
 
 @{
     ViewBag.Title = Model.Title;
@@ -55,3 +57,5 @@
 </div>
 
 <button  onclick="JavaScript:document.location='@Url.Action("Edit", "Publication", new { id = Model.Id })';" class="btn btn-info">Изменить</button>
+
+@Html.Partial("_Comments", new EntityViewModel(EntityTypes.Publication, Model.Id, true, true))

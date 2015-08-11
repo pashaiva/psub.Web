@@ -10,6 +10,7 @@ using Psub.DataAccess.Attributes;
 using Psub.DataService.Abstract;
 using Psub.DataService.Concrete;
 using Psub.DataService.HandlerPerQuery;
+using Psub.DataService.HandlerPerQuery.PublicationCommentProcess.Entities;
 using Psub.DataService.HandlerPerQuery.PublicationProcess.Entities;
 using Psub.Domain.Entities;
 using Psub.Shared;
@@ -24,16 +25,19 @@ namespace Psub.Controllers
         private readonly IFileService _fileService;
         private const string FileExtension = "pdf zip jpg gif png";
         private readonly IMediator _mediator;
+        private readonly IPublicationCommentService _publicationCommentService;
 
         public PublicationController(IPublicationService publicationService,
             IUserService userService,
             IFileService fileService,
-            IMediator mediator)
+            IMediator mediator,
+            IPublicationCommentService publicationCommentService)
         {
             _publicationService = publicationService;
             _userService = userService;
             _fileService = fileService;
             _mediator = mediator;
+            _publicationCommentService = publicationCommentService;
         }
 
         [AccessService]
@@ -198,6 +202,20 @@ namespace Psub.Controllers
             {
                 return RedirectToAction("Details", "Publication", new { id = id });
             }
+        }
+
+        [HttpPost]
+        [TransactionPerRequest]
+        public JsonResult SaveComment(string objectId, string text, string parentId)
+        {
+            text = HttpUtility.HtmlDecode(text);
+            return Json(_publicationCommentService.Save(Convert.ToInt32(objectId), text, parentId != null ? Convert.ToInt32(parentId) : 0));
+        }
+
+        [HttpPost]
+        public JsonResult GetComments(PublicationCommentListQuery query)
+        {
+            return Json(_mediator.RequestMvc(query).Items);
         }
     }
 }

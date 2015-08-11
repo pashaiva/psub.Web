@@ -1,11 +1,15 @@
 using NHibernate;
 using Psub.DataAccess;
 using Psub.DataAccess.Abstract;
+using Psub.DataService;
 using Psub.DataService.Abstract;
 using Psub.DataService.Concrete;
+using Psub.DataService.HandlerPerQuery;
 using Psub.Domain.Entities;
 using Psub.Shared.Abstract;
 using Psub.Shared.Concrete;
+using UESPDataManager.DataService.HandlerPerQuery.Abstract;
+using Ninject.Modules;
 
 [assembly: WebActivator.PreApplicationStartMethod(typeof(psub.Web.App_Start.NinjectWebCommon), "Start")]
 [assembly: WebActivator.ApplicationShutdownMethodAttribute(typeof(psub.Web.App_Start.NinjectWebCommon), "Stop")]
@@ -62,30 +66,7 @@ namespace psub.Web.App_Start
         /// <param name="kernel">The kernel.</param>
         private static void RegisterServices(IKernel kernel)
         {
-            kernel.Bind<IRepository<User>>().To<Repository<User>>();
-            kernel.Bind<IRepository<Publication>>().To<Repository<Publication>>();
-            kernel.Bind<IRepository<ControlObject>>().To<Repository<ControlObject>>();
-            kernel.Bind<IRepository<DataParameter>>().To<Repository<DataParameter>>();
-            kernel.Bind<IRepository<RelayData>>().To<Repository<RelayData>>();
-            kernel.Bind<IRepository<FullDataParameter>>().To<Repository<FullDataParameter>>();
-            kernel.Bind<IRepository<ActionLog>>().To<Repository<ActionLog>>();
-            kernel.Bind<IRepository<PublicationSection>>().To<Repository<PublicationSection>>();
-            kernel.Bind<IRepository<PublicationMainSection>>().To<Repository<PublicationMainSection>>();
-            kernel.Bind<IRepository<Statistic>>().To<Repository<Statistic>>();
-
-            kernel.Bind<ISession>().ToMethod(x => NHibernateHelper.GetCurrentSession());
-
-            kernel.Bind<IUserService>().To<UserService>();
-            kernel.Bind<IFileService>().To<FileService>();
-            kernel.Bind<IPublicationService>().To<PublicationService>();
-            kernel.Bind<IControlObjectService>().To<ControlObjectService>();
-            kernel.Bind<IDataParameterService>().To<DataParameterService>();
-            kernel.Bind<IRelayDataService>().To<RelayDataService>();
-            kernel.Bind<IDrawingService>().To<DrawingService>();
-            kernel.Bind<IActionLogService>().To<ActionLogService>();
-            kernel.Bind<IPublicationSectionService>().To<PublicationSectionService>();
-            kernel.Bind<IPublicationMainSectionService>().To<PublicationMainSectionService>();
-            kernel.Bind<IStatisticService>().To<StatisticService>();
+            kernel.Load(new DataServiceNinjectModule());
         }
     }
 }

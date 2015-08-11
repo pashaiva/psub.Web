@@ -214,17 +214,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\AuthConfig.cs" />
-    <Compile Include="App_Start\BootstrapBundleConfig.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\ExampleLayoutsRouteConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\NinjectWebCommon.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
-    <Compile Include="BootstrapSupport\ControlGroupExtensions.cs" />
-    <Compile Include="BootstrapSupport\ViewHelperExtensions.cs" />
+    <Content Include="Content\commentStyles.css" />
     <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\BootstrapBaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
     <Compile Include="Global.asax.cs">
@@ -237,18 +234,16 @@
     <Compile Include="NavigationRoutes\NavigationRouteConfigurationExtensions.cs" />
     <Compile Include="NavigationRoutes\NavigationRouteFilter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\Shared\EntityViewModel.cs" />
+    <Content Include="Scripts\CKEditor\bootstrap\config.json" />
+    <Content Include="Scripts\CKEditor\bootstrap\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Scripts\CKEditor\bootstrap\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Scripts\CKEditor\bootstrap\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Scripts\CKEditor\bootstrap\fonts\glyphicons-halflings-regular.woff2" />
     <None Include="Scripts\ejsTemplates\dataParametres.ejs">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="Scripts\jquery-2.1.1.intellisense.js" />
-    <Content Include="Content\body.css" />
-    <Content Include="Content\bootstrap-mvc-validation.css" />
-    <Content Include="Content\bootstrap-responsive.css" />
-    <Content Include="Content\bootstrap-responsive.min.css" />
-    <Content Include="Content\bootstrap.css" />
-    <Content Include="Content\bootstrap.min.css" />
-    <Content Include="Content\images\glyphicons-halflings-white.png" />
-    <Content Include="Content\images\glyphicons-halflings.png" />
     <Content Include="Content\themes\base\images\animated-overlay.gif" />
     <Content Include="Content\themes\base\images\backgrnd.png" />
     <Content Include="Content\themes\base\images\logo.png" />
@@ -315,8 +310,14 @@
     <Content Include="Content\themes\base\minified\jquery.ui.tooltip.min.css" />
     <Content Include="Images\downMetro.png" />
     <Content Include="Images\upMetro.png" />
-    <Content Include="Scripts\bootstrap.js" />
-    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\CKEditor\bootstrap\css\bootstrap-theme.css" />
+    <Content Include="Scripts\CKEditor\bootstrap\css\bootstrap-theme.min.css" />
+    <Content Include="Scripts\CKEditor\bootstrap\css\bootstrap.css" />
+    <Content Include="Scripts\CKEditor\bootstrap\css\bootstrap.min.css" />
+    <Content Include="Scripts\CKEditor\bootstrap\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Scripts\CKEditor\bootstrap\js\bootstrap.js" />
+    <Content Include="Scripts\CKEditor\bootstrap\js\bootstrap.min.js" />
+    <Content Include="Scripts\Custom\CommentsBuilder.js" />
     <Content Include="Scripts\html5shiv.js" />
     <Content Include="Scripts\jquery-2.1.1.js" />
     <Content Include="Scripts\jquery-2.1.1.min.js" />
@@ -326,7 +327,6 @@
     <Content Include="Scripts\jquery-ui-1.10.4.min.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
-    <Content Include="Scripts\jquery.validate.unobtrusive-custom-for-bootstrap.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\plupload\i18n\ar.js" />
@@ -399,14 +399,7 @@
     <Content Include="Views\PublicationSection\List.cshtml" />
     <Content Include="Views\Publication\Details.cshtml" />
     <Content Include="Views\Shared\_html5shiv.cshtml" />
-    <Content Include="Views\Shared\Index.cshtml" />
-    <Content Include="Views\Shared\Details.cshtml" />
-    <Content Include="Views\Shared\Create.cshtml" />
-    <Content Include="Views\Shared\_validationSummary.cshtml" />
-    <Content Include="Views\Shared\_BootstrapLayout.narrow.cshtml" />
-    <Content Include="Views\Shared\_BootstrapLayout.empty.cshtml" />
-    <Content Include="Views\Shared\_BootstrapLayout.basic.cshtml" />
-    <Content Include="Views\Shared\_alerts.cshtml" />
+    <Content Include="Views\Shared\_Comments.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="favicon.ico" />

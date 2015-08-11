@@ -46,7 +46,7 @@ namespace Psub.DataService.Concrete
 
             if (saveComment.AnswerTo != null)
             {
-                var comment = _publicationCommentRepository.Get(saveComment.AnswerTo.Id);
+                //var comment = _publicationCommentRepository.Get(saveComment.AnswerTo.Id);
                 //_emailService.SendEmail(_userService.GetUserByGuid(comment.UserGuid).Email,
                 //                        "На ваш комментарий ответили",
                 //                        _emailProvider.GetCreateEditBody(new PublicationTask
@@ -59,6 +59,7 @@ namespace Psub.DataService.Concrete
                 //                        }));
             }
 
+            var user = _userService.GetUserByGuid(saveComment.UserGuid);
 
             return new PublicationCommentListItem
             {
@@ -68,7 +69,7 @@ namespace Psub.DataService.Concrete
                 Date = saveComment.Created.ToString("dd.MM.yyyy, H:mm:ss"),
                 CanReply = "true",
                 ParentId = saveComment.AnswerTo != null ? saveComment.AnswerTo.Id.ToString() : null,
-                UserAvatar = string.Format("http://www.gravatar.com/avatar/{0}?d={1}", HashEmailForGravatar(_userService.GetUserByGuid(saveComment.UserGuid).Email), "http://media.tumblr.com/tumblr_lak5phfeXz1qzqijq.png"),
+                UserAvatar = string.Format("http://www.gravatar.com/avatar/{0}?d={1}", HashEmailForGravatar(user != null ? user.Email : string.Empty), "http://media.tumblr.com/tumblr_lak5phfeXz1qzqijq.png"),
                 Guid = saveComment.Guid,
                 DisLikeUsers = string.Empty,
                 LikeUsers = string.Empty
@@ -90,7 +91,7 @@ namespace Psub.DataService.Concrete
                                 Date = m.Created.ToString("dd.MM.yyyy, H:mm:ss"),
                                 CanReply = "true",
                                 ParentId = m.AnswerTo != null ? m.AnswerTo.Id.ToString() : null,
-                                UserAvatar = string.Format("http://www.gravatar.com/avatar/{0}?d={1}", HashEmailForGravatar(_userService.GetUserByGuid(m.UserGuid).Email), "http://media.tumblr.com/tumblr_lak5phfeXz1qzqijq.png"),
+                                UserAvatar = string.Format("http://www.gravatar.com/avatar/{0}?d={1}", HashEmailForGravatar(_userService.GetUserByGuid(m.UserGuid) != null ? _userService.GetUserByGuid(m.UserGuid).Email : string.Empty), "http://media.tumblr.com/tumblr_lak5phfeXz1qzqijq.png"),
                                 Guid = m.Guid,
                                 LikeCount = m.Likes != null && m.Likes.Any() ? m.Likes.Count(like => like.IsLike) : 0,
                                 DisLikeCount = m.Likes != null && m.Likes.Any() ? m.Likes.Count(like => !like.IsLike) : 0,
@@ -113,7 +114,7 @@ namespace Psub.DataService.Concrete
             byte[] data = md5Hasher.ComputeHash(Encoding.Default.GetBytes(email));
 
             // Create a new Stringbuilder to collect the bytes  
-            // and create a string.  
+            // and create a string.  D:\VS\GitHub\psub.Web\psub.DataService\Abstract\
             var sBuilder = new StringBuilder();
 
             // Loop through each byte of the hashed data  

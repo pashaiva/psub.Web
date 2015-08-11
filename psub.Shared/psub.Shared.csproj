@@ -53,6 +53,8 @@
     <Compile Include="Concrete\FileService.cs" />
     <Compile Include="Concrete\FTP.cs" />
     <Compile Include="ConfigData.cs" />
+    <Compile Include="Extensions\StringExtensions.cs" />
+    <Compile Include="FormatUtlities.cs" />
     <Compile Include="LanguageConstants.cs" />
     <Compile Include="MimeTypes.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
