@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Configuration;
 using System.Web;
 
@@ -56,5 +57,7 @@ namespace Psub.Shared
                 return (string)HttpContext.Current.Application["mainKeywords"];
             }
         }
+
+        public static List<string> FileExtensionForOpenInBrowser = new List<string>(new[] { ".pdf", ".jpg", ".png" });
     }
 }

@@ -35,6 +35,7 @@ namespace Psub.DataService
             Bind<IRepository<Statistic>>().To<Repository<Statistic>>();
             Bind<IRepository<PublicationComment>>().To<Repository<PublicationComment>>();
             Bind<IRepository<Like>>().To<Repository<Like>>();
+            Bind<IRepository<PublicationCommentLike>>().To<Repository<PublicationCommentLike>>();
 
             Bind<ISession>().ToMethod(x => NHibernateHelper.GetCurrentSession());
 

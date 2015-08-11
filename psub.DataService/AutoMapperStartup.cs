@@ -20,14 +20,14 @@ namespace Psub.DataService
             //.ForMember(dest => dest.ApproverNames, opt => opt.MapFrom(src => src.Approvers.Name));
 
             Mapper.CreateMap<PublicationComment, PublicationCommentListItem>()
-              .ForMember(dest => dest.Comment, opt => opt.MapFrom(src => src.Text))
-              .ForMember(dest => dest.Author, opt => opt.MapFrom(src => src.UserName))
-              .ForMember(dest => dest.Date, opt => opt.MapFrom(src => src.Created.ToString("dd.MM.yyyy, H:mm:ss")))
-              .ForMember(dest => dest.Replys, opt => opt.MapFrom(src => src.Replys.OrderByDescending(m => m.Id)))
-              .ForMember(dest => dest.LikeCount, opt => opt.MapFrom(src => src.Likes != null && src.Likes.Any() ? src.Likes.Count(like => like.IsLike) : 0))
-              .ForMember(dest => dest.DisLikeCount, opt => opt.MapFrom(src => src.Likes != null && src.Likes.Any() ? src.Likes.Count(like => !like.IsLike) : 0))
-              .ForMember(dest => dest.DisLikeUsers, opt => opt.MapFrom(src => src.Likes != null && src.Likes.Any() ? src.Likes.Where(like => !like.IsLike).Select(like => like.UserName).Take(5).ToList().Aggregate("", (current, item) => current + string.Format("<li><nobr>{0}</nobr></li>", item)) : string.Empty))
-              .ForMember(dest => dest.LikeUsers, opt => opt.MapFrom(src => src.Likes != null && src.Likes.Any() ? src.Likes.Where(like => like.IsLike).Select(like => like.UserName).Take(5).ToList().Aggregate("", (current, item) => current + string.Format("<li><nobr>{0}</nobr></li>", item)) : string.Empty));
+                    .ForMember(dest => dest.Comment, opt => opt.MapFrom(src => src.Text))
+                    .ForMember(dest => dest.Author, opt => opt.MapFrom(src => src.UserName))
+                    .ForMember(dest => dest.Date, opt => opt.MapFrom(src => src.Created.ToString("dd.MM.yyyy, H:mm:ss")))
+                    .ForMember(dest => dest.Replys, opt => opt.MapFrom(src => src.Replys.OrderByDescending(m => m.Id)))
+                    .ForMember(dest => dest.LikeCount, opt => opt.MapFrom(src => src.Likes != null && src.Likes.Any() ? src.Likes.Count(like => like.IsLike) : 0))
+                    .ForMember(dest => dest.DisLikeCount, opt => opt.MapFrom(src => src.Likes != null && src.Likes.Any() ? src.Likes.Count(like => !like.IsLike) : 0))
+                    .ForMember(dest => dest.DisLikeUsers, opt => opt.MapFrom(src => src.Likes != null && src.Likes.Any() ? src.Likes.Where(like => !like.IsLike).Select(like => like.UserName).Take(5).ToList().Aggregate("", (current, item) => current + string.Format("<li><nobr>{0}</nobr></li>", item)) : string.Empty))
+                    .ForMember(dest => dest.LikeUsers, opt => opt.MapFrom(src => src.Likes != null && src.Likes.Any() ? src.Likes.Where(like => like.IsLike).Select(like => like.UserName).Take(5).ToList().Aggregate("", (current, item) => current + string.Format("<li><nobr>{0}</nobr></li>", item)) : string.Empty));
             
             #endregion
         }

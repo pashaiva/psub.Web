@@ -2,7 +2,7 @@
 using Psub.DataService.HandlerPerQuery.LikeProcess.Entities;
 using UESPDataManager.DataService.HandlerPerQuery.Abstract;
 
-namespace UESPDataManager.DataService.HandlerPerQuery.LikeProcess.Handlers
+namespace Psub.DataService.HandlerPerQuery.LikeProcess.Handlers
 {
     public class LikeCreateHandler : IQueryHandler<LikeCreateQuery, LikeCreateResult>
     {

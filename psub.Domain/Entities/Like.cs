@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using Psub.Domain.Abstract;
 
 namespace Psub.Domain.Entities
@@ -14,6 +11,10 @@ namespace Psub.Domain.Entities
         public virtual string UserGuid { get; set; }
         public virtual DateTime Created { get; set; }
         public virtual bool IsLike { get; set; }
+    }
+
+    public class PublicationCommentLike : Like
+    {
         public virtual PublicationComment Comment { get; set; }
     }
 }

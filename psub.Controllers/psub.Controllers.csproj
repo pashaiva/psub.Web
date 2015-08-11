@@ -47,9 +47,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BaseController.cs" />
     <Compile Include="ControlObjectController.cs" />
     <Compile Include="ExceptionController.cs" />
     <Compile Include="GHIPIController.cs" />
+    <Compile Include="LikeController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PublicationController.cs" />
     <Compile Include="PublicationSectionController.cs" />
@@ -58,6 +60,11 @@
     <Compile Include="UserController.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Infrastructure\Infrastructure.csproj">
+      <Project>{c1723c47-0c68-43b3-959a-afa175d6b63a}</Project>
+      <Name>Infrastructure</Name>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+    </ProjectReference>
     <ProjectReference Include="..\psub.DataAccess\psub.DataAccess.csproj">
       <Project>{3994f672-0bf5-4c59-84a5-863d31418b7b}</Project>
       <Name>psub.DataAccess</Name>

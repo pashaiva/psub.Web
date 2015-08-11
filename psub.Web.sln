@@ -20,34 +20,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{6E1850
 		.nuget\packages.config = .nuget\packages.config
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure", "Infrastructure\Infrastructure.csproj", "{C1723C47-0C68-43B3-959A-AFA175D6B63A}"
+EndProject
 Global
-	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 8
-		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
-		SccTeamFoundationServer = https://pashaiva.visualstudio.com/defaultcollection
-		SccLocalPath0 = .
-		SccProjectUniqueName1 = psub.Controllers\\psub.Controllers.csproj
-		SccProjectName1 = psub.Controllers
-		SccLocalPath1 = psub.Controllers
-		SccProjectUniqueName2 = psub.DataAccess\\psub.DataAccess.csproj
-		SccProjectName2 = psub.DataAccess
-		SccLocalPath2 = psub.DataAccess
-		SccProjectUniqueName3 = psub.DataService\\psub.DataService.csproj
-		SccProjectName3 = psub.DataService
-		SccLocalPath3 = psub.DataService
-		SccProjectUniqueName4 = psub.Domain\\psub.Domain.csproj
-		SccProjectName4 = psub.Domain
-		SccLocalPath4 = psub.Domain
-		SccProjectUniqueName5 = psub.DTO\\psub.DTO.csproj
-		SccProjectName5 = psub.DTO
-		SccLocalPath5 = psub.DTO
-		SccProjectUniqueName6 = psub.Shared\\psub.Shared.csproj
-		SccProjectName6 = psub.Shared
-		SccLocalPath6 = psub.Shared
-		SccProjectUniqueName7 = psub.Web\\psub.Web.csproj
-		SccProjectName7 = psub.Web
-		SccLocalPath7 = psub.Web
-	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
@@ -81,6 +56,10 @@ Global
 		{2010D0D6-FA78-4DF7-8656-3D4180A92131}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2010D0D6-FA78-4DF7-8656-3D4180A92131}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2010D0D6-FA78-4DF7-8656-3D4180A92131}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C1723C47-0C68-43B3-959A-AFA175D6B63A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C1723C47-0C68-43B3-959A-AFA175D6B63A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C1723C47-0C68-43B3-959A-AFA175D6B63A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C1723C47-0C68-43B3-959A-AFA175D6B63A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

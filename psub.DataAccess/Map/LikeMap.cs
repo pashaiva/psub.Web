@@ -3,7 +3,7 @@ using Psub.Domain.Entities;
 
 namespace Psub.DataAccess.Map
 {
-    internal class LikeMap : ClassMap<Like>
+    public class LikeMap : ClassMap<Like>
     {
         public LikeMap()
         {
@@ -14,6 +14,15 @@ namespace Psub.DataAccess.Map
             Map(m => m.UserGuid).Length(100).Not.Nullable();
             Map(m => m.Created);
             Map(m => m.IsLike);
+            DiscriminateSubClassesOnColumn("ObjectType");
+        }
+    }
+
+    public class PublicationCommentLikeMap : SubclassMap<PublicationCommentLike>
+    {
+        public PublicationCommentLikeMap()
+        {
+            DiscriminatorValue("PublicationComment");
             References(x => x.Comment).Column("PublicationCommentId");
         }
     }
