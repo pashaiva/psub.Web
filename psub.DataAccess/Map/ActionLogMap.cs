@@ -15,6 +15,7 @@ namespace Psub.DataAccess.Map
             Map(m => m.Date).Column("date");
             Map(m => m.Type).Column("type");
             Map(m => m.ObjectId).Column("objectId");
+            Map(m => m.ObjectName).Column("ObjectName");
         }
     }
 }

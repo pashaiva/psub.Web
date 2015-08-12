@@ -5,6 +5,8 @@ using System.Web;
 using System.Web.Mvc;
 using Psub.DTO.Entities;
 using Psub.DataService.Abstract;
+using Psub.DataService.HandlerPerQuery;
+using Psub.DataService.HandlerPerQuery.ActionLogProcess.Entities;
 using Psub.Shared;
 
 namespace psub.Web.Controllers
@@ -13,12 +15,15 @@ namespace psub.Web.Controllers
     {
         private readonly IPublicationService _publicationService;
         private readonly IStatisticService _statisticService;
+        private readonly IMediator _mediator;
 
         public HomeController(IPublicationService publicationService,
-            IStatisticService statisticService)
+            IStatisticService statisticService,
+            IMediator mediator)
         {
             _publicationService = publicationService;
             _statisticService = statisticService;
+            _mediator = mediator;
         }
 
         public ActionResult Index()
@@ -93,6 +98,12 @@ namespace psub.Web.Controllers
         {
             _statisticService.Save(url, urlReferrer);
             return Json(true);
+        }
+
+        [HttpPost]
+        public ActionResult GetLastActionsHistoryOfSectionList(LastActionsHistoryOfSectionListQuery model)
+        {
+            return Json(_mediator.RequestMvc(model));
         }
     }
 }

@@ -13,5 +13,6 @@ namespace Psub.Domain.Entities
         public virtual int ObjectId { get; set; }
         public virtual int Id { get; set; }
         public virtual string Name { get; set; }
+        public virtual string ObjectName { get; set; }
     }
 }

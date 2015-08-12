@@ -1,0 +1,13 @@
+﻿@model string
+
+<div id="lastActionsHistoryOfSectionList">
+</div>
+
+<script>
+    $(function () {
+        $("#lastActionsHistoryOfSectionList").empty();
+        $("#lastActionsHistoryOfSectionList").lastActionsHistoryOfSection({
+            serviceUrl: '@Url.Action("GetLastActionsHistoryOfSectionList", "Home", new { Object = Model })'
+        });
+    });
+</script>

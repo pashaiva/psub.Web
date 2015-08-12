@@ -116,6 +116,8 @@
     <Compile Include="HandlerPerQuery\Abstract\IQuery.cs" />
     <Compile Include="HandlerPerQuery\Abstract\IQueryHandler.cs" />
     <Compile Include="HandlerPerQuery\Abstract\Result.cs" />
+    <Compile Include="HandlerPerQuery\ActionLogProcess\Entities\LastActionsHistoryOfSectionListViewModel.cs" />
+    <Compile Include="HandlerPerQuery\ActionLogProcess\Handlers\LastActionsHistoryOfSectionListHandler.cs" />
     <Compile Include="HandlerPerQuery\CommentProcess\Entities\CommentDetailsViewModel.cs" />
     <Compile Include="HandlerPerQuery\CommentProcess\Handlers\CommentDetailsHandler.cs" />
     <Compile Include="HandlerPerQuery\LikeProcess\Entities\LikeCreateViewModel.cs" />

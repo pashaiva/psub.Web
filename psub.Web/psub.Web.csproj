@@ -324,6 +324,7 @@
     <Content Include="Scripts\CKEditor\bootstrap\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Scripts\CKEditor\bootstrap\js\bootstrap.js" />
     <Content Include="Scripts\CKEditor\bootstrap\js\bootstrap.min.js" />
+    <Content Include="Scripts\Custom\actionLogList.js" />
     <Content Include="Scripts\Custom\CommentsBuilder.js" />
     <Content Include="Scripts\html5shiv.js" />
     <Content Include="Scripts\jquery-2.1.1.js" />
@@ -423,6 +424,7 @@
     <Content Include="Views\Shared\EditorTemplates\FormAddressLetter.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\Object.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\TextEditor.cshtml" />
+    <Content Include="Views\Shared\_LastActionsHistoryOfSection.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="favicon.ico" />
