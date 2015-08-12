@@ -13,34 +13,37 @@
         Все публикации
     </button>
 </div>
+@if (Model!=null && Model.Any())
+{
+    <p>
+        <table class="noBerder simpleSelect">
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        <div style="background: mintcream; opacity: 0.9; padding: 10px;" class="radius">
+                            <a class="head" href="@Url.Action("Details", "Publication", new { id = item.Id })">@Html.DisplayFor(modelItem => item.Title)</a>
+                            <br />
+                            <h4><i>Автор: @Html.DisplayFor(modelItem => item.Name)</i></h4>
+                            <br />
+                            <p>
+                                @Html.Raw(item.Text)
+                            </p>
+                            <br />
+                            <p class="Category">
+                                <b>@Html.DisplayFor(modelItem => item.PublicationMainSectionName)>>>@Html.DisplayFor(modelItem => item.PublicationSectionName)</b>
+                            </p>
 
-<p>
-    <table class="noBerder simpleSelect">
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    <div style="background: mintcream; opacity: 0.9; padding: 10px;" class="radius">
-                        <a class="head" href="@Url.Action("Details", "Publication", new { id = item.Id })">@Html.DisplayFor(modelItem => item.Title)</a>
-                        <br />
-                        <h4><i>Автор: @Html.DisplayFor(modelItem => item.Name)</i></h4>
-                        <br />
-                        <p>
-                            @Html.Raw(item.Text)
-                        </p>
-                        <br />
-                        <p class="Category">
-                            <b>@Html.DisplayFor(modelItem => item.PublicationMainSectionName)>>>@Html.DisplayFor(modelItem => item.PublicationSectionName)</b>
-                        </p>
+                        </div>
 
-                    </div>
+                        <br />
+                    </td>
+                </tr>
+            }
+        </table>
+    </p>
+}
 
-                    <br />
-                </td>
-            </tr>
-        }
-    </table>
-</p>
 <script type="text/javascript">
     $(function () {
         $("#createPublication").click(function () {

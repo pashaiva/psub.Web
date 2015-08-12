@@ -12,5 +12,6 @@ namespace Psub.DTO.Entities
         public string DateJson { get; set; }
         public virtual string Type { get; set; }
         public virtual int ObjectId { get; set; }
+        public virtual string ObjectName { get; set; }
     }
 }

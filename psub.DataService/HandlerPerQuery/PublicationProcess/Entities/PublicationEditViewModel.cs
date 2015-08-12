@@ -1,20 +1,13 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.Web.Mvc;
+using Psub.DataService.CommonViewModels;
 using Psub.Shared;
 using UESPDataManager.DataService.HandlerPerQuery.Abstract;
 
 namespace Psub.DataService.HandlerPerQuery.PublicationProcess.Entities
 {
-    public class PublicationEditPostQuery : IQuery<PublicationEditViewModel>
+    public class PublicationEditPostQuery : PublicationViewModel, IQuery<PublicationEditViewModel>
     {
-        public int Id { get; set; }
-        public string TitleText { get; set; }
-        [AllowHtml]
-        public string Text { get; set; }
-        [AllowHtml]
-        public string TextPreview { get; set; }
-        public string Keywords { get; set; }
-        public bool IsPublic { get; set; }
     }
 
     public class PublicationEditGetQuery : IQuery<PublicationEditViewModel>
@@ -22,7 +15,11 @@ namespace Psub.DataService.HandlerPerQuery.PublicationProcess.Entities
         public int Id { get; set; }
     }
 
-    public class PublicationEditViewModel : IQuery<PublicationEditResult>
+    public class PublicationEditViewModel : PublicationViewModel, IQuery<PublicationEditResult>
+    {
+    }
+
+    public class PublicationViewModel
     {
         [HiddenInput(DisplayValue = false)]
         public int Id { get; set; }
@@ -48,6 +45,10 @@ namespace Psub.DataService.HandlerPerQuery.PublicationProcess.Entities
 
         [Display(Name = LanguageConstants.AccessAll)]
         public bool IsPublic { get; set; }
+
+        [Display(Name = LanguageConstants.Section)]
+        [UIHint("DropDownSelector")]
+        public DropDownSelectorViewModel Section { get; set; }
     }
 
     public class PublicationEditResult : QueryResult

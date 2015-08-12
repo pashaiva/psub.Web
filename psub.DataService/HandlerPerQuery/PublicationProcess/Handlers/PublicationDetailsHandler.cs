@@ -27,7 +27,9 @@ namespace Psub.DataService.HandlerPerQuery.PublicationProcess.Handlers
                 return null;
 
             var result = Mapper.Map<Publication, PublicationDetailsViewModel>(currentDocument);
-        
+
+            result.IsEditor = _userService.IsAdmin();
+
             return result;
         }
     }

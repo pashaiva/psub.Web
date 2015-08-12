@@ -400,6 +400,11 @@
     <Content Include="Views\Publication\Details.cshtml" />
     <Content Include="Views\Shared\_html5shiv.cshtml" />
     <Content Include="Views\Shared\_Comments.cshtml" />
+    <Content Include="Views\Publication\CreateMainSection.cshtml" />
+    <Content Include="Views\Publication\CreateSection.cshtml" />
+    <Content Include="Views\Publication\EditSection.cshtml" />
+    <Content Include="Views\Shared\_Sections.cshtml" />
+    <Content Include="Views\Shared\_Pager.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="favicon.ico" />
@@ -875,6 +880,10 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Infrastructure.Web\Infrastructure.Web.csproj">
+      <Project>{e25e9b74-4ab8-4dce-87a8-2e4766d03b00}</Project>
+      <Name>Infrastructure.Web</Name>
+    </ProjectReference>
     <ProjectReference Include="..\psub.Controllers\psub.Controllers.csproj">
       <Project>{289d626a-3759-46b8-a7d3-3ee59c5eaa0c}</Project>
       <Name>psub.Controllers</Name>

@@ -34,7 +34,7 @@ namespace Psub.DataService.HandlerPerQuery.PublicationProcess.Entities
         
         public string Creator
         {
-            get { return string.Format("{0} {1}", UserName, Created); }
+            get { return FormatUtlities.FormatCreated(string.Format("{0}", UserName), Created); }
         }
         [HiddenInput(DisplayValue = false)]
         public string UserName { get; set; }
@@ -42,5 +42,7 @@ namespace Psub.DataService.HandlerPerQuery.PublicationProcess.Entities
         public DateTime Created { get; set; }
         [HiddenInput(DisplayValue = false)]
         public bool IsEditor { get; set; }
+        [HiddenInput(DisplayValue = false)]
+        public bool IsPublic { get; set; }
     }
 }

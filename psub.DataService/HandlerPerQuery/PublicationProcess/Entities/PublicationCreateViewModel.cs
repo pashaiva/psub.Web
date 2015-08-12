@@ -1,21 +1,14 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Web.Mvc;
-using Psub.Domain.Entities;
+using Psub.DataService.HandlerPerQuery.SectionProcess.Entities;
 using Psub.Shared;
 using UESPDataManager.DataService.HandlerPerQuery.Abstract;
 
 namespace Psub.DataService.HandlerPerQuery.PublicationProcess.Entities
 {
-    public class PublicationCreateQuery : IQuery<PublicationCreateResult>
+    public class PublicationCreateQuery :PublicationCreateGetViewModel, IQuery<PublicationCreateResult>
     {
-        public string TitleText { get; set; }
-        [AllowHtml]
-        public string Text { get; set; }
-        [AllowHtml]
-        public string TextPreview { get; set; }
-        public string Keywords { get; set; }
-        public bool IsPublic { get; set; }
     }
 
     public class PublicationCreateViewModel : IQuery<PublicationCreateResult>
@@ -42,9 +35,10 @@ namespace Psub.DataService.HandlerPerQuery.PublicationProcess.Entities
         [Display(Name = LanguageConstants.AccessAll)]
         public bool IsPublic { get; set; }
 
-        public string Guid { get; set; }
-        [Display(Name = "Прикрепленные файлы:")]
-        public List<File> Files { get; set; }
+        [Display(Name = LanguageConstants.Section)]
+        public int SectionId { get; set; }
+
+        public List<MainSectionItem> MainSections { get; set; }
     }
 
     public class PublicationCreateResult : QueryResult

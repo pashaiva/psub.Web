@@ -1,0 +1,34 @@
+﻿<div id="sectionDiv">
+</div>
+
+<script>
+    $(function () {
+        $.post('@Url.Action("GetMainSection", "Publication")',
+        function (res) {
+            if (res != null) {
+                var div = $("<div>");
+                $(res.Items).each(function () {
+                    $(this.Sections).each(function () {
+                        var sectionDiv = $("<div>").attr({ "class": "btn-group" });
+                        $("<a>").attr({ "href": "@Url.Action("List", "Publication")?sectionId=" + this.Id, "class": "btn btn-default" }).html(this.Name).appendTo(sectionDiv);
+                        if (res.IsAdminPublications)
+                            $("<a>").attr({ "href": "@Url.Action("EditSection", "Publication")?Id=" + this.Id, "class": "btn btn-primary" })
+                                    .append($("<span>").attr("class", "glyphicon glyphicon-pencil")).appendTo(sectionDiv);
+
+                        sectionDiv.appendTo(div);
+                    });
+
+                 @*var divDropdown = $("<span>").attr({ "class": "btn-group", "role": "group" }).appendTo(div);
+                    $("<button>").attr({ "class": "btn btn-default dropdown-toggle", "data-toggle": "dropdown", "role": "group" }).html(this.Name + " ").append($("<span>").attr("class", "caret")).appendTo(divDropdown);
+                    var ul = $("<ul>").attr({ "class": "dropdown-menu" }).appendTo(divDropdown);
+                    $(this.Sections).each(function () {
+                        $("<li>").appendTo(ul).append($("<a>").attr("href", "@Url.Action("List", "Publication")?sectionId=" + this.Id).html(this.Name));
+                    });*@
+
+                });
+
+                div.appendTo($("#sectionDiv"));
+            }
+        });
+    });
+</script>

@@ -78,13 +78,14 @@ namespace Psub.DataService.Concrete
             return _actionLogRepository.SaveOrUpdate(actionLog);
         }
 
-        public void SetActionLog(string actionName, int objectId, string objectType)
+        public void SetActionLog(string actionName, int objectId, string objectType, string objectName = "")
         {
-            SaveOrUpdate(new ActionLogDTO
+            SaveOrUpdate(new ActionLogDTO()
             {
                 ActionName = actionName,
                 ObjectId = objectId,
-                Type = objectType
+                Type = objectType,
+                ObjectName = objectName
             });
         }
 

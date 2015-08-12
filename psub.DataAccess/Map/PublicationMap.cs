@@ -9,17 +9,16 @@ namespace Psub.DataAccess.Map
         {
             Table("Publications");
             Id(m => m.Id);
-            Map(m => m.Name).Column("UserName");
-            Map(m => m.UserGuid);
-            Map(m => m.Title).Not.Nullable();
+            Map(m => m.TitleText).Column("Title").Length(500).Not.Nullable();
             Map(m => m.Text).CustomType("StringClob").Not.Nullable();
-            Map(m => m.CreateDate).Column("CareteDate");
-            Map(m => m.EditDate);
-            Map(m => m.Keywords);
-            Map(m => m.Guid);
+            Map(m => m.TextPreview).CustomType("StringClob").Not.Nullable();
+            Map(m => m.Keywords).Length(300).Nullable();
+            Map(m => m.UserName).Length(200).Not.Nullable();
+            Map(m => m.UserGuid).Length(100).Not.Nullable();
+            Map(m => m.Created).Column("CareteDate");
+            Map(m => m.IsPublic);
 
-            References(m => m.PublicationMainSection).Column("PublicationMainSectionId");
-            References(m => m.PublicationSection).Column("PublicationSectionId");
+            References(m => m.Section).Column("PublicationSectionId");
         }
     }
 }

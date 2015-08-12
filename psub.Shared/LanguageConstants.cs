@@ -47,9 +47,6 @@
         public const string Notapproved = "Неутвержденные";
         public const string Search = "Поиск";
         public const string Find = "Найти";
-        public const string DocumentsFoundMessageTemplate = "Количество найденных документов: {0}";
-        public const string NotapprovedDocumentsMessageTemplate = "Количество неутвержденных документов: {0}";
-        public const string DocumentWithThisIdDoesntExist = "Документа с таким идентификатором не существует.";
         public const string NoData = "Нет данных";
         public const string Absent = "Отсутствует";
         public const string DocumentRegistrationNumberTemplate = "№ {0} от {1}";
@@ -123,7 +120,7 @@
         public const string CompletedLevel = "Процент выполнения, %";
         public const string ReturnEditFileInfo = "Причина отклонения файлов в редактируемом формате";
         public const string AllPaperCount = "Общее количество копий на бумаге";
-        public const string AllDVDCount = "Общее количество копий на дисках";
+        public const string AllDvdCount = "Общее количество копий на дисках";
         public const string IsSendEmail = "Отправлялся по электронной почте";
         public const string PutOnPaper = "Сдал бумажный экземпляр";
         public const string Relationship = "Предшественники";
@@ -133,10 +130,91 @@
         public const string Preview = "Краткое содержание";
         public const string Keywords = "Ключевые слова";
         public const string Comment = "Комментарий";
-        public const string AccessClosePublication = "Доступ закрыт! Чтобы получить разрешение, необходимо обратиться к создателю записи.";
         public const string AccessAll = "Доступно всем";
         public const string Text = "Текст";
         public const string Author = "Автор";
         public const string ReplyToComment = "Ответ";
+
+
+
+        public const string FullName = "Полное наименование";
+
+        public const string Division = "Отдел";
+        public const string Divisions = "Подразделения";
+        public const string Address = "Адрес";
+        public const string ContractNumber = "Номер договора";
+        public const string LimitedAccess = "Ограниченный доступ";
+        public const string Publications = "Новости";
+        public const string LastActions = "Последние изменения";
+        public const string MainSection = "Раздел-родитель";
+        public const string Section = "Раздел";
+        public const string CreateMainSection = "Создать основной раздел";
+        public const string CreateSection = "Создать раздел";
+        public const string EditMainSection = "Редактировать основной раздел";
+        public const string EditSection = "Редактировать раздел";
+        public const string GeoObject = "Геогр. объект";
+        public const string ContractComposition = "Состав договора";
+        public const string ObjectInContractComposition = "Объект в составе договора";
+        public const string Prefix = "Префикс";
+        public const string SquaredGeoobject = "Площадной геогр. объект";
+        public const string LinearGeoobject = "Линейный геогр. объект";
+        public const string LinearGeoobjects = "Линейные геогр. объекты";
+        public const string Type = "Тип";
+        public const string Energosystem = "Энергосистема";
+        public const string SquaredGeoobjects = "Площадные геогр. объекты";
+        public const string Contragents = "Заказчики/Контрагенты";
+        public const string City = "Город";
+        public const string Email = "Эл. почта";
+        public const string Phone = "Телефон";
+        public const string Phone2 = "Телефон 2";
+        public const string Fax = "Факс";
+        public const string InternetSite = "Сайт";
+        public const string FormAddressLetter = "Форма обращения для письма";
+        public const string NameForAddress = "инициалы, фамилия:";
+        public const string PostForAddress = "Введите форму обращения к сотруднику для письма.<br/>Пример:<br/>Генеральному директору И.И.Иванову<br/>должность:";
+        public const string Workers = "Сотрудники";
+        public const string Worker = "Сотрудник";
+        public const string Post = "Должность";
+        public const string Copy = "Копия";
+        public const string CompanyStructure = "Структура организации";
+        public const string Group = "Группа";
+        public const string MyProfile = "Мой профиль";
+        public const string CompanyName = "Филиал «ЭНЕКС» (ОАО) «Южэнергосетьпроект»";
+        public const string SecurityGroups = "Группы безопасности";
+        public const string SecurityGroup = "Группа безопасности";
+        public const string SecondName = "Фамилия";
+        public const string ThirdName = "Отчество";
+        public const string Room = "Комната";
+        public const string TabelNumber = "Табельный номер";
+        public const string DateWorkBegin = "Дата начала работы";
+        public const string WorkerMarker = "Ставка";
+        public const string NewWorker = "Новый сотрудник";
+        public const string EditWorker = "Редактирование данных сотрудника";
+        public const string WorkerName = "ФИО";
+        public const string ToHome = "Домой";
+        public const string SetDeputy = "Указать заместителя";
+        public const string CancelDeputy = "Убрать заместителя";
+        public const string Deputy = "Заместитель";
+        public const string IfReallyDelete = "Удалить?";
+        public const string IfDismissed = "Уволить?";
+        public const string Avatar = "Аватарка";
+        public const string UserNotSet = "Пользователь не указан";
+        public const string Dismissed = "Уволен";
+        public const string DismissedDate = "Дата увольнения";
+
+
+        #region messages
+
+        public const string DocumentsFoundMessageTemplate = "Количество найденных документов: {0}";
+        public const string NotapprovedDocumentsMessageTemplate = "Количество неутвержденных документов: {0}";
+        public const string DocumentWithThisIdDoesntExist = "Документа с таким идентификатором не существует";
+        public const string FailedAction = "Не удалось выполнить дейтвие";
+        public const string AccessClosePublication = "Доступ закрыт! Чтобы получить разрешение, необходимо обратиться к создателю записи";
+        public const string SuccessSavedData = "Данные успешно сохранены";
+        public const string SuccessDeletedData = "Данные успешно удалены";
+        public const string FailedSaveData = "Ошибка при сохранении данных";
+        public const string FailedDeleteData = "Ошибка при удалении данных! Возможно, запись связана с другими объектами";
+
+        #endregion
     }
 }

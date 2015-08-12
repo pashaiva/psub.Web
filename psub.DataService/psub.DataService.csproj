@@ -87,6 +87,7 @@
     <Compile Include="Abstract\IUserService.cs" />
     <Compile Include="Abstract\IPublicationMainSectionService.cs" />
     <Compile Include="AutoMapperStartup.cs" />
+    <Compile Include="CommonViewModels\DropDownSelectorViewModel.cs" />
     <Compile Include="Concrete\AccessService.cs" />
     <Compile Include="Concrete\ActionLogService.cs" />
     <Compile Include="Concrete\ControlObjectService.cs" />
@@ -111,15 +112,31 @@
     <Compile Include="HandlerPerQuery\Mediator.cs" />
     <Compile Include="HandlerPerQuery\PublicationCommentProcess\Entities\PublicationCommentListViewModel.cs" />
     <Compile Include="HandlerPerQuery\PublicationCommentProcess\Handlers\PublicationCommentListHandler.cs" />
+    <Compile Include="HandlerPerQuery\PublicationProcess\Entities\PublicationCreateGetViewModel.cs" />
     <Compile Include="HandlerPerQuery\PublicationProcess\Entities\PublicationCreateViewModel.cs" />
     <Compile Include="HandlerPerQuery\PublicationProcess\Entities\PublicationDetailsViewModel.cs" />
     <Compile Include="HandlerPerQuery\PublicationProcess\Entities\PublicationEditViewModel.cs" />
     <Compile Include="HandlerPerQuery\PublicationProcess\Entities\PublicationListViewModel.cs" />
+    <Compile Include="HandlerPerQuery\PublicationProcess\Handlers\PublicationCreateGetHandler.cs" />
     <Compile Include="HandlerPerQuery\PublicationProcess\Handlers\PublicationCreateHandler.cs" />
     <Compile Include="HandlerPerQuery\PublicationProcess\Handlers\PublicationDetailsHandler.cs" />
     <Compile Include="HandlerPerQuery\PublicationProcess\Handlers\PublicationEditGetHandler.cs" />
     <Compile Include="HandlerPerQuery\PublicationProcess\Handlers\PublicationEditPostHandler.cs" />
     <Compile Include="HandlerPerQuery\PublicationProcess\Handlers\PublicationListHandler.cs" />
+    <Compile Include="HandlerPerQuery\SectionProcess\Entities\MainSectionCreateGetViewModel.cs" />
+    <Compile Include="HandlerPerQuery\SectionProcess\Entities\MainSectionCreatePostViewModel.cs" />
+    <Compile Include="HandlerPerQuery\SectionProcess\Entities\MainSectionListViewModel.cs" />
+    <Compile Include="HandlerPerQuery\SectionProcess\Entities\SectionCreateGetViewModel.cs" />
+    <Compile Include="HandlerPerQuery\SectionProcess\Entities\SectionDeleteGetViewModel.cs" />
+    <Compile Include="HandlerPerQuery\SectionProcess\Entities\SectionEditGetViewModel.cs" />
+    <Compile Include="HandlerPerQuery\SectionProcess\Entities\SectionEditPostViewModel.cs" />
+    <Compile Include="HandlerPerQuery\SectionProcess\Handlers\MainSectionCreateGetHandler.cs" />
+    <Compile Include="HandlerPerQuery\SectionProcess\Handlers\MainSectionCreatePostHandler.cs" />
+    <Compile Include="HandlerPerQuery\SectionProcess\Handlers\MainSectionListHandler.cs" />
+    <Compile Include="HandlerPerQuery\SectionProcess\Handlers\SectionCreateGetHandler.cs" />
+    <Compile Include="HandlerPerQuery\SectionProcess\Handlers\SectionDeleteGetHandler.cs" />
+    <Compile Include="HandlerPerQuery\SectionProcess\Handlers\SectionEditGetHandler.cs" />
+    <Compile Include="HandlerPerQuery\SectionProcess\Handlers\SectionEditPostHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -23,7 +23,7 @@ namespace psub.Web.Controllers
 
         public ActionResult Index()
         {
-            return View(_publicationService.GetPublicationListTop().ToList());
+            return View();
         }
 
         [HttpPost]

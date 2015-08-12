@@ -4,6 +4,7 @@ using Psub.DataAccess.Abstract;
 using Psub.DataService.Abstract;
 using Psub.DataService.HandlerPerQuery.PublicationProcess.Entities;
 using Psub.Domain.Entities;
+using Psub.Shared;
 using UESPDataManager.DataService.HandlerPerQuery.Abstract;
 using AutoMapper;
 
@@ -23,14 +24,16 @@ namespace Psub.DataService.HandlerPerQuery.PublicationProcess.Handlers
 
         public ListPublication Handle(PublicationListQuery query)
         {
-            var pageSize = query.PageSize > 0 ? query.PageSize : 25;
-            var publications = _publicationRepository.Query().Where(m => query.SectionId == 0 || (m.PublicationSection != null && m.PublicationSection.Id == query.SectionId)).OrderByDescending(m => m.Id);
+            var pageSize = query.PageSize > 0 ? query.PageSize : ConfigData.PageSize;
+            var publications = _publicationRepository.Query().Where(m => query.SectionId == 0 || (m.Section != null && m.Section.Id == query.SectionId)).OrderByDescending(m => m.Id);
+            var currentUser = _userService.GetCurrentUser();
             var selectPublications = publications.Skip((query.Page - 1) * pageSize).Take(pageSize).ToList();
             var returnPublication = new List<PublicationListItem>();
 
             foreach (var publicationListItem in selectPublications)
             {
                 var returnPublicationItem = Mapper.Map<Publication, PublicationListItem>(publicationListItem);
+                returnPublicationItem.IsView = true;
                 returnPublication.Add(returnPublicationItem);
             }
 
@@ -39,7 +42,8 @@ namespace Psub.DataService.HandlerPerQuery.PublicationProcess.Handlers
                 Items = returnPublication,
                 Count = publications.Count(),
                 PageNumber = query.Page,
-                PageSize = pageSize
+                PageSize = pageSize,
+                IsEditor = _userService.IsAdmin()
             };
 
             return result;

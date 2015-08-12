@@ -3,6 +3,7 @@ using Psub.DataAccess.Abstract;
 using Psub.DataService.Abstract;
 using Psub.DataService.HandlerPerQuery.PublicationProcess.Entities;
 using Psub.Domain.Entities;
+using Psub.Shared;
 using UESPDataManager.DataService.HandlerPerQuery.Abstract;
 
 namespace Psub.DataService.HandlerPerQuery.PublicationProcess.Handlers
@@ -28,17 +29,20 @@ namespace Psub.DataService.HandlerPerQuery.PublicationProcess.Handlers
             var savePublication = new Publication
             {
                 UserGuid = currentUser.UserGuid,
-                Name = currentUser.Name,
-                CreateDate = DateTime.Now,
+                UserName = currentUser.Name,
+                Created = DateTime.Now,
                 Keywords = publication.Keywords,
                 Text = publication.Text,
                 TextPreview = publication.TextPreview,
-                Title = publication.TitleText
+                TitleText = publication.TitleText,
+                IsPublic = publication.IsPublic,
+                Section = new PublicationSection { Id = publication.Section.Id }
             };
 
             var id = _publicationRepository.SaveOrUpdate(savePublication);
 
-            _actionLogService.SetActionLog("создал(а) публикацию", id, typeof(Publication).Name);
+            _actionLogService.SetActionLog("создал(а) публикацию", id, typeof(Publication).Name,
+                FormatUtlities.FormatVirtualDetailsUrl(typeof(Publication).Name, savePublication.Id, savePublication.TitleText));
 
             return new PublicationCreateResult { Id = id };
         }
