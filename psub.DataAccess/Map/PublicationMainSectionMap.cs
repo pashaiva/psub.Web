@@ -3,7 +3,7 @@ using Psub.Domain.Entities;
 
 namespace Psub.DataAccess.Map
 {
-    public class PublicationMainSectionMap : ClassMap<PublicationMainSection>
+    public class PublicationMainSectionMap : ClassMap<MainSection>
     {
         public PublicationMainSectionMap()
         {
@@ -11,7 +11,7 @@ namespace Psub.DataAccess.Map
             Id(m => m.Id).Column("Id");
             Map(m => m.Name).Column("Name");
 
-            HasMany(m => m.PublicationSections).KeyColumn("PublicationMainSectionId").LazyLoad();
+            HasMany(m => m.Sections).KeyColumn("PublicationMainSectionId").LazyLoad();
         }
     }
 }

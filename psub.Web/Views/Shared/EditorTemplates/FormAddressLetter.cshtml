@@ -1,0 +1,7 @@
+﻿@using Psub.Shared
+@model Psub.DataService.CommonViewModels.FormAddressLetterViewModel
+
+@Html.Raw(@LanguageConstants.PostForAddress)
+@Html.TextBoxFor(m => m.PostForAddress)
+@Html.Raw(@LanguageConstants.NameForAddress)
+@Html.TextBoxFor(m => m.NameForAddress)

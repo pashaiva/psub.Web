@@ -10,9 +10,9 @@ namespace Psub.DataService.Concrete
 {
     public class PublicationSectionService : IPublicationSectionService
     {
-        private readonly IRepository<PublicationSection> _publicationSelectionRepository;
+        private readonly IRepository<Section> _publicationSelectionRepository;
 
-        public PublicationSectionService(IRepository<PublicationSection> publicationSelectionRepository)
+        public PublicationSectionService(IRepository<Section> publicationSelectionRepository)
         {
             _publicationSelectionRepository = publicationSelectionRepository;
         }
@@ -39,19 +39,19 @@ namespace Psub.DataService.Concrete
                     Name = m.Name,
                     PublicationMainSection = new PublicationMainSectionDTO
                         {
-                            Id = m.PublicationMainSection.Id,
-                            Name = m.PublicationMainSection.Name
+                            Id = m.MainSection.Id,
+                            Name = m.MainSection.Name
                         }
                 }).ToList();
         }
 
         public int SaveOrUpdate(PublicationSectionDTO publicationSectionDTO)
         {
-            return _publicationSelectionRepository.SaveOrUpdate(new PublicationSection
+            return _publicationSelectionRepository.SaveOrUpdate(new Section
                 {
                     Id = 0,
                     Name = publicationSectionDTO.Name,
-                    PublicationMainSection = new PublicationMainSection { Id = publicationSectionDTO.PublicationMainSection.Id }
+                    MainSection = new MainSection { Id = publicationSectionDTO.PublicationMainSection.Id }
                 });
         }
 

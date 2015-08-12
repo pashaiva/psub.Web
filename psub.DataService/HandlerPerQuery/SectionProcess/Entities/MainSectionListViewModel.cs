@@ -17,7 +17,7 @@ namespace Psub.DataService.HandlerPerQuery.SectionProcess.Entities
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public List<SectionItem> Sections { get; set; }
+        public List<SectionItem> PublicationSections { get; set; }
     }
 
     public class SectionItem

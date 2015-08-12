@@ -13,11 +13,11 @@ namespace Psub.DataService.HandlerPerQuery.PublicationProcess.Handlers
     {
         private readonly IRepository<Publication> _publicationRepository;
         private readonly IUserService _userService;
-        private readonly IRepository<PublicationSection> _sectionRepository;
+        private readonly IRepository<Section> _sectionRepository;
 
         public PublicationEditGetHandler(IRepository<Publication> publicationRepository,
             IUserService userService,
-            IRepository<PublicationSection> sectionRepository)
+            IRepository<Section> sectionRepository)
         {
             _publicationRepository = publicationRepository;
             _userService = userService;

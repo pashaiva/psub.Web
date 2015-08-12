@@ -25,11 +25,11 @@ a {
 
     a:link, a:visited,
     a:active, a:hover {
-        color: #333;
+        /*color: #333;*/
     }
 
     a:hover {
-        background-color: #c7d1d6;
+        /*background-color: #c7d1d6;*/
     }
 
     a.head {

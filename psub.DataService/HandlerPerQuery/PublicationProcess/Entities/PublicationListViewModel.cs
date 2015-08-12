@@ -8,7 +8,7 @@ namespace Psub.DataService.HandlerPerQuery.PublicationProcess.Entities
 {
     public class PublicationListQuery :ListQuery, IQuery<ListPublication>
     {
-        public int SectionId { get; set; }
+        public int PublicationSectionId { get; set; }
     }
 
 

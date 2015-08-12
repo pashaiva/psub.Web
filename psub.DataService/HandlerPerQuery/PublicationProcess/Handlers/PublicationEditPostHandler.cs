@@ -13,12 +13,12 @@ namespace Psub.DataService.HandlerPerQuery.PublicationProcess.Handlers
         private readonly IUserService _userService;
         private readonly IRepository<Publication> _publicationRepository;
         private readonly IActionLogService _actionLogService;
-        private readonly IRepository<PublicationSection> _sectionRepository;
+        private readonly IRepository<Section> _sectionRepository;
 
         public PublicationEditPostHandler(IUserService userService,
             IRepository<Publication> publicationRepository,
             IActionLogService actionLogService,
-            IRepository<PublicationSection> sectionRepository)
+            IRepository<Section> sectionRepository)
         {
             _userService = userService;
             _publicationRepository = publicationRepository;
@@ -40,7 +40,7 @@ namespace Psub.DataService.HandlerPerQuery.PublicationProcess.Handlers
             lastPublication.TitleText = publication.TitleText;
             lastPublication.Keywords = publication.Keywords;
             lastPublication.IsPublic = publication.IsPublic;
-            lastPublication.Section = new PublicationSection { Id = publication.Section.Id };
+            lastPublication.Section = new Section { Id = publication.Section.Id };
 
             _publicationRepository.SaveOrUpdate(lastPublication);
 

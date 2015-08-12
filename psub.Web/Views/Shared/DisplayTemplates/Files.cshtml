@@ -1,0 +1,255 @@
+﻿@model Psub.DataService.CommonViewModels.FileEditViewModel
+@{
+    var guid = Guid.NewGuid().ToString();
+}
+@if (Model.Files.Count > 0 && Model.UserRead)
+{
+    var indexFile = 0;
+    <span>Всего файлов: @Model.Files.Count</span>
+    <br />
+    foreach (var file in Model.Files)
+    {
+        var extension = Path.GetExtension(file.Name).Replace(".", "");
+        indexFile++;
+
+        if (indexFile == 6)
+        {
+    <a id="@("viewAllFiles" + guid)" href="javascript:void(0);">Показать все файлы...
+    </a>
+        }
+        
+    <div style="@(indexFile > 5 ? "display:none;" : "")" class="@(indexFile > 5 ? "hideFiles" + guid : "") @(" fileItem" + guid)">
+        <a href="javascript:void(0)" 
+           onclick="window.open('@Url.Action("GetFile" + Model.ActionAddition, Model.Type, new { name = file.Name, number = Model.Id, title = Model.Title, id = Model.Id, guid = file.Guid })','Файл','width=900, height=600, resizable=yes, scrollbars=yes, menubar=no, location=no, StatusAction=no')">
+            <img src="@Url.Content("~/Content/Images/ico/" + extension + ".ico")" alt="@extension" title="@extension" class="img30"/>
+            @file.Name @(file.Size > 0 ? string.Format(" ({0} Мб)", @file.Size) : string.Empty)
+        </a>
+        <a class="btn btn-default btn-xs" data-toggle="tooltip" data-placement="top" data-original-title="Скачать" href="@Url.Action("GetFile" + Model.ActionAddition, Model.Type, new { name = file.Name, number = Model.Id, title = Model.Title, id = Model.Id, guid = file.Guid, isLoadOnly = true })">
+            <span class="glyphicon glyphicon-floppy-save"></span>
+        </a>
+        @if (Model.UserEdit)
+        {
+            <button class="btn btn-default btn-xs @("deleteSiteFile" + guid)" title="Удалить файл" data-toggle="tooltip" data-placement="top" data-original-title="Удалить файл"
+                    data-service="@Url.Action("DeleteFile" + Model.ActionAddition, Model.Type, new { name = file.Name, number = Model.Id, title = Model.Title })">
+                <span class="glyphicon glyphicon-remove"></span>
+            </button>
+        }
+    </div>
+    }
+    <br />
+    if (Model.UploadDate != DateTime.MinValue)
+    {
+    <span style="float: right;">@Html.LabelFor(model => model.UploadDate)
+        @Model.UploadDate</span>
+    }
+    if (Model.IsViewAllFileInFolder)
+    {
+    <div class="btn-group">
+        <button title="Показать в папке" id="@("FolderFiles" + Model.ActionAddition)" class="btn btn-info">
+            <span class="glyphicon glyphicon-folder-open" aria-hidden="true" title="Показать все файлы в папке"></span>&nbsp;Показать все файлы в папке
+        </button>
+
+    </div>
+    }
+
+    if (!string.IsNullOrEmpty(Model.ReturnFileInfo))
+    {
+    <p>
+        <div class="redText">
+            Файлы отклонены по причине
+                  <br />@Model.ReturnFileInfo
+        </div>
+    </p>
+    }
+
+
+    if (Model.MakeReturnFile && Model.IsViewConfirmReject)
+    {
+    <div class="btn-group">
+        @if (Model.IsFileConfirm)
+        {
+            <button id="@("СancleFiles" + guid)" title="Вернуть файлы на исправление" class="btn btn-danger"  data-toggle="tooltip" data-placement="top" data-original-title="Вернуть файлы на исправление">
+                <span class="glyphicon glyphicon-remove-circle" aria-hidden="true" title="Вернуть файлы на исправление"></span>
+            </button>
+        }
+        else
+        {
+            <button id="@("ConfirmFiles" + guid)" title="Принять прикрепленные документы" class="btn btn-success" data-toggle="tooltip" data-placement="top" data-original-title="Принять прикрепленные документы">
+                <span class="glyphicon glyphicon-ok-circle" aria-hidden="true" title="Принять прикрепленные документы"></span>
+            </button>
+            <button id="@("СancleFiles" + guid)" title="Отклонить прикрепленные документы" class="btn btn-danger" data-toggle="tooltip" data-placement="top" data-original-title="Отклонить прикрепленные документы">
+                <span class="glyphicon glyphicon-remove-circle" aria-hidden="true" title="Отклонить прикрепленные документы"></span>
+            </button>
+        }
+    </div>
+    
+    <div id="@("CancelFilesDiv" + guid)" title="Необходимо указать причину отклонения" style="display:none;">
+        <span>Укажите причину возврата узла</span>
+        <textarea id="@("CancelFilesText" + guid)" name="@("CancelFilesText" + guid)" class="form-control" style="height: 150px" maxlength="499"></textarea>
+        <p>
+            <button id="@("CancelFilesOk" + guid)" class="btn btn-primary">
+                Отклонить
+            </button>
+        </p>
+    </div>
+    }
+}
+else
+{
+    <span>Файлов нет</span>
+}
+
+
+@if (Model.UserEdit)
+{
+    <div class="btn-group">
+        @if (Model.Files.Count > 0 && Model.IsViewSend)
+        {
+            <button id="@("SendFiles" + guid)" class="btn btn-primary">
+                <span class="glyphicon glyphicon-send" aria-hidden="true"></span>&nbsp;Сдать в электронный архив
+            </button>
+        }
+        <button id="@("AddFiles" + guid)" data-toggle="tooltip" data-placement="right" data-original-title="Прикрепить файлы" class="btn btn-primary">
+            <span class="glyphicon glyphicon-cloud-upload" aria-hidden="true"></span>&nbsp;Загрузить
+        </button>
+    </div>
+    
+    <div id="@("DialogAddFile" + guid)" style="display: none;" title="Прикрепить файлы">
+        <iframe style="height: 430px; width: 95%;" id="@("FrameFile" + guid)" frameborder="0"></iframe>
+    </div>
+}
+
+<script type="text/javascript">
+    $(function () {
+        $("#@("FolderFiles" + Model.ActionAddition)").click(function () {
+            if ($(".@("fileItem" + guid)").length > 0) {
+                var btn = $(this).button('loading');
+                $.post('@Url.Action("GetFolderAllFiles" + Model.ActionAddition, Model.Type, new { id = Model.Id })',
+                     function (res) {
+                         if (res != "" && res != undefined)
+                             document.location = res;
+                         else alert("Невозможно открыть!");
+                         btn.button('reset');
+                         window.setTimeout(function () { location.reload(); }, 3000);
+                     });
+            } else {
+                alert("Файлов нет!");
+            }
+        });
+
+        $(".deleteFile").click(function () {
+            var object = $(this);
+            $.post($(object).attr("data-service"),
+                function (res) {
+                    if (res) {
+                        object.parent().hide("slide");
+                    }
+                });
+        });
+
+        var hideFiles = true;
+        $("#@("viewAllFiles" + guid)").click(function () {
+            if (hideFiles) {
+                $(".@("hideFiles" + guid)").show();
+                $(this).html("Скрыть файлы...");
+            }
+            else {
+                $(".@("hideFiles" + guid)").hide();
+                $(this).html("Показать все файлы...");
+            }
+
+            hideFiles = !hideFiles;
+        });
+
+        $("#@("СancleFiles" + guid)").click(function () {
+            if ($(".@("fileItem" + guid)").length > 0) {
+                $('#@("CancelFilesDiv" + guid)').show();
+                var сancelFilesDivDialog = new CustomModalDialog('#@("CancelFilesDiv" + guid)', 'Необходимо указать причину отклонения');
+                сancelFilesDivDialog.showDialog();
+            } else {
+                alert("Файлов нет!");
+            }
+        });
+
+        $("#@("CancelFilesOk" + guid)").click(function () {
+            if ($("#CancelFilesText" + "@guid").val() == "") {
+                alert("Необходимо указать причину возврата!");
+                return false;
+            } else {
+                var btn = $(this).button('loading');
+                $.post('@Url.Action("CancelFiles" + Model.ActionAddition)?id=' + @Model.Id + '&returnFileInfo=' + escape($("#CancelFilesText" + "@guid").val()),
+                                 function (res) {
+                                     if (res) {
+                                         btn.button('reset');
+                                         document.location = document.location;
+                                     }
+                                 });
+            }
+        });
+        $("@("#ConfirmFiles" + guid)").click(function () {
+            if ($(".@("fileItem" + guid)").length > 0) {
+                var btn = $(this).button('loading');
+                $.post('@Url.Action("ConfirmFiles" + Model.ActionAddition, "Site", new { id = Model.Id })',
+                function (res) {
+                    if (res) {
+                        $("#AddFiles" + "@guid").hide();
+                        btn.button('reset');
+                        document.location = document.location;
+                    }
+                });
+            } else {
+                alert("Файлов нет!");
+            }
+
+        });
+        $("#CancelFiles" + "@guid").click(function () {
+            if ($(".@("fileItem" + guid)").length > 0) {
+                var btn = $(this).button('loading');
+                $.post('@Url.Action("CancelFiles" + Model.ActionAddition, "Site", new { id = Model.Id })',
+                function (res) {
+                    if (res) {
+                        btn.button('reset');
+                        document.location = document.location;
+                    }
+                });
+            } else {
+                alert("Файлов нет!");
+            }
+
+        });
+
+        $("#@("AddFiles" + guid)").click(function () {
+            $('#@("FrameFile" + guid)').attr('src', '@Url.Action("AddFiles" + Model.ActionAddition, "Site", new { siteId = Model.Id })');
+            $('#@("DialogAddFile" + guid)').show();
+            var addFileDialog = new CustomModalDialog('#@("DialogAddFile" + guid)', 'Загрузка файлов');
+            addFileDialog.showDialog();
+        });
+
+        $("#@("SendFiles" + guid)").click(function () {
+            if ($(".@("fileItem" + guid)").length > 0) {
+                $(this).button('loading');
+                var button = $(this);
+                $.post('@Url.Action("SendFiles" + Model.ActionAddition, "Site", new { id = Model.Id })',
+               function (res) {
+                   if (res) {
+                       $(".@("deleteSiteFile" + guid)").hide();
+                       button.parent().hide("slide");
+                   }
+               });
+           } else {
+               alert("Файлов нет!");
+           }
+
+        });
+
+        $(".@("deleteSiteFile" + guid)").click(function () {
+            var object = $(this);
+            $.post(encodeURI($(object).attr("data-service")),
+                function (res) {
+                    if (res) {
+                        object.parent().remove();
+                    }
+                });
+        });
+    });
+</script>

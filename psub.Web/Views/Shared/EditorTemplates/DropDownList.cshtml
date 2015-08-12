@@ -1,0 +1,11 @@
+﻿@using Psub.DataService.CommonViewModels
+@model string
+
+@{
+    var selectList =
+        new SelectList((IEnumerable<SelectListItem>)ViewData[(string)@ViewData.ModelMetadata.AdditionalValues[ViewDataObjectNames.DropDownListCollection]],
+        "Value ",
+        "Text",                            
+        Model);
+}
+@Html.DropDownListFor(x => x, selectList)

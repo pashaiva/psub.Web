@@ -11,10 +11,10 @@ namespace Psub.DataService.HandlerPerQuery.SectionProcess.Handlers
 {
     public class MainSectionListHandler : IQueryHandler<MainSectionListQuery, ListMainSection>
     {
-        private readonly IRepository<PublicationMainSection> _mainSectionRepository;
+        private readonly IRepository<MainSection> _mainSectionRepository;
         private readonly IUserService _userService;
 
-        public MainSectionListHandler(IRepository<PublicationMainSection> mainSectionRepository,
+        public MainSectionListHandler(IRepository<MainSection> mainSectionRepository,
             IUserService userService)
         {
             _mainSectionRepository = mainSectionRepository;
@@ -27,8 +27,8 @@ namespace Psub.DataService.HandlerPerQuery.SectionProcess.Handlers
 
             return new ListMainSection
                 {
-                    Items = Mapper.Map<List<PublicationMainSection>, List<MainSectionListItem>>(mainSections),
-                    IsAdminPublications=_userService.IsAdmin()
+                    Items = Mapper.Map<List<MainSection>, List<MainSectionListItem>>(mainSections),
+                    IsAdminPublications = _userService.IsAdmin()
                 };
         }
     }

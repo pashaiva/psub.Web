@@ -9,12 +9,12 @@ namespace Psub.DataService.HandlerPerQuery.SectionProcess.Handlers
 {
     public class SectionDeleteGetHandler : IQueryHandler<SectionDeleteGetQuery, SectionDeleteGetViewModel>
     {
-        private readonly IRepository<PublicationMainSection> _mainSectionRepository;
-        private readonly IRepository<PublicationSection> _sectionRepository;
+        private readonly IRepository<MainSection> _mainSectionRepository;
+        private readonly IRepository<Section> _sectionRepository;
         private readonly IRepository<Publication> _publicationRepository;
 
-        public SectionDeleteGetHandler(IRepository<PublicationMainSection> mainSectionRepository,
-            IRepository<PublicationSection> sectionRepository,
+        public SectionDeleteGetHandler(IRepository<MainSection> mainSectionRepository,
+            IRepository<Section> sectionRepository,
             IRepository<Publication> publicationRepository)
         {
             _mainSectionRepository = mainSectionRepository;

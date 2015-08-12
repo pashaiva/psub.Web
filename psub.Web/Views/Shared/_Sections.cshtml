@@ -8,7 +8,7 @@
             if (res != null) {
                 var div = $("<div>");
                 $(res.Items).each(function () {
-                    $(this.Sections).each(function () {
+                    $(this.PublicationSections).each(function () {
                         var sectionDiv = $("<div>").attr({ "class": "btn-group" });
                         $("<a>").attr({ "href": "@Url.Action("List", "Publication")?sectionId=" + this.Id, "class": "btn btn-default" }).html(this.Name).appendTo(sectionDiv);
                         if (res.IsAdminPublications)

@@ -18,7 +18,7 @@ namespace Psub.Domain.Entities
         public virtual IList<PublicationComment> PublicationComment { get; set; }
         public virtual bool IsPublic { get; set; }
 
-        public virtual PublicationSection Section { get; set; }
+        public virtual Section Section { get; set; }
         
         public virtual string GetRegName()
         {

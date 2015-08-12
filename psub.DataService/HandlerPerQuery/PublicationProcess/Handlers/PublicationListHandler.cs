@@ -25,7 +25,7 @@ namespace Psub.DataService.HandlerPerQuery.PublicationProcess.Handlers
         public ListPublication Handle(PublicationListQuery query)
         {
             var pageSize = query.PageSize > 0 ? query.PageSize : ConfigData.PageSize;
-            var publications = _publicationRepository.Query().Where(m => query.SectionId == 0 || (m.Section != null && m.Section.Id == query.SectionId)).OrderByDescending(m => m.Id);
+            var publications = _publicationRepository.Query().Where(m => query.PublicationSectionId == 0 || (m.Section != null && m.Section.Id == query.PublicationSectionId)).OrderByDescending(m => m.Id);
             var currentUser = _userService.GetCurrentUser();
             var selectPublications = publications.Skip((query.Page - 1) * pageSize).Take(pageSize).ToList();
             var returnPublication = new List<PublicationListItem>();

@@ -1,0 +1,18 @@
+﻿@model string
+@{
+    var guid = Guid.NewGuid().ToString();
+}
+<div style="background-color: whitesmoke; border: 1px black;">
+    @Html.TextAreaFor(model => model, new { id = "TextJob" + guid })
+</div>
+
+<script type="text/javascript">
+    $(function () {
+        CKEDITOR.replace('TextJob@(guid)', {
+            filebrowserImageUploadUrl: '@Url.Action("UploadImage", "File")',
+            customConfig: '~/Scripts/ckeditor/config.js',
+            //extraPlugins: "imagebrowser",
+            //imageBrowser_listUrl: "/path/to/images_list.json"
+        });
+    });
+</script>

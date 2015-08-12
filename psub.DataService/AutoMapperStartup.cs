@@ -6,6 +6,7 @@ using Psub.DataService.CommonViewModels;
 using Psub.DataService.HandlerPerQuery.CommentProcess.Entities;
 using Psub.DataService.HandlerPerQuery.PublicationCommentProcess.Entities;
 using Psub.DataService.HandlerPerQuery.PublicationProcess.Entities;
+using Psub.DataService.HandlerPerQuery.SectionProcess.Entities;
 using Psub.Domain.Entities;
 using AutoMapper;
 
@@ -51,6 +52,8 @@ namespace Psub.DataService
                 .ForMember(dest => dest.DisLikeCount, opt => opt.MapFrom(src => src.Likes != null && src.Likes.Any() ? src.Likes.Count(like => !like.IsLike) : 0))
                 .ForMember(dest => dest.DisLikeUsers, opt => opt.MapFrom(src => src.Likes != null && src.Likes.Any() ? src.Likes.Where(like => !like.IsLike).Select(like => like.UserName).Take(5).ToList().Aggregate("", (current, item) => current + string.Format("<li><nobr>{0}</nobr></li>", item)) : string.Empty))
                 .ForMember(dest => dest.LikeUsers, opt => opt.MapFrom(src => src.Likes != null && src.Likes.Any() ? src.Likes.Where(like => like.IsLike).Select(like => like.UserName).Take(5).ToList().Aggregate("", (current, item) => current + string.Format("<li><nobr>{0}</nobr></li>", item)) : string.Empty));
+
+            Mapper.CreateMap<MainSection, MainSectionListItem>();
 
             #endregion
         }

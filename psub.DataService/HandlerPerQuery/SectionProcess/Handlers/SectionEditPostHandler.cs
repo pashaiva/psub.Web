@@ -7,9 +7,9 @@ namespace Psub.DataService.HandlerPerQuery.SectionProcess.Handlers
 {
     public class SectionEditPostHandler : IQueryHandler<SectionEditPostQuery, SectionEditPostViewModel>
     {
-        private readonly IRepository<PublicationSection> _sectionRepository;
+        private readonly IRepository<Section> _sectionRepository;
 
-        public SectionEditPostHandler(IRepository<PublicationSection> sectionRepository)
+        public SectionEditPostHandler(IRepository<Section> sectionRepository)
         {
             _sectionRepository = sectionRepository;
         }
@@ -18,11 +18,11 @@ namespace Psub.DataService.HandlerPerQuery.SectionProcess.Handlers
         {
             return new SectionEditPostViewModel
                {
-                   Id = _sectionRepository.SaveOrUpdate(new PublicationSection
+                   Id = _sectionRepository.SaveOrUpdate(new Section
                        {
                            Id = query.Id,
                            Name = query.Name,
-                           PublicationMainSection = new PublicationMainSection { Id = query.MainSectionId }
+                           MainSection = new MainSection { Id = query.MainSectionId }
                        })
 
                };

@@ -36,7 +36,7 @@ namespace Psub.DataService.HandlerPerQuery.PublicationProcess.Handlers
                 TextPreview = publication.TextPreview,
                 TitleText = publication.TitleText,
                 IsPublic = publication.IsPublic,
-                Section = new PublicationSection { Id = publication.Section.Id }
+                Section = new Section { Id = publication.Section.Id }
             };
 
             var id = _publicationRepository.SaveOrUpdate(savePublication);

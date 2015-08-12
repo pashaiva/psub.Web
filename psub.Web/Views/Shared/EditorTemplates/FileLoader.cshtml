@@ -1,0 +1,18 @@
+﻿@model UESPDataManager.DTO.ViewModels.UserControlViewModel
+<a id="setExecuter" href="javascript:void(0)">Указать исполнителя</a>
+<div id="ExecuterName">@Html.DisplayFor(m => Model.Name)</div>
+@Html.HiddenFor(m => m.Guid)
+<script type="text/javascript">
+    $(function () {
+        $('#setExecuter').uespUserPicker({
+            searchUrl: '@Url.Action("FindUsers", "User")',
+            directionUrl: '@Url.Action("Direction", "User")',
+            gipUrl: '@Url.Action("Gips", "User")',
+            divisionChiefUrl: '@Url.Action("DivisionChiefs", "User")',
+            valueCtrlId: '#Guid',
+            nameCtrlId: '#Name',
+            title: 'Пользователь',
+            mode: 'single'
+        });
+    });
+</script>

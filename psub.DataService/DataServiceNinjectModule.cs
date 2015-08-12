@@ -30,8 +30,8 @@ namespace Psub.DataService
             Bind<IRepository<RelayData>>().To<Repository<RelayData>>();
             Bind<IRepository<FullDataParameter>>().To<Repository<FullDataParameter>>();
             Bind<IRepository<ActionLog>>().To<Repository<ActionLog>>();
-            Bind<IRepository<PublicationSection>>().To<Repository<PublicationSection>>();
-            Bind<IRepository<PublicationMainSection>>().To<Repository<PublicationMainSection>>();
+            Bind<IRepository<Section>>().To<Repository<Section>>();
+            Bind<IRepository<MainSection>>().To<Repository<MainSection>>();
             Bind<IRepository<Statistic>>().To<Repository<Statistic>>();
             Bind<IRepository<PublicationComment>>().To<Repository<PublicationComment>>();
             Bind<IRepository<Like>>().To<Repository<Like>>();

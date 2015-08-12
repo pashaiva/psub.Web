@@ -8,11 +8,11 @@ namespace Psub.DataService.HandlerPerQuery.SectionProcess.Handlers
 {
     public class SectionEditGetHandler : IQueryHandler<SectionEditGetQuery, SectionEditGetViewModel>
     {
-        private readonly IRepository<PublicationMainSection> _mainSectionRepository;
-        private readonly IRepository<PublicationSection> _sectionRepository;
+        private readonly IRepository<MainSection> _mainSectionRepository;
+        private readonly IRepository<Section> _sectionRepository;
 
-        public SectionEditGetHandler(IRepository<PublicationMainSection> mainSectionRepository,
-            IRepository<PublicationSection> sectionRepository)
+        public SectionEditGetHandler(IRepository<MainSection> mainSectionRepository,
+            IRepository<Section> sectionRepository)
         {
             _mainSectionRepository = mainSectionRepository;
             _sectionRepository = sectionRepository;
@@ -26,7 +26,7 @@ namespace Psub.DataService.HandlerPerQuery.SectionProcess.Handlers
                {
                    Id = section.Id,
                    Name = section.Name,
-                   MainSectionId = section.PublicationMainSection.Id,
+                   MainSectionId = section.MainSection.Id,
                    MainSections = _mainSectionRepository.Query().Select(m => new MainSectionItem
                        {
                            Id = m.Id,

@@ -21,12 +21,12 @@
 
 <div class="row well" style="margin: 5px;">
     <h1><a href="@Url.Action("Details", new { id = Model.Id })">@Model.TitleText</a>
-            @if (!Model.IsPublic)
+        @*    @if (!Model.IsPublic)
                         {
                         <span data-toggle="tooltip" data-placement="top" data-original-title="@LanguageConstants.LimitedAccess">
                             <span class="glyphicon glyphicon-eye-close"></span>
                         </span> 
-                        }
+                        }*@
     </h1>
     <p>
         @Html.Raw(Model.Text)

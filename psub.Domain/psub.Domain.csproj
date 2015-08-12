@@ -58,11 +58,10 @@
     <Compile Include="Entities\Like.cs" />
     <Compile Include="Entities\Publication.cs" />
     <Compile Include="Entities\PublicationComment.cs" />
-    <Compile Include="Entities\PublicationSection.cs" />
     <Compile Include="Entities\RelayData.cs" />
+    <Compile Include="Entities\Section.cs" />
     <Compile Include="Entities\Statistic.cs" />
     <Compile Include="Entities\User.cs" />
-    <Compile Include="Entities\PublicationMainSection.cs" />
     <Compile Include="MeteringTypes.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

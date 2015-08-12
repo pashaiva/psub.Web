@@ -8,9 +8,9 @@ namespace Psub.DataService.HandlerPerQuery.SectionProcess.Handlers
 {
     public class SectionCreateGetHandler : IQueryHandler<SectionCreateGetQuery, SectionCreateGetViewModel>
     {
-        private readonly IRepository<PublicationMainSection> _mainSectionRepository;
+        private readonly IRepository<MainSection> _mainSectionRepository;
 
-        public SectionCreateGetHandler(IRepository<PublicationMainSection> mainSectionRepository)
+        public SectionCreateGetHandler(IRepository<MainSection> mainSectionRepository)
         {
             _mainSectionRepository = mainSectionRepository;
         }
