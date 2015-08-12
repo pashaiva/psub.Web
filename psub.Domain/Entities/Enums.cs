@@ -18,6 +18,7 @@
         SquaredGeoobject = -3,
         GeoobjContractItem = -4,
         ContragentWorker = -5,
-        Contragent = -6
+        Contragent = -6,
+        Catalog = -7
     }
 }

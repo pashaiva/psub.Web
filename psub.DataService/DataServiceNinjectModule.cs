@@ -37,6 +37,10 @@ namespace Psub.DataService
             Bind<IRepository<Like>>().To<Repository<Like>>();
             Bind<IRepository<PublicationCommentLike>>().To<Repository<PublicationCommentLike>>();
 
+            Bind<IRepository<Catalog>>().To<Repository<Catalog>>();
+            Bind<IRepository<CatalogComment>>().To<Repository<CatalogComment>>();
+            //Bind<IRepository<PublicationCommentLike>>().To<Repository<PublicationCommentLike>>();
+
             Bind<ISession>().ToMethod(x => NHibernateHelper.GetCurrentSession());
 
             Bind<IUserService>().To<UserService>();
@@ -53,8 +57,10 @@ namespace Psub.DataService
             Bind<IPublicationCommentService>().To<PublicationCommentService>();
             Bind<ILikeService>().To<LikeService>();
 
+            Bind<ICatalogCommentService>().To<CatalogCommentService>();
+
             #endregion
-            
+
             #region query handlers
 
             Bind<IMediator>().To<Mediator>();

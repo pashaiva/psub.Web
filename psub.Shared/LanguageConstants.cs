@@ -145,6 +145,7 @@
         public const string ContractNumber = "Номер договора";
         public const string LimitedAccess = "Ограниченный доступ";
         public const string Publications = "Новости";
+        public const string Catalogs = "Каталог";
         public const string LastActions = "Последние изменения";
         public const string MainSection = "Раздел-родитель";
         public const string Section = "Раздел";
@@ -210,6 +211,7 @@
         public const string DocumentWithThisIdDoesntExist = "Документа с таким идентификатором не существует";
         public const string FailedAction = "Не удалось выполнить дейтвие";
         public const string AccessClosePublication = "Доступ закрыт! Чтобы получить разрешение, необходимо обратиться к создателю записи";
+        public const string AccessCloseCatalog = "Доступ закрыт! Чтобы получить разрешение, необходимо обратиться к создателю записи";
         public const string SuccessSavedData = "Данные успешно сохранены";
         public const string SuccessDeletedData = "Данные успешно удалены";
         public const string FailedSaveData = "Ошибка при сохранении данных";
