@@ -18,9 +18,9 @@ namespace Psub.DataService.HandlerPerQuery.SectionProcess.Handlers
             _sectionRepository = sectionRepository;
         }
 
-        public SectionEditGetViewModel Handle(SectionEditGetQuery query)
+        public SectionEditGetViewModel Handle(SectionEditGetQuery catalog)
         {
-            var section = _sectionRepository.Get(query.Id);
+            var section = _sectionRepository.Get(catalog.Id);
 
             return new SectionEditGetViewModel
                {

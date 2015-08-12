@@ -19,9 +19,9 @@ namespace Psub.DataService.HandlerPerQuery.PublicationProcess.Handlers
             _userService = userService;
         }
 
-        public PublicationDetailsViewModel Handle(PublicationDetailsQuery query)
+        public PublicationDetailsViewModel Handle(PublicationDetailsQuery catalog)
         {
-            var currentDocument = _publicationRepository.Get(query.Id);
+            var currentDocument = _publicationRepository.Get(catalog.Id);
 
             if (currentDocument == null)
                 return null;

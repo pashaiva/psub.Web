@@ -1,0 +1,36 @@
+﻿@using Psub.Shared
+@model Psub.DataService.HandlerPerQuery.SectionProcess.Entities.SectionCreateGetViewModel
+
+@{
+    ViewBag.Title = LanguageConstants.CreateSection;
+}
+
+<h2>@LanguageConstants.CreateSection</h2>
+
+@using (Html.BeginForm("EditSection", "Catalog", FormMethod.Post))
+{
+    <div>@Html.ValidationSummary()</div>
+
+    <table class="table table-striped">
+        @Html.HiddenFor(m => m.Id)
+        <tr>
+            <th>
+                @Html.LabelFor(model => model.Name)
+            </th>
+            <td class="table-bordered">
+                @Html.EditorFor(model => model.Name)
+            </td>
+        </tr>
+        <tr>
+            <th>
+                @Html.LabelFor(model => model.MainSectionId)
+            </th>
+            <td class="table-bordered">
+                @Html.DropDownListFor(m => m.MainSectionId, new SelectList(Model.MainSections, "Id", "Name"))
+            </td>
+        </tr>
+    </table>
+    <button type="submit" class="btn btn-primary">
+        Сохранить
+    </button>
+}

@@ -13,9 +13,9 @@ namespace Psub.DataService.HandlerPerQuery.LikeProcess.Handlers
             _likeService = likeService;
         }
 
-        public LikeCreateResult Handle(LikeCreateQuery query)
+        public LikeCreateResult Handle(LikeCreateQuery catalog)
         {
-            return _likeService.Save(query);
+            return _likeService.Save(catalog);
         }
     }
 }

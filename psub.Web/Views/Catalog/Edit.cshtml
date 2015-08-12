@@ -1,0 +1,10 @@
+﻿@model Psub.DataService.HandlerPerQuery.CatalogProcess.Entities.CatalogEditViewModel
+
+@{
+    ViewBag.Title = "Редактирование публикации";
+}
+@using (Html.BeginForm("Edit", "Catalog", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.EditorForModel()
+    <button type="submit" class="btn btn-primary">Сохранить</button>
+}

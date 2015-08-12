@@ -86,6 +86,7 @@
     <Compile Include="Abstract\IStatisticService.cs" />
     <Compile Include="Abstract\IUserService.cs" />
     <Compile Include="Abstract\IPublicationMainSectionService.cs" />
+    <Compile Include="Abstract\ICatalogCommentService.cs" />
     <Compile Include="AutoMapperStartup.cs" />
     <Compile Include="CommonViewModels\AddresseeViewModel.cs" />
     <Compile Include="CommonViewModels\AddressViewModel.cs" />
@@ -112,6 +113,7 @@
     <Compile Include="Concrete\StatisticService.cs" />
     <Compile Include="Concrete\UserService.cs" />
     <Compile Include="Concrete\PublicationMainSectionService.cs" />
+    <Compile Include="Concrete\CatalogCommentService.cs" />
     <Compile Include="DataServiceNinjectModule.cs" />
     <Compile Include="HandlerPerQuery\Abstract\IQuery.cs" />
     <Compile Include="HandlerPerQuery\Abstract\IQueryHandler.cs" />
@@ -150,6 +152,19 @@
     <Compile Include="HandlerPerQuery\SectionProcess\Handlers\SectionDeleteGetHandler.cs" />
     <Compile Include="HandlerPerQuery\SectionProcess\Handlers\SectionEditGetHandler.cs" />
     <Compile Include="HandlerPerQuery\SectionProcess\Handlers\SectionEditPostHandler.cs" />
+    <Compile Include="HandlerPerQuery\CatalogProcess\Entities\CatalogCreateGetViewModel.cs" />
+    <Compile Include="HandlerPerQuery\CatalogProcess\Entities\CatalogCreateViewModel.cs" />
+    <Compile Include="HandlerPerQuery\CatalogProcess\Entities\CatalogDetailsViewModel.cs" />
+    <Compile Include="HandlerPerQuery\CatalogProcess\Entities\CatalogEditViewModel.cs" />
+    <Compile Include="HandlerPerQuery\CatalogProcess\Entities\CatalogListViewModel.cs" />
+    <Compile Include="HandlerPerQuery\CatalogProcess\Handlers\CatalogCreateGetHandler.cs" />
+    <Compile Include="HandlerPerQuery\CatalogProcess\Handlers\CatalogCreateHandler.cs" />
+    <Compile Include="HandlerPerQuery\CatalogProcess\Handlers\CatalogDetailsHandler.cs" />
+    <Compile Include="HandlerPerQuery\CatalogProcess\Handlers\CatalogEditGetHandler.cs" />
+    <Compile Include="HandlerPerQuery\CatalogProcess\Handlers\CatalogEditPostHandler.cs" />
+    <Compile Include="HandlerPerQuery\CatalogProcess\Handlers\CatalogListHandler.cs" />
+    <Compile Include="HandlerPerQuery\CatalogCommentProcess\Entities\PublicationCommentListViewModel.cs" />
+    <Compile Include="HandlerPerQuery\CatalogCommentProcess\Handlers\PublicationCommentListHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

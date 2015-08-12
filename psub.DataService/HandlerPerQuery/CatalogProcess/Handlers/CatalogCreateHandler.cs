@@ -1,32 +1,32 @@
 ﻿using System;
 using Psub.DataAccess.Abstract;
 using Psub.DataService.Abstract;
-using Psub.DataService.HandlerPerQuery.PublicationProcess.Entities;
+using Psub.DataService.HandlerPerQuery.CatalogProcess.Entities;
 using Psub.Domain.Entities;
 using Psub.Shared;
 using UESPDataManager.DataService.HandlerPerQuery.Abstract;
 
-namespace Psub.DataService.HandlerPerQuery.PublicationProcess.Handlers
+namespace Psub.DataService.HandlerPerQuery.CatalogProcess.Handlers
 {
-    public class PublicationCreateHandler : IQueryHandler<PublicationCreateQuery, PublicationCreateResult>
+    public class CatalogCreateHandler : IQueryHandler<CatalogCreateQuery, CatalogCreateResult>
     {
-        private readonly IRepository<Publication> _publicationRepository;
+        private readonly IRepository<Catalog> _catalogRepository;
         private readonly IUserService _userService;
         private readonly IActionLogService _actionLogService;
 
-        public PublicationCreateHandler(IRepository<Publication> publicationRepository,
+        public CatalogCreateHandler(IRepository<Catalog> catalogRepository,
             IUserService userService,
             IActionLogService actionLogService)
         {
-            _publicationRepository = publicationRepository;
+            _catalogRepository = catalogRepository;
             _userService = userService;
             _actionLogService = actionLogService;
         }
 
-        public PublicationCreateResult Handle(PublicationCreateQuery catalog)
+        public CatalogCreateResult Handle(CatalogCreateQuery catalog)
         {
             var currentUser = _userService.GetCurrentUser();
-            var savePublication = new Publication
+            var saveCatalog = new Catalog
             {
                 UserGuid = currentUser.UserGuid,
                 UserName = currentUser.Name,
@@ -39,12 +39,12 @@ namespace Psub.DataService.HandlerPerQuery.PublicationProcess.Handlers
                 Section = new Section { Id = catalog.Section.Id }
             };
 
-            var id = _publicationRepository.SaveOrUpdate(savePublication);
+            var id = _catalogRepository.SaveOrUpdate(saveCatalog);
 
-            _actionLogService.SetActionLog("создал(а) публикацию", id, typeof(Publication).Name,
-                FormatUtlities.FormatVirtualDetailsUrl(typeof(Publication).Name, savePublication.Id, savePublication.TitleText));
+            _actionLogService.SetActionLog("создал(а) публикацию", id, typeof(Catalog).Name,
+                FormatUtlities.FormatVirtualDetailsUrl(typeof(Catalog).Name, saveCatalog.Id, saveCatalog.TitleText));
 
-            return new PublicationCreateResult { Id = id };
+            return new CatalogCreateResult { Id = id };
         }
     }
 }

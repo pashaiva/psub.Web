@@ -1,37 +1,37 @@
 ﻿using Psub.DataAccess.Abstract;
 using Psub.DataService.Abstract;
 using Psub.DataService.CommonViewModels;
-using Psub.DataService.HandlerPerQuery.PublicationProcess.Entities;
+using Psub.DataService.HandlerPerQuery.CatalogProcess.Entities;
 using Psub.Domain.Entities;
 using UESPDataManager.DataService.HandlerPerQuery.Abstract;
 using System.Linq;
 using AutoMapper;
 
-namespace Psub.DataService.HandlerPerQuery.PublicationProcess.Handlers
+namespace Psub.DataService.HandlerPerQuery.CatalogProcess.Handlers
 {
-    public class PublicationEditGetHandler : IQueryHandler<PublicationEditGetQuery, PublicationEditViewModel>
+    public class CatalogEditGetHandler : IQueryHandler<CatalogEditGetQuery, CatalogEditViewModel>
     {
-        private readonly IRepository<Publication> _publicationRepository;
+        private readonly IRepository<Catalog> _catalogRepository;
         private readonly IUserService _userService;
         private readonly IRepository<Section> _sectionRepository;
 
-        public PublicationEditGetHandler(IRepository<Publication> publicationRepository,
+        public CatalogEditGetHandler(IRepository<Catalog> catalogRepository,
             IUserService userService,
             IRepository<Section> sectionRepository)
         {
-            _publicationRepository = publicationRepository;
+            _catalogRepository = catalogRepository;
             _userService = userService;
             _sectionRepository = sectionRepository;
         }
 
-        public PublicationEditViewModel Handle(PublicationEditGetQuery catalog)
+        public CatalogEditViewModel Handle(CatalogEditGetQuery catalog)
         {
-            var currentDocument = _publicationRepository.Get(catalog.Id);
+            var currentDocument = _catalogRepository.Get(catalog.Id);
 
             if (currentDocument == null || !_userService.IsAdmin())
                 return null;
 
-            var result = Mapper.Map<Publication, PublicationEditViewModel>(currentDocument);
+            var result = Mapper.Map<Catalog, CatalogEditViewModel>(currentDocument);
 
             result.Section = new DropDownSelectorViewModel
                 {

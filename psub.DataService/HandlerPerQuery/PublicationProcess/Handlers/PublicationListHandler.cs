@@ -22,12 +22,12 @@ namespace Psub.DataService.HandlerPerQuery.PublicationProcess.Handlers
             _userService = userService;
         }
 
-        public ListPublication Handle(PublicationListQuery query)
+        public ListPublication Handle(PublicationListQuery catalog)
         {
-            var pageSize = query.PageSize > 0 ? query.PageSize : ConfigData.PageSize;
-            var publications = _publicationRepository.Query().Where(m => query.PublicationSectionId == 0 || (m.Section != null && m.Section.Id == query.PublicationSectionId)).OrderByDescending(m => m.Id);
+            var pageSize = catalog.PageSize > 0 ? catalog.PageSize : ConfigData.PageSize;
+            var publications = _publicationRepository.Query().Where(m => catalog.PublicationSectionId == 0 || (m.Section != null && m.Section.Id == catalog.PublicationSectionId)).OrderByDescending(m => m.Id);
             var currentUser = _userService.GetCurrentUser();
-            var selectPublications = publications.Skip((query.Page - 1) * pageSize).Take(pageSize).ToList();
+            var selectPublications = publications.Skip((catalog.Page - 1) * pageSize).Take(pageSize).ToList();
             var returnPublication = new List<PublicationListItem>();
 
             foreach (var publicationListItem in selectPublications)
@@ -41,7 +41,7 @@ namespace Psub.DataService.HandlerPerQuery.PublicationProcess.Handlers
             {
                 Items = returnPublication,
                 Count = publications.Count(),
-                PageNumber = query.Page,
+                PageNumber = catalog.Page,
                 PageSize = pageSize,
                 IsEditor = _userService.IsAdmin()
             };

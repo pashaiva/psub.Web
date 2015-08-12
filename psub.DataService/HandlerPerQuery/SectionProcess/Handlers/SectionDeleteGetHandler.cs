@@ -22,15 +22,15 @@ namespace Psub.DataService.HandlerPerQuery.SectionProcess.Handlers
             _publicationRepository = publicationRepository;
         }
 
-        public SectionDeleteGetViewModel Handle(SectionDeleteGetQuery query)
+        public SectionDeleteGetViewModel Handle(SectionDeleteGetQuery catalog)
         {
-            var publications = _publicationRepository.Query().Where(m => m.Section != null && m.Section.Id == query.Id);
+            var publications = _publicationRepository.Query().Where(m => m.Section != null && m.Section.Id == catalog.Id);
 
             if (!publications.Any())
             {
                 try
                 {
-                    _sectionRepository.Delete(query.Id);
+                    _sectionRepository.Delete(catalog.Id);
                     return new SectionDeleteGetViewModel { Result = true };
                 }
                 catch (Exception)

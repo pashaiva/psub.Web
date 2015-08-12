@@ -21,7 +21,7 @@ namespace Psub.DataService.HandlerPerQuery.SectionProcess.Handlers
             _userService = userService;
         }
 
-        public ListMainSection Handle(MainSectionListQuery query)
+        public ListMainSection Handle(MainSectionListQuery catalog)
         {
             var mainSections = _mainSectionRepository.Query().ToList();
 

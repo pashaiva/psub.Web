@@ -425,6 +425,13 @@
     <Content Include="Views\Shared\EditorTemplates\Object.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\TextEditor.cshtml" />
     <Content Include="Views\Shared\_LastActionsHistoryOfSection.cshtml" />
+    <Content Include="Views\Catalog\Create.cshtml" />
+    <Content Include="Views\Catalog\CreateMainSection.cshtml" />
+    <Content Include="Views\Catalog\CreateSection.cshtml" />
+    <Content Include="Views\Catalog\Details.cshtml" />
+    <Content Include="Views\Catalog\Edit.cshtml" />
+    <Content Include="Views\Catalog\EditSection.cshtml" />
+    <Content Include="Views\Catalog\List.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="favicon.ico" />

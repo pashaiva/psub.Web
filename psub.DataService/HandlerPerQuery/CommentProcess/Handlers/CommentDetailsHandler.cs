@@ -21,9 +21,9 @@ namespace Psub.DataService.HandlerPerQuery.CommentProcess.Handlers
             _commentRepository = commentRepository;
         }
 
-        public List<CommentDetailsViewModel> Handle(CommentDetailsQuery query)
+        public List<CommentDetailsViewModel> Handle(CommentDetailsQuery catalog)
         {
-            var currentDocumentTemp = _commentRepository.Query().Where(m => m.ObjectId == query.ObjectId && m.ObjectName==query.ObjectType);
+            var currentDocumentTemp = _commentRepository.Query().Where(m => m.ObjectId == catalog.ObjectId && m.ObjectName==catalog.ObjectType);
             if (!currentDocumentTemp.Any())
                 return null;
 

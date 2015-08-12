@@ -1,25 +1,24 @@
-﻿using System.Collections.Specialized;
-using System.Linq;
+﻿using System.Linq;
 using Psub.DataAccess.Abstract;
 using Psub.DataService.CommonViewModels;
-using Psub.DataService.HandlerPerQuery.PublicationProcess.Entities;
+using Psub.DataService.HandlerPerQuery.CatalogProcess.Entities;
 using Psub.Domain.Entities;
 using UESPDataManager.DataService.HandlerPerQuery.Abstract;
 
-namespace Psub.DataService.HandlerPerQuery.PublicationProcess.Handlers
+namespace Psub.DataService.HandlerPerQuery.CatalogProcess.Handlers
 {
-    public class PPublicationCreateGetHandler : IQueryHandler<PublicationCreateGetQuery, PublicationCreateGetViewModel>
+    public class CatalogCreateGetHandler : IQueryHandler<CatalogCreateGetQuery, CatalogCreateGetViewModel>
     {
         private readonly IRepository<Section> _sectionRepository;
 
-        public PPublicationCreateGetHandler(IRepository<Section> sectionRepository)
+        public CatalogCreateGetHandler(IRepository<Section> sectionRepository)
         {
             _sectionRepository = sectionRepository;
         }
 
-        public PublicationCreateGetViewModel Handle(PublicationCreateGetQuery catalog)
+        public CatalogCreateGetViewModel Handle(CatalogCreateGetQuery catalog)
         {
-            return new PublicationCreateGetViewModel
+            return new CatalogCreateGetViewModel
                 {
                     Section = new DropDownSelectorViewModel
                         {

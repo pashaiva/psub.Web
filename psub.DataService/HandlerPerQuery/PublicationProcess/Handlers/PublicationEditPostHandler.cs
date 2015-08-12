@@ -26,21 +26,21 @@ namespace Psub.DataService.HandlerPerQuery.PublicationProcess.Handlers
             _sectionRepository = sectionRepository;
         }
 
-        public PublicationEditViewModel Handle(PublicationEditPostQuery publication)
+        public PublicationEditViewModel Handle(PublicationEditPostQuery catalog)
         {
             var currentUser = _userService.GetCurrentUser();
 
             if (!_userService.IsAdmin())
                 return null;
 
-            var lastPublication = _publicationRepository.Get(publication.Id);
+            var lastPublication = _publicationRepository.Get(catalog.Id);
 
-            lastPublication.Text = publication.Text;
-            lastPublication.TextPreview = publication.TextPreview;
-            lastPublication.TitleText = publication.TitleText;
-            lastPublication.Keywords = publication.Keywords;
-            lastPublication.IsPublic = publication.IsPublic;
-            lastPublication.Section = new Section { Id = publication.Section.Id };
+            lastPublication.Text = catalog.Text;
+            lastPublication.TextPreview = catalog.TextPreview;
+            lastPublication.TitleText = catalog.TitleText;
+            lastPublication.Keywords = catalog.Keywords;
+            lastPublication.IsPublic = catalog.IsPublic;
+            lastPublication.Section = new Section { Id = catalog.Section.Id };
 
             _publicationRepository.SaveOrUpdate(lastPublication);
 

@@ -14,13 +14,13 @@ namespace Psub.DataService.HandlerPerQuery.SectionProcess.Handlers
             _mainSectionRepository = mainSectionRepository;
         }
 
-        public MainSectionCreatePostViewModel Handle(MainSectionCreatePostQuery query)
+        public MainSectionCreatePostViewModel Handle(MainSectionCreatePostQuery catalog)
         {
             return new MainSectionCreatePostViewModel
                {
                    Id = _mainSectionRepository.SaveOrUpdate(new MainSection
                        {
-                           Name = query.Name
+                           Name = catalog.Name
                        })
 
                };

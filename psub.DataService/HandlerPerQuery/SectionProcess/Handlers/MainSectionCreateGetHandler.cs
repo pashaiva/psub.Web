@@ -14,7 +14,7 @@ namespace Psub.DataService.HandlerPerQuery.SectionProcess.Handlers
             _mainSectionRepository = mainSectionRepository;
         }
 
-        public MainSectionCreateGetViewModel Handle(MainSectionCreateGetQuery query)
+        public MainSectionCreateGetViewModel Handle(MainSectionCreateGetQuery catalog)
         {
             return new MainSectionCreateGetViewModel();
         }

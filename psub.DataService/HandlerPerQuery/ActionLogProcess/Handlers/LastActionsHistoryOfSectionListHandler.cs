@@ -16,14 +16,14 @@ namespace Psub.DataService.HandlerPerQuery.ActionLogProcess.Handlers
             _actionLogRepository = actionLogRepository;
         }
 
-        public LastActionsHistoryOfSection Handle(LastActionsHistoryOfSectionListQuery query)
+        public LastActionsHistoryOfSection Handle(LastActionsHistoryOfSectionListQuery catalog)
         {
             var url = HttpContext.Current.Request.Url;
            
             return new LastActionsHistoryOfSection
                 {
                     Items = _actionLogRepository.Query()
-                                .Where(m => m.Type.Contains(query.Object)) //&& (DateTime.Now.Date - m.Date.Date).Days < 10)
+                                .Where(m => m.Type.Contains(catalog.Object)) //&& (DateTime.Now.Date - m.Date.Date).Days < 10)
                                 .OrderByDescending(m1 => m1.Id)
                                 .Take(100)
                                 .ToList()
