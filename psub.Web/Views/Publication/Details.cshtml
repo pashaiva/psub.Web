@@ -1,11 +1,14 @@
 ﻿@using Psub.Domain.Entities
-@using Psub.Shared
 @using psub.Web.ViewModels.Shared
 @model Psub.DataService.HandlerPerQuery.PublicationProcess.Entities.PublicationDetailsViewModel
 
 @{
     ViewBag.Title = Model.TitleText;
+    ViewBag.Description = Model.TitleText;
+    ViewBag.Keywords = Model.Keywords;
 }
+
+<h1>@Model.TitleText</h1>
 
 <div class="btn-group">
     @if (Model.IsEditor)
