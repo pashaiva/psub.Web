@@ -3,7 +3,7 @@
 @using Psub.Shared
 @model Psub.DataService.HandlerPerQuery.PublicationProcess.Entities.ListPublication
 
-
+  <div class="btn-toolbar" id="menuPublications"></div>
 
 <div role="tabpanel">
     <ul class="nav nav-tabs" role="tablist">
@@ -90,3 +90,24 @@
         </div>
     </div>
 </div>
+
+<script type="text/javascript">
+    $(function () {
+        $.post('@Url.Action("GetPublicationSectionDTOList", "PublicationSection")',
+        function (res) {
+            $(res).each(function (index, element) {
+                var divGroup = $("<div>").attr("class", "btn-group").appendTo($("#menuPublications"));
+                var button = $("<button>").attr({
+                    "class": "btn btn-inverse dropdown-toggle", "data-toggle": "dropdown"
+                }).html(element.Name).appendTo(divGroup);
+                if ($(element.PublicationSection).length > 0) {
+                    var ul = $("<ul>").attr({ "class": "dropdown-menu", "role": "menu", "aria-labelledby": "dLabel" }).appendTo(divGroup);
+                    $(element.PublicationSection).each(function (index1, element1) {
+                        $("<li>").html($("<a>").attr({ "href": "@Url.Action("List", "Publication")" + "?publicationSectionId=" + element1.Id + "&publicationMainSectionId=" + element.Id, "class": "dropdown-submenu" }).html(element1.Name)).appendTo(ul);
+                       });
+                       }
+
+               });
+           });
+    });
+</script>

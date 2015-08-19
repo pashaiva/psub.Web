@@ -13,7 +13,7 @@ namespace Psub.Domain.Entities
         public virtual bool IsLike { get; set; }
     }
 
-    public class CatalogCommentLike : Like
+    public class CatalogCommentLike : CatalogLike
     {
         public virtual CatalogComment Comment { get; set; }
     }

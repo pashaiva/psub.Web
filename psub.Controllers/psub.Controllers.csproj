@@ -59,6 +59,7 @@
     <Compile Include="RelayDataController.cs" />
     <Compile Include="UserController.cs" />
     <Compile Include="CatalogController.cs" />
+    <Compile Include="CatalogSectionController.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Infrastructure\Infrastructure.csproj">

@@ -432,6 +432,7 @@
     <Content Include="Views\Catalog\Edit.cshtml" />
     <Content Include="Views\Catalog\EditSection.cshtml" />
     <Content Include="Views\Catalog\List.cshtml" />
+    <Content Include="Views\CatalogSection\List.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="favicon.ico" />

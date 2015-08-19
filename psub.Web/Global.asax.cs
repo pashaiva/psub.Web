@@ -34,19 +34,19 @@ namespace psub.Web
             var httpException = exception as HttpException;
             if (httpException != null)
             {
-                switch (httpException.GetHttpCode())
-                {
-                    case 404:
-                        HttpContext.Current.Session["Message"] = "Страница не найдена!";
-                        break;
-                    case 500:
-                        //action = "Error";
-                        break;
-                    default:
-                        // action = "Error";
-                        HttpContext.Current.Session["Message"] = "Неизвестная ошибка. Попробуйте повторить действие позже.";
-                        break;
-                }
+                //switch (httpException.GetHttpCode())
+                //{
+                //    case 404:
+                //        HttpContext.Current.Session["Message"] = "Страница не найдена!";
+                //        break;
+                //    case 500:
+                //        //action = "Error";
+                //        break;
+                //    default:
+                //        // action = "Error";
+                //        HttpContext.Current.Session["Message"] = "Неизвестная ошибка. Попробуйте повторить действие позже.";
+                //        break;
+                //}
             }
             else
                 HttpContext.Current.Session["Message"] = exception.Message;

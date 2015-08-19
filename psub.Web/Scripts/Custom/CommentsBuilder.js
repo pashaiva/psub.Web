@@ -23,7 +23,7 @@
                             CKEDITOR.instances[newCommentText.attr("id")].destroy();
                             newCommentContainer.appendTo($(this).parent());
                             CKEDITOR.replace(newCommentText.attr("id"), {
-                                filebrowserImageUploadUrl: fileLoadService,
+                                //filebrowserImageUploadUrl: fileLoadService,
                                 customConfig: configCkeditor
                             });
                         });

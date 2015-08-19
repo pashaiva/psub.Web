@@ -87,6 +87,8 @@
     <Compile Include="Abstract\IUserService.cs" />
     <Compile Include="Abstract\IPublicationMainSectionService.cs" />
     <Compile Include="Abstract\ICatalogCommentService.cs" />
+    <Compile Include="Abstract\ICatalogMainSectionService.cs" />
+    <Compile Include="Abstract\ICatalogSectionService.cs" />
     <Compile Include="AutoMapperStartup.cs" />
     <Compile Include="CommonViewModels\AddresseeViewModel.cs" />
     <Compile Include="CommonViewModels\AddressViewModel.cs" />
@@ -114,6 +116,8 @@
     <Compile Include="Concrete\UserService.cs" />
     <Compile Include="Concrete\PublicationMainSectionService.cs" />
     <Compile Include="Concrete\CatalogCommentService.cs" />
+    <Compile Include="Concrete\CatalogMainSectionService.cs" />
+    <Compile Include="Concrete\CatalogSectionService.cs" />
     <Compile Include="DataServiceNinjectModule.cs" />
     <Compile Include="HandlerPerQuery\Abstract\IQuery.cs" />
     <Compile Include="HandlerPerQuery\Abstract\IQueryHandler.cs" />
