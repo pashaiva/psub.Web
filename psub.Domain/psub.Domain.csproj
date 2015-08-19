@@ -64,6 +64,7 @@
     <Compile Include="Entities\User.cs" />
     <Compile Include="Entities\Catalog.cs" />
     <Compile Include="Entities\CatalogComment.cs" />
+    <Compile Include="Entities\CatalogLike.cs" />
     <Compile Include="MeteringTypes.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

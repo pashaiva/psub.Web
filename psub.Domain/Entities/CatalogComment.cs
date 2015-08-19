@@ -17,6 +17,6 @@ namespace Psub.Domain.Entities
         public virtual IList<CatalogComment> Replys { get; set; }
         public virtual string Guid { get; set; }
 
-        public virtual IList<Like> Likes { get; set; }
+        public virtual IList<CatalogLike> Likes { get; set; }
     }
 }

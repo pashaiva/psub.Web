@@ -73,6 +73,8 @@
     <Compile Include="Map\UserMap.cs" />
     <Compile Include="Map\PublicationMainSectionMap.cs" />
     <Compile Include="Map\CatalogMap.cs" />
+    <Compile Include="Map\CatalogCommentMap.cs" />
+    <Compile Include="Map\CatalogLikeMap.cs" />
     <Compile Include="NHibernateHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

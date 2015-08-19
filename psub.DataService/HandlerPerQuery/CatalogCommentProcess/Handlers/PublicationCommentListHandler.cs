@@ -13,19 +13,19 @@ namespace Psub.DataService.HandlerPerQuery.CatalogCommentProcess.Handlers
 {
     public class CatalogCommentListHandler : IQueryHandler<CatalogCommentListQuery, ListCatalogComment>
     {
-        private readonly IRepository<CatalogComment> _CatalogCommentRepository;
+        private readonly IRepository<CatalogComment> _catalogCommentRepository;
         private readonly IUserService _userService;
 
-        public CatalogCommentListHandler(IRepository<CatalogComment> CatalogCommentRepository,
+        public CatalogCommentListHandler(IRepository<CatalogComment> catalogCommentRepository,
             IUserService userService)
         {
-            _CatalogCommentRepository = CatalogCommentRepository;
+            _catalogCommentRepository = catalogCommentRepository;
             _userService = userService;
         }
 
         public ListCatalogComment Handle(CatalogCommentListQuery catalog)
         {
-            var commentList = _CatalogCommentRepository.Query().Where(m => m.Catalog.Id == catalog.Id && m.AnswerTo == null).Fetch(m => m.Replys).OrderByDescending(m => m.Id).ToList();
+            var commentList = _catalogCommentRepository.Query().Where(m => m.Catalog.Id == catalog.Id && m.AnswerTo == null).Fetch(m => m.Replys).OrderByDescending(m => m.Id).ToList();
             var result = new ListCatalogComment
             {
                 Items = commentList.Any()
@@ -45,7 +45,7 @@ namespace Psub.DataService.HandlerPerQuery.CatalogCommentProcess.Handlers
 
         string SetAvatar(ref CatalogCommentListItem comment)
         {
-            if (comment.Replys.Any())
+            if (comment.Replys!=null && comment.Replys.Any())
                 foreach (var reply in comment.Replys)
                 {
                     var reply2 = reply;

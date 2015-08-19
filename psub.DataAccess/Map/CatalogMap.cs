@@ -7,7 +7,7 @@ namespace Psub.DataAccess.Map
     {
         public CatalogMap()
         {
-            Table("Publications");
+            Table("Catalogs");
             Id(m => m.Id);
             Map(m => m.TitleText).Column("Title").Length(500).Not.Nullable();
             Map(m => m.Text).CustomType("StringClob").Not.Nullable();
@@ -18,7 +18,7 @@ namespace Psub.DataAccess.Map
             Map(m => m.Created).Column("CareteDate");
             Map(m => m.IsPublic);
 
-            References(m => m.Section).Column("PublicationSectionId");
+            References(m => m.Section).Column("CatalogSectionId");
         }
     }
 }
