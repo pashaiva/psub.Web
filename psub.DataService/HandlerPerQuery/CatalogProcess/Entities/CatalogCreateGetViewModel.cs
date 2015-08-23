@@ -37,5 +37,13 @@ namespace Psub.DataService.HandlerPerQuery.CatalogProcess.Entities
         [Display(Name = LanguageConstants.Section)]
         [UIHint("DropDownSelector")]
         public DropDownSelectorViewModel Section { get; set; }
+
+        [HiddenInput(DisplayValue = false)]
+        public string Guid { get; set; }
+
+        public CatalogCreateGetViewModel()
+        {
+            Guid = System.Guid.NewGuid().ToString();
+        }
     }
 }

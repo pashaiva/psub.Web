@@ -39,7 +39,11 @@ namespace Psub.DataService
 
             Bind<IRepository<Catalog>>().To<Repository<Catalog>>();
             Bind<IRepository<CatalogComment>>().To<Repository<CatalogComment>>();
+            Bind<IRepository<CatalogLike>>().To<Repository<CatalogLike>>();
+            Bind<IRepository<CatalogCommentLike>>().To<Repository<CatalogCommentLike>>();
             //Bind<IRepository<PublicationCommentLike>>().To<Repository<PublicationCommentLike>>();
+            Bind<IRepository<CatalogSection>>().To<Repository<CatalogSection>>();
+            Bind<IRepository<CatalogMainSection>>().To<Repository<CatalogMainSection>>();
 
             Bind<ISession>().ToMethod(x => NHibernateHelper.GetCurrentSession());
 
@@ -56,6 +60,8 @@ namespace Psub.DataService
             Bind<IStatisticService>().To<StatisticService>();
             Bind<IPublicationCommentService>().To<PublicationCommentService>();
             Bind<ILikeService>().To<LikeService>();
+            Bind<ICatalogSectionService>().To<CatalogSectionService>();
+            Bind<ICatalogMainSectionService>().To<CatalogMainSectionService>();
 
             Bind<ICatalogCommentService>().To<CatalogCommentService>();
 

@@ -50,6 +50,7 @@
     <Compile Include="BaseController.cs" />
     <Compile Include="ControlObjectController.cs" />
     <Compile Include="ExceptionController.cs" />
+    <Compile Include="FileController.cs" />
     <Compile Include="GHIPIController.cs" />
     <Compile Include="LikeController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

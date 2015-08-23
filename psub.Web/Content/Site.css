@@ -1,4 +1,50 @@
-﻿html {
+﻿.imgBorder {
+    border-radius: 3px;
+    border: 3px solid #ddd;
+    padding: 1px;
+}
+
+.img20 {
+    vertical-align: middle;
+    height: 20px;
+}
+
+.img30 {
+    vertical-align: middle;
+    height: 30px;
+}
+
+.img40 {
+    vertical-align: middle;
+    height: 40px;
+}
+
+.img50 {
+    vertical-align: middle;
+    height: 50px;
+}
+
+.img70 {
+    vertical-align: middle;
+    height: 70px;
+}
+
+.img100 {
+    vertical-align: middle;
+    height: 100px;
+}
+
+.img150 {
+    vertical-align: middle;
+    height: 150px;
+}
+
+.img200 {
+    vertical-align: middle;
+    height: 200px;
+}
+
+html {
     background-color: #e2e2e2;
     margin: 0;
     padding: 0;

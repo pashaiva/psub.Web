@@ -23,8 +23,15 @@
     <script src="~/Scripts/Custom/actionLogList.js"></script>
     <script src="~/Scripts/jquery.validate.min.js"></script>
     <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/Scripts/html5shiv.js"></script>
+    
+   
+    <script src="~/Scripts/FancyBox2.1/jquery.fancybox.pack.js"></script>
+    <script src="~/Scripts/FancyBox2.1/jquery.fancybox.js"></script>
+    <link href="~/Scripts/FancyBox2.1/jquery.fancybox.css" rel="stylesheet" />
 
-
+    
+    
     <title>@ViewBag.Title</title>
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
     <meta name="viewport" content="width=device-width" />
@@ -115,6 +122,15 @@
 
         $("#logoIMG").click(function () {
             document.location = '@Url.Action("Index", "Home")';
+        });
+
+        $(".imgpreview").each(function () {
+            $(this).fancybox({
+                'opacity': true,
+                'transitionIn': 'elastic',
+                'transitionOut': 'fade',
+                'href': $(this).attr('href') == undefined ? $(this).attr('src') : $(this).attr('href')
+            });
         });
     })
 </script>

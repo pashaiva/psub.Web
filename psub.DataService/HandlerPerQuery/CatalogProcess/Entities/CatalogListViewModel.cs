@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Web.Mvc;
+using Psub.Domain.Entities;
 using Psub.Shared;
 using UESPDataManager.DataService.HandlerPerQuery.Abstract;
 
@@ -37,6 +39,10 @@ namespace Psub.DataService.HandlerPerQuery.CatalogProcess.Entities
         {
             get { return FormatUtlities.FormatCreated(string.Format("{0}", UserName), Created); }
         }
+
+        [HiddenInput(DisplayValue = false)]
+        public List<File> Files { get; set; }
+
         [HiddenInput(DisplayValue = false)]
         public string UserName { get; set; }
         [HiddenInput(DisplayValue = false)]

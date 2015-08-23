@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Web;
@@ -36,28 +37,57 @@ namespace Psub.Shared.Concrete
             return list;
         }
 
-        public string SaveFile(HttpPostedFileBase file, string entityName, string guid, int id)
+        public bool SaveFile(HttpPostedFileBase file, string entityName, string guid, int id)
         {
             var extension = Path.GetExtension(file.FileName);
             var dirInfo = string.Empty;
 
-            if (extension != null)
+            try
             {
-                var vFileName = string.Format("{0};{1}", id > 0 ? Guid.NewGuid().ToString() : guid, Path.GetFileName(file.FileName));
-
-                if (HttpContext.Current.Request.PhysicalApplicationPath != null)
-                    dirInfo = string.Format("{0}\\{1}\\{2}", Path.Combine(HttpContext.Current.Request.PhysicalApplicationPath, entityName), id, vFileName);
-
-                if (HttpContext.Current.Request.PhysicalApplicationPath != null
-                    && !Directory.Exists(string.Format("{0}\\{1}", Path.Combine(HttpContext.Current.Request.PhysicalApplicationPath, entityName), id)))
+                if (extension != null)
                 {
-                    Directory.CreateDirectory(string.Format("{0}\\{1}", Path.Combine(HttpContext.Current.Request.PhysicalApplicationPath, entityName), id));
+                    var vFileName = string.Format("{0};{1}", id > 0 ? Guid.NewGuid().ToString() : guid, Path.GetFileName(file.FileName));
+
+                    if (HttpContext.Current.Request.PhysicalApplicationPath != null)
+                        dirInfo = string.Format("{0}\\{1}\\{2}", Path.Combine(HttpContext.Current.Request.PhysicalApplicationPath, ConfigData.FileDirectory, entityName), id, vFileName);
+
+                    if (HttpContext.Current.Request.PhysicalApplicationPath != null
+                        && !Directory.Exists(string.Format("{0}\\{1}", Path.Combine(HttpContext.Current.Request.PhysicalApplicationPath, ConfigData.FileDirectory, entityName), id)))
+                    {
+                        Directory.CreateDirectory(string.Format("{0}\\{1}", Path.Combine(HttpContext.Current.Request.PhysicalApplicationPath, ConfigData.FileDirectory, entityName), id));
+                    }
                 }
+
+                file.SaveAs(dirInfo);
+            }
+            catch (Exception)
+            {
+                return false;
             }
 
-            file.SaveAs(dirInfo);
+            return true;
+        }
 
-            return dirInfo;
+        public List<File> GetFiles(string entityName, int id)
+        {
+            var result = new List<File>();
+            var dir = string.Format("{0}\\{1}", Path.Combine(HttpContext.Current.Request.PhysicalApplicationPath, ConfigData.FileDirectory, entityName), id);
+
+            foreach (var file in new DirectoryInfo(dir).GetFiles())
+            {
+                result.Add(new File
+                    {
+                        Name = file.Name,
+                        Folder = file.DirectoryName
+                    });
+            }
+
+            return result;
+        }
+
+        public string GetFile(string entityName, string name, int id)
+        {
+            return string.Format("{0}\\{1}\\{2}", Path.Combine(HttpContext.Current.Request.PhysicalApplicationPath, ConfigData.FileDirectory, entityName), id, name);
         }
 
         public List<Domain.Entities.File> GetFileList(string entityName, int id)
@@ -115,6 +145,48 @@ namespace Psub.Shared.Concrete
                     if (file.DirectoryName != null)
                         System.IO.File.Move(string.Format("{0}\\{1}", file.DirectoryName, file.Name), newDir + file.Name);
                 }
+        }
+
+        public string ImageUpload(HttpPostedFileBase upload)
+        {
+            var imagePath = String.Empty;
+            var dirPath = string.Empty;
+            var vFileName = string.Empty;
+            var currentDate = DateTime.Now.ToShortDateString();
+            var fileFolder = string.Format("{0}\\CatalogPublication\\{1}", Path.Combine(HttpContext.Current.Request.PhysicalApplicationPath ?? string.Empty, "WebFiles"), DateTime.Now.ToShortDateString());
+
+            if (upload != null && upload.ContentLength > 0)
+            {
+                var extension = Path.GetExtension(upload.FileName);
+                var fileGuid = Guid.NewGuid();
+
+                if (extension != null)
+                {
+                    vFileName = string.Format("{0}{1}", fileGuid, Path.GetFileName(upload.FileName));
+
+                    dirPath = fileFolder + "\\" + vFileName;
+                    if (!Directory.Exists(fileFolder))
+                    {
+                        Directory.CreateDirectory(fileFolder);
+                    }
+                }
+
+                upload.SaveAs(dirPath);
+
+                imagePath = VirtualPathUtility.ToAbsolute(string.Format("~/File/GetFilePath?date={0}&guid={1}", currentDate, fileGuid)); // string.Format("{0}/{1}", fileFolder.Replace(@"\", "/").Replace("//", @"\\\\"), vFileName);
+            }
+            return imagePath;
+        }
+
+        public string GetImagePath(string date, string guid)
+        {
+            var folder = string.Format("{0}\\CatalogPublication\\{1}", Path.Combine(HttpContext.Current.Request.PhysicalApplicationPath ?? string.Empty, "WebFiles"), date);
+
+            foreach (var file in new DirectoryInfo(folder).GetFiles(string.Format("*{0}*", guid)))
+            {
+                return file.FullName;
+            }
+            return string.Empty;
         }
     }
 }

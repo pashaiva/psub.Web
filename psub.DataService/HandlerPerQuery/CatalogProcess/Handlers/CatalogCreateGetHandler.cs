@@ -9,9 +9,9 @@ namespace Psub.DataService.HandlerPerQuery.CatalogProcess.Handlers
 {
     public class CatalogCreateGetHandler : IQueryHandler<CatalogCreateGetQuery, CatalogCreateGetViewModel>
     {
-        private readonly IRepository<Section> _sectionRepository;
+        private readonly IRepository<CatalogSection> _sectionRepository;
 
-        public CatalogCreateGetHandler(IRepository<Section> sectionRepository)
+        public CatalogCreateGetHandler(IRepository<CatalogSection> sectionRepository)
         {
             _sectionRepository = sectionRepository;
         }

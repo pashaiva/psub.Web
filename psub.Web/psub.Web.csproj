@@ -250,6 +250,22 @@
     <None Include="Scripts\ejsTemplates\dataParametres.ejs">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <Content Include="Scripts\FancyBox2.1\blank.gif" />
+    <Content Include="Scripts\FancyBox2.1\fancybox_loading%402x.gif" />
+    <Content Include="Scripts\FancyBox2.1\fancybox_loading.gif" />
+    <Content Include="Scripts\FancyBox2.1\fancybox_overlay.png" />
+    <Content Include="Scripts\FancyBox2.1\fancybox_sprite%402x.png" />
+    <Content Include="Scripts\FancyBox2.1\fancybox_sprite.png" />
+    <Content Include="Scripts\FancyBox2.1\helpers\fancybox_buttons.png" />
+    <Content Include="Scripts\FancyBox2.1\helpers\jquery.fancybox-buttons.css" />
+    <Content Include="Scripts\FancyBox2.1\helpers\jquery.fancybox-buttons.js" />
+    <Content Include="Scripts\FancyBox2.1\helpers\jquery.fancybox-media.js" />
+    <Content Include="Scripts\FancyBox2.1\helpers\jquery.fancybox-thumbs.css" />
+    <Content Include="Scripts\FancyBox2.1\helpers\jquery.fancybox-thumbs.js" />
+    <Content Include="Scripts\FancyBox2.1\jquery.fancybox.css" />
+    <Content Include="Scripts\FancyBox2.1\jquery.fancybox.js" />
+    <Content Include="Scripts\FancyBox2.1\jquery.fancybox.pack.js" />
+    <Content Include="Scripts\jquery-1.5.1.min.js" />
     <None Include="Scripts\jquery-2.1.1.intellisense.js" />
     <Content Include="Content\themes\base\images\animated-overlay.gif" />
     <Content Include="Content\themes\base\images\backgrnd.png" />
@@ -333,6 +349,7 @@
     <Content Include="Scripts\jquery-migrate-1.2.1.min.js" />
     <Content Include="Scripts\jquery-ui-1.10.4.js" />
     <Content Include="Scripts\jquery-ui-1.10.4.min.js" />
+    <Content Include="Scripts\jquery.mousewheel-3.0.6.pack.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
@@ -433,6 +450,7 @@
     <Content Include="Views\Catalog\EditSection.cshtml" />
     <Content Include="Views\Catalog\List.cshtml" />
     <Content Include="Views\CatalogSection\List.cshtml" />
+    <Content Include="Views\Catalog\AddFiles.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="favicon.ico" />

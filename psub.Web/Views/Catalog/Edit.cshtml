@@ -1,10 +1,84 @@
-﻿@model Psub.DataService.HandlerPerQuery.CatalogProcess.Entities.CatalogEditViewModel
+﻿@using Psub.Shared
+@model Psub.DataService.HandlerPerQuery.CatalogProcess.Entities.CatalogEditViewModel
 
 @{
     ViewBag.Title = "Редактирование публикации";
 }
+
+<script src="~/Scripts/plupload/plupload.full.min.js"></script>
+<script src="~/Scripts/plupload/jquery.plupload.queue/jquery.plupload.queue.min.js"></script>
+<script src="~/Scripts/plupload/moxie.min.js"></script>
+<link href="~/Scripts/plupload/jquery.plupload.queue/css/jquery.plupload.queue.css" rel="stylesheet" />
+<link href="~/Scripts/plupload/jquery.plupload.queue/css/jquery.plupload.queue.css" rel="stylesheet" />
+
 @using (Html.BeginForm("Edit", "Catalog", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.EditorForModel()
+
+    <div id="uploader">
+        <p>Браузер не поддерживает Flash, Silverlight, Gears, BrowserPlus или HTML5. Загрузка файлов доступна только по одному!</p>
+        <div id="fileField">
+            <input type="file" name="filex" id="filex" />
+        </div>
+        <br />
+        <br />
+        <br />
+        <a class="btn btn-primary" id="buttonAddFile">
+            <span class="glyphicon glyphicon-plus-sign"></span></a>
+    </div>
+    
     <button type="submit" class="btn btn-primary">Сохранить</button>
 }
+
+<script type="text/javascript">
+    $(function () {
+        $("#buttonAddFile").click(function () {
+            var file = $('<input/>').attr('type', 'file').attr('name', 'someName');
+            file.css('display', 'none');
+            $("#fileField").append($("<br>"));
+            $("#fileField").append($("<br>"));
+            $("#fileField").append(file);
+            file.show(300);
+        });
+
+        $("#uploader").pluploadQueue({
+            runtimes: 'html5,gears,flash,silverlight,browserplus',
+            url: '@Url.Action("SaveFile", "File", new { id = Model.Id, guid = Guid.NewGuid().ToString() })' + '&type=Catalog',
+            max_file_size: '@ConfigData.FileMaxSize' + 'mb',
+            unique_names: true,
+            flash_swf_url: '/plupload/js/plupload.flash.swf',
+            silverlight_xap_url: '/plupload/js/plupload.silverlight.xap'
+        });
+
+        $('form').submit(function (e) {
+            var btn = $("#save").button('loading');
+            var uploader = $('#uploader').pluploadQueue();
+            if (uploader.files.length > 0) {
+                uploader.bind('StateChanged', function () {
+                    if (uploader.files.length === (uploader.total.uploaded + uploader.total.failed)) {
+                        $('form')[0].submit();
+                    }
+                });
+                uploader.start();
+            } else {
+                return true;
+            }
+
+            return false;
+        });
+
+        actionWithWindow();
+    });
+
+    function actionWithWindow() {
+        var windowType = '@Request.QueryString["windowType"]';
+        var updateFunction = '@Request.QueryString["updateFunction"]';
+        var state = '@Request.QueryString["state"]';
+        if (windowType == "modal") {
+            if (state == "refreshParent") {
+                window.parent.jQuery('#dialog').dialog('close');
+                window.parent.location.reload();
+            }
+        }
+    }
+</script>

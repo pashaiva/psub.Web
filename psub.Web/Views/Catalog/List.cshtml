@@ -20,7 +20,7 @@
                 @if (Model.IsEditor)
                 {
                     <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                        <span class="glyphicon glyphicon-plus-sign"></span> Создать раздел\подраздел <span class="caret"></span>
+                        <span class="glyphicon glyphicon-plus-sign"></span>Создать раздел\подраздел <span class="caret"></span>
                     </button>
                     <ul class="dropdown-menu" role="menu">
                         <li><a href="@Url.Action("CreateMainSection", "Catalog")">Раздел</a></li>
@@ -37,19 +37,18 @@
                     @if (Model.Items.Any())
                     {
                         @Html.Pager((int)Model.Count, ConfigData.PageSize)
-                        foreach (var item in Model.Items)
-                        {
-                            <div class="row well" style="margin: 5px;">
-                                <h1>
+                        <div class="row">
+                            @foreach (var item in Model.Items)
+                            {
+                              
+                                <div class="col-md-3 well">
+                                    @if (item.Files != null && item.Files.Any())
+                                    {
+                                        <img src="@Url.Action("GetFile", "File", new { entityName = "Catalog", name = item.Files.First().Name, id = item.Id })" class="img150"/>
+                                    }
                                     @if (item.IsView)
                                     {
                                         <a href="@Url.Action("Details", new { id = item.Id })">@item.TitleText</a>
-                                    @*if (!item.IsPublic)
-                                    {
-                                    <span data-toggle="tooltip" data-placement="top" data-original-title="@LanguageConstants.LimitedAccess">
-                                        <span class="glyphicon glyphicon-eye-close"></span>
-                                    </span> 
-                                    }*@
                                     }
                                     else
                                     {
@@ -57,24 +56,40 @@
                                             <span class="glyphicon glyphicon-eye-close"></span>@item.TitleText
                                         </span> 
                                     }
+                                </div>
+                                @*
 
-                                </h1>
-                                <p class="text-info">
-                                    <b>Автор: @item.Creator</b>
-                                </p>
+                                <div class="row well" style="margin: 5px;">
+                                    <h1>
+                                        @if (item.IsView)
+                                        {
+                                            <a href="@Url.Action("Details", new { id = item.Id })">@item.TitleText</a>
+                                        }
+                                        else
+                                        {
+                                            <span data-toggle="tooltip" data-placement="top" data-original-title="@LanguageConstants.AccessCloseCatalog">
+                                                <span class="glyphicon glyphicon-eye-close"></span>@item.TitleText
+                                            </span> 
+                                        }
 
-                                <p>
-                                    @Html.Raw(item.TextPreview)
-                                </p>
-                                @if (item.IsView)
-                                {
+                                    </h1>
+                                    <p class="text-info">
+                                        <b>Автор: @item.Creator</b>
+                                    </p>
+
                                     <p>
-                                        <a href="@Url.Action("Details", new { id = item.Id })" class="btn btn-primary">Читать дальше <span class="glyphicon glyphicon-arrow-right"></span></a>
-                                    </p> 
-                                }
+                                        @Html.Raw(item.TextPreview)
+                                    </p>
+                                    @if (item.IsView)
+                                    {
+                                        <p>
+                                            <a href="@Url.Action("Details", new { id = item.Id })" class="btn btn-primary">Читать дальше <span class="glyphicon glyphicon-arrow-right"></span></a>
+                                        </p> 
+                                    }
 
-                            </div>
-                        }
+                                </div>*@
+                            }
+                        </div>
                         @Html.Pager((int)Model.Count, ConfigData.PageSize)
                     }
                     else
@@ -85,7 +100,7 @@
                 </div>
             </div>
         </div>
-         <div role="tabpanel" class="tab-pane" id="lastHistory-of-changes">
+        <div role="tabpanel" class="tab-pane" id="lastHistory-of-changes">
             @Html.Partial("_LastActionsHistoryOfSection", EntityTypes.Catalog.ToString())
         </div>
     </div>
@@ -103,11 +118,10 @@
                 if ($(element.PublicationSection).length > 0) {
                     var ul = $("<ul>").attr({ "class": "dropdown-menu", "role": "menu", "aria-labelledby": "dLabel" }).appendTo(divGroup);
                     $(element.PublicationSection).each(function (index1, element1) {
-                        $("<li>").html($("<a>").attr({ "href": "@Url.Action("List", "Publication")" + "?catalogSectionId=" + element1.Id + "&catalogMainSectionId=" + element.Id, "class": "dropdown-submenu" }).html(element1.Name)).appendTo(ul);
-                       });
-                       }
-
-               });
-           });
+                        $("<li>").html($("<a>").attr({ "href": "@Url.Action("List")" + "?catalogSectionId=" + element1.Id + "&catalogMainSectionId=" + element.Id, "class": "dropdown-submenu" }).html(element1.Name)).appendTo(ul);
+                    });
+                    }
+            });
+        });
     });
 </script>

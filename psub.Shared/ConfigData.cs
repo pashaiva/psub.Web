@@ -61,5 +61,9 @@ namespace Psub.Shared
         public static List<string> FileExtensionForOpenInBrowser = new List<string>(new[] { ".pdf", ".jpg", ".png" });
 
         public static int PageSize = 10;
+
+        public static int FileMaxSize = 10;
+
+        public static string FileDirectory = "WebFiles";
     }
 }

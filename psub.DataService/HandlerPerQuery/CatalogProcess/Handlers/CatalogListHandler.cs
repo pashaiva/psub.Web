@@ -5,6 +5,7 @@ using Psub.DataService.Abstract;
 using Psub.DataService.HandlerPerQuery.CatalogProcess.Entities;
 using Psub.Domain.Entities;
 using Psub.Shared;
+using Psub.Shared.Abstract;
 using UESPDataManager.DataService.HandlerPerQuery.Abstract;
 using AutoMapper;
 
@@ -14,12 +15,15 @@ namespace Psub.DataService.HandlerPerQuery.CatalogProcess.Handlers
     {
         private readonly IRepository<Catalog> _catalogRepository;
         private readonly IUserService _userService;
+        private readonly IFileService _fileService;
 
         public CatalogListHandler(IRepository<Catalog> catalogRepository,
-            IUserService userService)
+            IUserService userService,
+            IFileService fileService)
         {
             _catalogRepository = catalogRepository;
             _userService = userService;
+            _fileService = fileService;
         }
 
         public ListCatalog Handle(CatalogListQuery catalog)
@@ -34,6 +38,7 @@ namespace Psub.DataService.HandlerPerQuery.CatalogProcess.Handlers
             {
                 var returnCatalogItem = Mapper.Map<Catalog, CatalogListItem>(catalogListItem);
                 returnCatalogItem.IsView = true;
+                returnCatalogItem.Files = _fileService.GetFiles(typeof(Catalog).Name, returnCatalogItem.Id);
                 returnCatalog.Add(returnCatalogItem);
             }
 
@@ -43,7 +48,8 @@ namespace Psub.DataService.HandlerPerQuery.CatalogProcess.Handlers
                 Count = catalogs.Count(),
                 PageNumber = catalog.Page,
                 PageSize = pageSize,
-                IsEditor = _userService.IsAdmin()
+                IsEditor = _userService.IsAdmin(),
+
             };
 
             return result;

@@ -10,6 +10,7 @@
             '@Url.Action("SaveComment", new { objectId = Model.Id })',
             '@Url.Action("UploadImage", "File")',
             '~/Scripts/ckeditor/config.js',
-            '@Url.Action("SetLike", "Like")');
+            '@Url.Action("SetLike", "Like")',
+            '@Model.Type');
     });
 </script>

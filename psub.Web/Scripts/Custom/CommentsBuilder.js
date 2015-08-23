@@ -1,4 +1,4 @@
-﻿function CommentsBuilder(container, getListService, createService, fileLoadService, configCkeditor, likeService) {
+﻿function CommentsBuilder(container, getListService, createService, fileLoadService, configCkeditor, likeService, objectType) {
     var self = $(this);
     var newCommentContainer = $("<div>");
     var commentDivId = "commentDivId";
@@ -200,7 +200,7 @@
     };
 
     var setLike = function (button, isLike) {
-        $.post(likeService + '?ObjectId=' + button.attr("data-id") + '&ObjectType=PublicationComment&IsLike=' + (isLike ? 'True' : 'False'),
+        $.post(likeService + '?ObjectId=' + button.attr("data-id") + '&ObjectType=' + objectType + '&IsLike=' + (isLike ? 'True' : 'False'),
                            function (res) {
                                if (res.Id > 0)
                                    button.find("b").html(parseInt(button.find("b").html()) + 1 + "&nbsp;");

@@ -22,7 +22,7 @@ namespace Psub.DataAccess.Map
     {
         public CatalogCommentLikeMap()
         {
-            DiscriminatorValue("CatalogComment");
+            DiscriminatorValue("Catalog");
             References(x => x.Comment).Column("CatalogCommentId");
         }
     }

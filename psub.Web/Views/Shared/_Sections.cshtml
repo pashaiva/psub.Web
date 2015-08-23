@@ -3,16 +3,16 @@
 
 <script>
     $(function () {
-        $.post('@Url.Action("GetMainSection", "Publication")',
+        $.post('@Url.Action("GetMainSection")',
         function (res) {
             if (res != null) {
                 var div = $("<div>");
                 $(res.Items).each(function () {
                     $(this.PublicationSections).each(function () {
                         var sectionDiv = $("<div>").attr({ "class": "btn-group" });
-                        $("<a>").attr({ "href": "@Url.Action("List", "Publication")?sectionId=" + this.Id, "class": "btn btn-default" }).html(this.Name).appendTo(sectionDiv);
+                        $("<a>").attr({ "href": "@Url.Action("List")?sectionId=" + this.Id, "class": "btn btn-default" }).html(this.Name).appendTo(sectionDiv);
                         if (res.IsAdminPublications)
-                            $("<a>").attr({ "href": "@Url.Action("EditSection", "Publication")?Id=" + this.Id, "class": "btn btn-primary" })
+                            $("<a>").attr({ "href": "@Url.Action("EditSection")?Id=" + this.Id, "class": "btn btn-primary" })
                                     .append($("<span>").attr("class", "glyphicon glyphicon-pencil")).appendTo(sectionDiv);
 
                         sectionDiv.appendTo(div);

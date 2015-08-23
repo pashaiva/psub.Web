@@ -13,11 +13,11 @@ namespace Psub.DataService.HandlerPerQuery.CatalogProcess.Handlers
     {
         private readonly IRepository<Catalog> _catalogRepository;
         private readonly IUserService _userService;
-        private readonly IRepository<Section> _sectionRepository;
+        private readonly IRepository<CatalogSection> _sectionRepository;
 
         public CatalogEditGetHandler(IRepository<Catalog> catalogRepository,
             IUserService userService,
-            IRepository<Section> sectionRepository)
+            IRepository<CatalogSection> sectionRepository)
         {
             _catalogRepository = catalogRepository;
             _userService = userService;

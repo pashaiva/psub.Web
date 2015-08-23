@@ -167,8 +167,22 @@
     <Compile Include="HandlerPerQuery\CatalogProcess\Handlers\CatalogEditGetHandler.cs" />
     <Compile Include="HandlerPerQuery\CatalogProcess\Handlers\CatalogEditPostHandler.cs" />
     <Compile Include="HandlerPerQuery\CatalogProcess\Handlers\CatalogListHandler.cs" />
-    <Compile Include="HandlerPerQuery\CatalogCommentProcess\Entities\PublicationCommentListViewModel.cs" />
-    <Compile Include="HandlerPerQuery\CatalogCommentProcess\Handlers\PublicationCommentListHandler.cs" />
+    <Compile Include="HandlerPerQuery\CatalogCommentProcess\Entities\CatalogCommentListViewModel.cs" />
+    <Compile Include="HandlerPerQuery\CatalogCommentProcess\Handlers\CatalogCommentListHandler.cs" />
+    <Compile Include="HandlerPerQuery\CatalogSectionProcess\Entities\CatalogMainSectionCreateGetViewModel.cs" />
+    <Compile Include="HandlerPerQuery\CatalogSectionProcess\Entities\CatalogMainSectionCreatePostViewModel.cs" />
+    <Compile Include="HandlerPerQuery\CatalogSectionProcess\Entities\CatalogMainSectionListViewModel.cs" />
+    <Compile Include="HandlerPerQuery\CatalogSectionProcess\Entities\CatalogSectionCreateGetViewModel.cs" />
+    <Compile Include="HandlerPerQuery\CatalogSectionProcess\Entities\CatalogSectionDeleteGetViewModel.cs" />
+    <Compile Include="HandlerPerQuery\CatalogSectionProcess\Entities\CatalogSectionEditGetViewModel.cs" />
+    <Compile Include="HandlerPerQuery\CatalogSectionProcess\Entities\CatalogSectionEditPostViewModel.cs" />
+    <Compile Include="HandlerPerQuery\CatalogSectionProcess\Handlers\CatalogMainSectionCreateGetHandler.cs" />
+    <Compile Include="HandlerPerQuery\CatalogSectionProcess\Handlers\CatalogMainSectionCreatePostHandler.cs" />
+    <Compile Include="HandlerPerQuery\CatalogSectionProcess\Handlers\CatalogMainSectionListHandler.cs" />
+    <Compile Include="HandlerPerQuery\CatalogSectionProcess\Handlers\CatalogSectionCreateGetHandler.cs" />
+    <Compile Include="HandlerPerQuery\CatalogSectionProcess\Handlers\CatalogSectionDeleteGetHandler.cs" />
+    <Compile Include="HandlerPerQuery\CatalogSectionProcess\Handlers\CatalogSectionEditGetHandler.cs" />
+    <Compile Include="HandlerPerQuery\CatalogSectionProcess\Handlers\CatalogSectionEditPostHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
