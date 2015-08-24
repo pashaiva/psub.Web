@@ -35,6 +35,7 @@ namespace Psub.DataService.HandlerPerQuery.CatalogProcess.Handlers
                 Text = catalog.Text,
                 TextPreview = catalog.TextPreview,
                 TitleText = catalog.TitleText,
+                Price = catalog.Price,
                 IsPublic = catalog.IsPublic,
                 Section = new Section { Id = catalog.Section.Id }
             };

@@ -32,6 +32,11 @@ namespace Psub.DataService.HandlerPerQuery.CatalogProcess.Entities
         [DataType(DataType.Html)]
         public string TextPreview { get; set; }
 
+        [Display(Name = LanguageConstants.Price)]
+        [DataType(DataType.Currency)]
+        [UIHint("Price")]
+        public decimal Price { get; set; }
+
         [Display(Name = LanguageConstants.KeyWords)]
         public string Keywords { get; set; }
         

@@ -17,6 +17,7 @@ namespace Psub.DataAccess.Map
             Map(m => m.UserGuid).Length(100).Not.Nullable();
             Map(m => m.Created).Column("CareteDate");
             Map(m => m.IsPublic);
+            Map(m => m.Price);
 
             References(m => m.Section).Column("CatalogSectionId");
         }

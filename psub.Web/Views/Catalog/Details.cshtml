@@ -23,7 +23,7 @@
 </div>
 
 <div class="row well" style="margin: 5px;">
-    <h1><a href="@Url.Action("Details", new { id = Model.Id })">@Model.TitleText</a>
+    <h1><a href="@Url.Action("Details", new { id = Model.Id })">@Model.TitleText </a>
         @*    @if (!Model.IsPublic)
                         {
                         <span data-toggle="tooltip" data-placement="top" data-original-title="@LanguageConstants.LimitedAccess">
@@ -31,6 +31,7 @@
                         </span> 
                         }*@
     </h1>
+    @Html.DisplayFor(m=>m.Price)
     <p>
         @foreach (var file in @Model.Files)
         {

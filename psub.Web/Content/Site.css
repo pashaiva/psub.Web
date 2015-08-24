@@ -1,4 +1,9 @@
-﻿.imgBorder {
+﻿.body {
+    padding: 5px;
+    margin: 5px;
+}
+
+.imgBorder {
     border-radius: 3px;
     border: 3px solid #ddd;
     padding: 1px;
@@ -37,6 +42,7 @@
 .img150 {
     vertical-align: middle;
     height: 150px;
+    max-width: 220px;
 }
 
 .img200 {
@@ -148,7 +154,7 @@ h5, h6 {
 ----------------------------------------------------------*/
 .content-wrapper {
     margin: 0 auto;
-    max-width: 960px;
+    max-width: 1024px;
 }
 
 #body {
@@ -723,8 +729,8 @@ table.no-border td {
     }
 
     .content-wrapper {
-        padding-right: 10px;
-        padding-left: 10px;
+        padding-right: 5px;
+        padding-left: 5px;
     }
 
     .featured .content-wrapper {

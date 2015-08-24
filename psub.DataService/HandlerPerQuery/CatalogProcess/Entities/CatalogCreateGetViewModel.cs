@@ -27,6 +27,10 @@ namespace Psub.DataService.HandlerPerQuery.CatalogProcess.Entities
         [AllowHtml]
         [Required(ErrorMessage = "Новость не должна быть пустой")]
         public string Text { get; set; }
+        
+        [Display(Name = LanguageConstants.Price)]
+        [DataType(DataType.Currency)]
+        public decimal Price { get; set; }
 
         [Display(Name = LanguageConstants.KeyWords)]
         public string Keywords { get; set; }

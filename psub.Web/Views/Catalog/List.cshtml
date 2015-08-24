@@ -3,6 +3,12 @@
 @using Psub.Shared
 @model Psub.DataService.HandlerPerQuery.CatalogProcess.Entities.ListCatalog
 
+@{
+    ViewBag.Title = LanguageConstants.Catalogs;
+    ViewBag.Description = "Каталог электроники arduino контроллеров модулей";
+    ViewBag.Keywords = "Arduino контроллер модуль купить Ростов-на-Дону";
+}
+
 <div class="btn-toolbar" id="menuCatalogs"></div>
 
 <div role="tabpanel">
@@ -12,10 +18,6 @@
     </ul>
     <div class="tab-content">
         <div role="tabpanel" class="tab-pane active" id="Catalog-list">
-            @{
-                ViewBag.Title = "Новости/обсуждения";
-            }
-
             <div class="btn-group" role="group">
                 @if (Model.IsEditor)
                 {
@@ -42,52 +44,33 @@
                             {
                               
                                 <div class="col-md-3 well">
-                                    @if (item.Files != null && item.Files.Any())
-                                    {
-                                        <img src="@Url.Action("GetFile", "File", new { entityName = "Catalog", name = item.Files.First().Name, id = item.Id })" class="img150"/>
-                                    }
+
                                     @if (item.IsView)
-                                    {
-                                        <a href="@Url.Action("Details", new { id = item.Id })">@item.TitleText</a>
+                                    {  
+                                        <a href="@Url.Action("Details", new { id = item.Id })">
+                                            @if (item.Files != null && item.Files.Any())
+                                            {
+                                                <img src="@Url.Action("GetFile", "File", new { entityName = "Catalog", name = item.Files.First().Name, id = item.Id })" class="img150 imgBorder imgpreview"/>
+                                            }
+                                            <div class="row">
+                                                <div class="col-md-9">@item.TitleText</div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-5"><span class="badge">@LanguageConstants.Price : @item.Price р.</span></div>
+                                            </div>
+                                        </a>
                                     }
                                     else
                                     {
+                                        if (item.Files != null && item.Files.Any())
+                                        {
+                                        <img src="@Url.Action("GetFile", "File", new { entityName = "Catalog", name = item.Files.First().Name, id = item.Id })" class="img150 imgBorder imgpreview"/>
+                                        }
                                         <span data-toggle="tooltip" data-placement="top" data-original-title="@LanguageConstants.AccessCloseCatalog">
                                             <span class="glyphicon glyphicon-eye-close"></span>@item.TitleText
                                         </span> 
                                     }
                                 </div>
-                                @*
-
-                                <div class="row well" style="margin: 5px;">
-                                    <h1>
-                                        @if (item.IsView)
-                                        {
-                                            <a href="@Url.Action("Details", new { id = item.Id })">@item.TitleText</a>
-                                        }
-                                        else
-                                        {
-                                            <span data-toggle="tooltip" data-placement="top" data-original-title="@LanguageConstants.AccessCloseCatalog">
-                                                <span class="glyphicon glyphicon-eye-close"></span>@item.TitleText
-                                            </span> 
-                                        }
-
-                                    </h1>
-                                    <p class="text-info">
-                                        <b>Автор: @item.Creator</b>
-                                    </p>
-
-                                    <p>
-                                        @Html.Raw(item.TextPreview)
-                                    </p>
-                                    @if (item.IsView)
-                                    {
-                                        <p>
-                                            <a href="@Url.Action("Details", new { id = item.Id })" class="btn btn-primary">Читать дальше <span class="glyphicon glyphicon-arrow-right"></span></a>
-                                        </p> 
-                                    }
-
-                                </div>*@
                             }
                         </div>
                         @Html.Pager((int)Model.Count, ConfigData.PageSize)

@@ -134,6 +134,7 @@
         public const string Text = "Текст";
         public const string Author = "Автор";
         public const string ReplyToComment = "Ответ";
+        public const string Price = "Цена";
 
 
 

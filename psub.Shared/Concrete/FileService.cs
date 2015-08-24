@@ -73,14 +73,15 @@ namespace Psub.Shared.Concrete
             var result = new List<File>();
             var dir = string.Format("{0}\\{1}", Path.Combine(HttpContext.Current.Request.PhysicalApplicationPath, ConfigData.FileDirectory, entityName), id);
 
-            foreach (var file in new DirectoryInfo(dir).GetFiles())
-            {
-                result.Add(new File
-                    {
-                        Name = file.Name,
-                        Folder = file.DirectoryName
-                    });
-            }
+            if (Directory.Exists(dir))
+                foreach (var file in new DirectoryInfo(dir).GetFiles())
+                {
+                    result.Add(new File
+                        {
+                            Name = file.Name,
+                            Folder = file.DirectoryName
+                        });
+                }
 
             return result;
         }

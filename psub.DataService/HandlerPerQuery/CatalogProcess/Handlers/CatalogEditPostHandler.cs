@@ -38,6 +38,7 @@ namespace Psub.DataService.HandlerPerQuery.CatalogProcess.Handlers
             lastCatalog.Text = catalog.Text;
             lastCatalog.TextPreview = catalog.TextPreview;
             lastCatalog.TitleText = catalog.TitleText;
+            lastCatalog.Price = catalog.Price;
             lastCatalog.Keywords = catalog.Keywords;
             lastCatalog.IsPublic = catalog.IsPublic;
             lastCatalog.Section = new Section { Id = catalog.Section.Id };

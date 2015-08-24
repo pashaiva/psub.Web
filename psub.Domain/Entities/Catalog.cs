@@ -14,6 +14,7 @@ namespace Psub.Domain.Entities
         public virtual string Keywords { get; set; }
         public virtual string UserName { get; set; }
         public virtual string UserGuid { get; set; }
+        public virtual decimal Price { get; set; }
         public virtual DateTime Created { get; set; }
         public virtual IList<PublicationComment> PublicationComment { get; set; }
         public virtual bool IsPublic { get; set; }
