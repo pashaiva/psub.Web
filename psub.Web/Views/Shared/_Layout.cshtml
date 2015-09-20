@@ -142,5 +142,9 @@
                 'href': $(this).attr('href') == undefined ? $(this).attr('src') : $(this).attr('href')
             });
         });
+
+        $.post("@Url.Action("SetUserStatistic", "Home")" + "?url=" + document.location + "&urlReferrer=" + document.referrer, function (res) {
+                
+            });
     })
 </script>

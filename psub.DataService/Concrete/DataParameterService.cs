@@ -104,16 +104,18 @@ namespace Psub.DataService.Concrete
 
             try
             {
-                var list = _dataParameterRepository.Query().Fetch(x => x.ControlObject).ToList().Where(m => m.ControlObject.Guid == guid).ToList();
+                var list = _dataParameterRepository.Query().Fetch(x => x.ControlObject).ToList().Where(m => m.ControlObject.Guid == guid);
 
-                foreach (var dataParam in list)
+                var dataParameters = list as List<DataParameter> ?? list.ToList();
+                if (dataParameters.Any())
+                foreach (var dataParam in dataParameters)
                 {
                     _dataParameterRepository.Delete(dataParam.Id);
                 }
 
                 foreach (var parameterDTO in dataParameterDTO)
                 {
-                    parameterDTO.ControlObject = new ControlObjectDTO { Id = list.First().ControlObject.Id };
+                    parameterDTO.ControlObject = new ControlObjectDTO { Id = _controlObjectRepository.Query().First(m=>m.Guid==guid).Id };
                     //parameterDTO.ControlObject = new ControlObjectDTO { Id = controlObject.Id };
                     SaveOrUpdate(parameterDTO);
                 }
