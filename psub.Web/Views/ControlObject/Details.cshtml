@@ -4,137 +4,133 @@
     ViewBag.Title = "Параметры объекта " + @Model.Name;
 }
 
-<h2>Параметры объекта</h2>
-
-
-<fieldset>
-    <legend>Объект</legend>
-    <div class="editor-label">
-        @Html.LabelFor(m => m.Name)
-    </div>
-    <div class="editor-field">
-        @Html.TextBoxFor(m => m.Name)
-    </div>
-    <div class="editor-label">
-        @Html.LabelFor(m => m.Discription)
-    </div>
-    <div class="editor-field">
-        @Html.TextBoxFor(m => m.Discription)
-    </div>
-    <p>
-        <button id="saveControlObject" title="Сохранить объект">
-            <img src="~/Images/save.png" alt="Сохранить объект" title="Сохранить объект" />
-        </button>
-    </p>
-</fieldset>
-<h3>Параметры объекта</h3>
-<div id="dataParameters"></div>
-<h3>Состояние систем</h3>
-<table class="hoverable">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.RelayData.First().Name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.RelayData.First().Value)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.RelayData.First().LastUpdate)
-        </th>
-    </tr>
-
-    @foreach (var relay in Model.RelayData)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => relay.Name)
-            </td>
-            <td class="relay" data-relayId="@relay.Id" data-relayVal="@relay.Value">
-                @Html.EditorFor(modelItem => relay.Value)
-            </td>
-            <td>@Html.DisplayFor(modelItem => relay.LastUpdate)</td>
-            <td>
-                <button class="editRelayData"  onclick="JavaScript:document.location='@Url.Action("Edit", "RelayData", new { id = relay.Id })';" title="Редактировать" >
-                    <img src="~/Images/edit.png" alt="Редактировать" title="Редактировать" />
+<div class="row">
+    <div class="col-md-4">
+        <fieldset>
+            <legend>Объект</legend>
+            <form>
+                <div class="editor-label">
+                    @Html.LabelFor(m => m.Name)
+                </div>
+                <div class="editor-field">
+                    @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
+                </div>
+                <div class="editor-label">
+                    @Html.LabelFor(m => m.Discription)
+                </div>
+                <div class="editor-field">
+                    @Html.TextBoxFor(m => m.Discription, new { @class = "form-control" })
+                </div>
+            </form>
+            <p>
+                <button id="saveControlObject" title="Сохранить объект">
+                    <img src="~/Images/save.png" alt="Сохранить объект" title="Сохранить объект" />
                 </button>
-                <button class="deleteRelayData" date-id="@relay.Id" title="Удалить" >
-                    <img src="~/Images/remove.png" alt="Удалить" title="Удалить" />
-                </button>
-            </td>
-        </tr>
-    }
-
-</table>
-<button id="saveRelayData" title="Сохранить датчики">
-    <img src="~/Images/save.png" alt="Сохранить датчики" title="Сохранить датчики" />
-</button>
-<p>
-    <button class="createRelayData"  onclick="JavaScript:document.location='@Url.Action("Create", "RelayData", new { id = Model.Id })';" title="Создать" >
-        <img src="~/Images/add.png" alt="Создать" title="Создать" />
-    </button>
-</p>
-<div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
-<div style="width: 400px; overflow-y: auto; border: 2px solid darkslategray;">
-    <img id="iii" />
+            </p>
+        </fieldset>
+    </div>
 </div>
-<button id="qwerty">click</button>
+<div class="row">
+    <div class="col-md-6">
+        <h3>Параметры объекта</h3>
+        <div id="dataParameters"></div>
+        <h3>Состояние систем</h3>
+        <table class="table table-striped table-bordered table-hover">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.RelayData.First().Name)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.RelayData.First().Value)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.RelayData.First().LastUpdate)
+                </th>
+            </tr>
+
+            @foreach (var relay in Model.RelayData)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => relay.Name)
+                    </td>
+                    <td class="relay" data-relayId="@relay.Id" data-relayVal="@relay.Value">
+                        @Html.EditorFor(modelItem => relay.Value)
+                    </td>
+                    <td>@Html.DisplayFor(modelItem => relay.LastUpdate)</td>
+                    <td>
+                        <button class="editRelayData"  onclick="JavaScript:document.location='@Url.Action("Edit", "RelayData", new { id = relay.Id })';" title="Редактировать" >
+                            <img src="~/Images/edit.png" alt="Редактировать" title="Редактировать" />
+                        </button>
+                        <button class="deleteRelayData" date-id="@relay.Id" title="Удалить" >
+                            <img src="~/Images/remove.png" alt="Удалить" title="Удалить" />
+                        </button>
+                    </td>
+                </tr>
+            }
+
+        </table>
+        <button id="saveRelayData" title="Сохранить датчики">
+            <img src="~/Images/save.png" alt="Сохранить датчики" title="Сохранить датчики" />
+        </button>
+        <p>
+            <button class="createRelayData"  onclick="JavaScript:document.location='@Url.Action("Create", "RelayData", new { id = Model.Id })';" title="Создать" >
+                <img src="~/Images/add.png" alt="Создать" title="Создать" />
+            </button>
+        </p>
+    </div>
+
+
+
+
+</div>
+
+<div>
+    <div id="container" style="width: inherit;"></div>
+</div>
+
 
 <script type="text/javascript">
     $(function () {
+        var dialog = new CustomModalDialog($("#container"), "График");
+
         $("#qwerty").click(function () {
             getGraph();
         });
         var dataGraph = new Array();
-        $.post('@Url.Action("GetParametres", "ControlObject")',
-               function (res) {
-                   $(res.day).each(function (index, element) {
-                       var ar = new Array();
-                       ar.push(Date.UTC(parseInt(res.year[index]), parseInt(res.month[index]), parseInt(res.day[index]), parseInt(res.hour[index]), parseInt(res.minite[index]), parseInt(res.sec[index])), parseFloat(res.val[index]));
-                       dataGraph.push(ar);
-                   });
-               });
 
-        function getGraph() {
+        function getGraph(xName, yName) {
             $.getScript("../../Scripts/Highcharts-4.0.3/js/highcharts.js", function () {
                 $('#container').highcharts({
                     chart: {
                         type: 'scatter',
-                        zoomType: 'xy'
-
+                        zoomType: 'xy',
+                        name: yName + "/" + xName
                     },
                     title: {
-                        text: '1111111111'
-                    },
-                    subtitle: {
-                        text: '2222222222'
+                        text: yName + "/" + xName
                     },
                     xAxis: {
-                        type: 'datetime',
-                        dateTimeLabelFormats: { // don't display the dummy year
-                            month: '%e. %b',
-                            year: '%b'
-                        },
-                        title: {
-                            text: 'Date'
-                        }
+                        type: 'datetime'
                     },
                     yAxis: {
                         title: {
-                            text: 'C'
+                            text: yName
                         },
                         min: 0
                     },
                     tooltip: {
                         headerFormat: '<b>{series.name}</b><br>',
-                        pointFormat: '{point.x:%e. %b}: {point.y:.2f} C'
+                        pointFormat: '{point.x:%e. %b}: {point.y:.2f} ' + yName
                     },
 
                     series: [{
-                        data: dataGraph
+                        data: dataGraph,
+                        name: yName
                     }]
                 });
             });
-           
+
         }
 
         $(".deleteRelayData").click(function () {
@@ -198,15 +194,24 @@
                     function (res) {
                         //var html = new EJS({ url: params.ejsTemplate }).render({ 'data': res });
                         $(container).empty();
-                        var table = $("<table  class='hoverable'>");
+                        var table = $("<table  class='table table-striped table-bordered table-hover'>");
                         var tr = $("<tr>").append($("<th>").html("Наименование")).append($("<th>").html("Значение")).append($("<th>").html("Параметр обнавлен")).appendTo(table);
 
                         $(res).each(function (index, element) {
-                            var buttonGraph = $("<button>").html("график").attr("name1", element.Name).click(function () {
-                                $.post('@Url.Action("GetFilePath", "User")?id=@Model.Id&name=' + $(this).attr("name1"),
-                                function (res1) {
-                                    $("#iii").attr("src", res1 + "?timestamp=" + new Date().getTime());
-                                });
+                            var buttonGraph = $("<button>").html("график").attr({ "name1": element.Name }).click(function () {
+                                $.post('@Url.Action("GetParametres", "ControlObject")?paramName=' + $(this).attr("name1"),
+                                       function (res) {
+                                           var yname = $(buttonGraph).attr("name1");
+                                           dataGraph = new Array();
+                                           $('#container').empty();
+                                           $(res.day).each(function (index, element) {
+                                               var ar = new Array();
+                                               ar.push(Date.UTC(parseInt(res.year[index]), parseInt(res.month[index] - 1), parseInt(res.day[index]), parseInt(res.hour[index]), parseInt(res.minite[index]), parseInt(res.sec[index])), parseFloat(res.val[index]));
+                                               dataGraph.push(ar);
+                                           });
+                                           getGraph("t", yname);
+                                       });
+                                dialog.showDialog();
                             });
                             var buttonCline = $("<button>").html("сброс").attr("name1", element.Name).click(function () {
                                 $.post('@Url.Action("ClineDateParameter", "ControlObject")?id=@Model.Id&name=' + $(this).attr("name1"),
@@ -243,7 +248,7 @@
             return this.each(function () {
                 var container = this;
                 $(container).empty();
-                var table = $("<table>").attr("style", "width:100%");
+                var table = $("<table>").attr({ "style": "width:100%", "class": "table table-striped table-bordered table-hover" });
                 var headDiv = $("<div>").attr("style", "cursor:pointer;").attr("class", "logHead");
                 var mainDiv = $("<div>");
 

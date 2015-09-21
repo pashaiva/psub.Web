@@ -15,7 +15,7 @@
         @Html.HiddenFor(model => model.Id)
         @Html.HiddenFor(model => model.DateRegistration)
         @Html.HiddenFor(model => model.NickName)
-        <table>
+        <table class="table table-striped table-bordered table-hover">
             <tr>
                 <th>@Html.LabelFor(model => model.Name)</th>
                 <td>@Html.EditorFor(model => model.Name)

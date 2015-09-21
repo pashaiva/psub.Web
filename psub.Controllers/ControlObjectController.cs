@@ -161,9 +161,9 @@ namespace Psub.Controllers
 
         [HttpPost]
         [TransactionPerRequest]
-        public JsonResult GetParametres()
+        public JsonResult GetParametres(string paramName)
         {
-            var par = _dataParameterService.GetFullDataParameterListByName("Temperature, C");
+            var par = _dataParameterService.GetFullDataParameterListByName(paramName);
             if (par.Count > 1000)
             {
                 par = par.Skip(par.Count - 1000).Take(1000).ToList();

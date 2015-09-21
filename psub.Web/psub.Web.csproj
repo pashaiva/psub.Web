@@ -239,6 +239,7 @@
     <Compile Include="NavigationRoutes\NavigationRouteConfigurationExtensions.cs" />
     <Compile Include="NavigationRoutes\NavigationRouteFilter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Content Include="Scripts\Custom\customModalDialog.js" />
     <Compile Include="ViewModels\Shared\EntityViewModel.cs" />
     <Content Include="Scripts\CKEditor\bootstrap\config.json" />
     <Content Include="Scripts\CKEditor\bootstrap\fonts\glyphicons-halflings-regular.eot" />
@@ -920,7 +921,7 @@
         <WebProjectProperties>
           <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>54793</DevelopmentServerPort>
+          <DevelopmentServerPort>54789</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>http://localhost:64082/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
