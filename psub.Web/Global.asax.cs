@@ -6,6 +6,7 @@ using System.Web.Optimization;
 using System.Web.Routing;
 using Psub.DataService;
 using psub.Web.App_Start;
+using System.Net.Mail;
 
 namespace psub.Web
 {
@@ -50,6 +51,14 @@ namespace psub.Web
             }
             else
                 HttpContext.Current.Session["Message"] = exception.Message;
+
+            var message = new MailMessage();
+            message.To.Add(new MailAddress("pashaiva@mail.ru"));
+            message.Subject = "psub.net error";
+            message.Body = exception.Message;
+            message.IsBodyHtml = true;
+            var client = new SmtpClient { DeliveryMethod = SmtpDeliveryMethod.Network };
+            client.Send(message);
 
             Response.Redirect(@"~/Exception/Error");
         }
