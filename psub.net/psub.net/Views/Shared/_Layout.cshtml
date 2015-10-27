@@ -36,10 +36,10 @@
     <title>@ViewBag.Title</title>
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
     <meta name="viewport" content="width=device-width" />
-        @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")
-    @Scripts.Render("~/bundles/jquery")
-    @RenderSection("scripts", required: false)
+    @*@Styles.Render("~/Content/css")
+        @Scripts.Render("~/bundles/modernizr")
+        @Scripts.Render("~/bundles/jquery")
+        @RenderSection("scripts", required: false)*@
 
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta charset="utf-8" />
@@ -70,21 +70,9 @@
         </div>
     </header>
     <div id="body">
-        <table style="border: 0; width: 90%; height: 100%;">
-            <tr style="border: 0">
-                <td style="vertical-align: top; border: 0;">
-                  
-                </td>
-            </tr>
-            <tr style="border: 0">
-                <td style="border: 0">
-                    <section class="content-wrapper main-content clear-fix">
-                        @RenderBody()
-                    </section>
-                </td>
-            </tr>
-        </table>
-
+        <div class="content-wrapper main-content clear-fix">
+            @RenderBody()
+        </div>
     </div>
     <p>
         <div id="actionLog"></div>
@@ -137,7 +125,7 @@
         });
 
         $.post("@Url.Action("SetUserStatistic", "Home")" + "?url=" + document.location + "&urlReferrer=" + document.referrer, function (res) {
-                
-            });
+
+        });
     })
 </script>

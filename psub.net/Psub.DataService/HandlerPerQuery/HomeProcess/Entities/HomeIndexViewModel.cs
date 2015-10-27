@@ -1,19 +1,16 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations;
-using System.Web.Mvc;
-using psub.net.Shared;
-using UESPDataManager.DataService.HandlerPerQuery.Abstract;
-using System.Data;
+﻿using UESPDataManager.DataService.HandlerPerQuery.Abstract;
+using Psub.DataService.HandlerPerQuery.CatalogProcess.Entities;
+using Psub.DataService.HandlerPerQuery.PublicationProcess.Entities;
 
-namespace Psub.DataService.HandlerPerQuery.PublicationProcess.Entities
+namespace Psub.DataService.HandlerPerQuery.HomeProcess.Entities
 {
     public class HomeIndexQuery : IQuery<HomeIndexViewModel>
     {
-        public int Id { get; set; }
     }
 
     public class HomeIndexViewModel
     {
-        public System.Collections.Generic.IList<PublicationDetailsViewModel> Publications { get; set; }
+        public System.Collections.Generic.IList<PublicationListItem> Publications { get; set; }
+        public System.Collections.Generic.IList<CatalogListItem> Catalogs { get; set; }
     }
 }

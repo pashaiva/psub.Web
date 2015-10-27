@@ -3,6 +3,12 @@
     margin: 5px;
 }
 
+.padding5{
+    margin-left: 1px !important;
+    margin-right: 1px !important;
+    margin-top: 1px !important;
+}
+
 .imgBorder {
     border-radius: 3px;
     border: 3px solid #ddd;
@@ -153,8 +159,7 @@ h5, h6 {
 /* main layout
 ----------------------------------------------------------*/
 .content-wrapper {
-    margin: 0 auto;
-    max-width: 1024px;
+       margin: 5px 50px 5px 50px;
 }
 
 #body {

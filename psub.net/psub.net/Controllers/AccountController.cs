@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Web.Mvc;
 using System.Web.Security;
-using Psub.DataService.DTO;
-using Psub.DataService.Abstract;
 using Psub.Web.Models;
+using Psub.DataService.Abstract;
+using Psub.DataService.DTO;
 
 namespace psub.Web.Controllers
 {
- 
+
     public class AccountController : Controller
     {
         //
@@ -40,7 +40,7 @@ namespace psub.Web.Controllers
                 _userService.GetCurrentUser();
                 FormsAuthentication.SetAuthCookie(model.NickName, false);
                 if (Url.IsLocalUrl(returnUrl) && returnUrl.Length > 1 && returnUrl.StartsWith("/")
-                    && !returnUrl.StartsWith("//") && !returnUrl.StartsWith("/\\"))
+    && !returnUrl.StartsWith("//") && !returnUrl.StartsWith("/\\"))
                 {
                     return Redirect(returnUrl);
                 }
@@ -60,7 +60,7 @@ namespace psub.Web.Controllers
         public ActionResult LogOff()
         {
             FormsAuthentication.SignOut();
-     
+
             _userService.LogOffUser();
             _userService.GetCurrentUser();
 

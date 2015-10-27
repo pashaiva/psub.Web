@@ -1,6 +1,5 @@
 ﻿using System;
 using System.IO;
-using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Psub.DataService.DTO;
@@ -8,6 +7,7 @@ using Psub.DataService.Abstract;
 using Psub.DataService.HandlerPerQuery;
 using Psub.DataService.HandlerPerQuery.ActionLogProcess.Entities;
 using psub.net.Shared;
+using Psub.DataService.HandlerPerQuery.HomeProcess.Entities;
 
 namespace psub.Web.Controllers
 {
@@ -26,9 +26,9 @@ namespace psub.Web.Controllers
             _mediator = mediator;
         }
 
-        public ActionResult Index()
-        {
-            return View();
+        public ActionResult Index(HomeIndexQuery query)
+        {            
+            return View(_mediator.RequestMvc(query));
         }
 
         [HttpPost]
