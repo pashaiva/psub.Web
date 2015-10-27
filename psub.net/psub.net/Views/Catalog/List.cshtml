@@ -1,0 +1,120 @@
+﻿@using Infrastructure.Web.Paging
+@using Psub.Domain.Entities
+@using psub.net.Shared
+@model Psub.DataService.HandlerPerQuery.CatalogProcess.Entities.ListCatalog
+
+@{
+    ViewBag.Title = LanguageConstants.Catalogs;
+    ViewBag.Description = "Каталог электроники arduino контроллеров модулей";
+    ViewBag.Keywords = "Arduino контроллер модуль купить Ростов-на-Дону";
+}
+
+<div class="btn-toolbar" id="menuCatalogs"></div>
+
+<div role="tabpanel">
+    <ul class="nav nav-tabs" role="tablist">
+        <li role="presentation" class="active"><a href="#Catalog-list" aria-controls="Catalog-list" role="tab" data-toggle="tab">@LanguageConstants.Catalogs</a></li>
+        <li role="presentation"><a href="#lastHistory-of-changes" aria-controls="lastHistory-of-changes" role="tab" data-toggle="tab">@LanguageConstants.LastActions</a></li>
+    </ul>
+    <div class="tab-content">
+        <div role="tabpanel" class="tab-pane active" id="Catalog-list">
+            <div class="btn-group" role="group">
+                @if (Model.IsEditor)
+                {
+                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                        <span class="glyphicon glyphicon-plus-sign"></span>Создать раздел\подраздел <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a href="@Url.Action("CreateMainSection", "Catalog")">Раздел</a></li>
+                        <li><a href="@Url.Action("CreateSection", "Catalog")">Подраздел (отображается для всех)</a></li>
+                    </ul>
+                    
+                    <a href="@Url.Action("Create")" class="btn btn-primary"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>&nbsp;Создать новость</a>
+                }
+            </div>
+
+            @Html.Partial("_Sections")
+            <div class="row">
+                <div class="col-md-12">
+                    @if (Model.Items.Any())
+                    {
+                        @Html.Pager((int)Model.Count, ConfigData.PageSize)
+                        for (var index = 0; index <= Model.Items.Count() - 1; index++)
+                        {
+                            if (index == 0 || index % 4 == 0)
+                            {
+                        @Html.Raw("<div class=\"row\">")
+                            }
+
+                            var item = Model.Items.ToList()[index];
+                                
+                        <div class="col-md-3 well">
+
+                            @if (item.IsView)
+                            {  
+                                <a href="@Url.Action("Details", new { id = item.Id })">
+                                    @if (item.Files != null && item.Files.Any())
+                                    {
+                                        <img src="@Url.Action("GetFile", "File", new { entityName = "Catalog", name = item.Files.First().Name, id = item.Id })" class="img150 imgBorder imgpreview"/>
+                                    }
+                                    <div class="row">
+                                        <div class="col-md-9">@item.TitleText</div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-5"><span class="badge">@LanguageConstants.Price : @item.Price р.</span></div>
+                                    </div>
+                                </a>
+                            }
+                            else
+                            {
+                                if (item.Files != null && item.Files.Any())
+                                {
+                                <img src="@Url.Action("GetFile", "File", new { entityName = "Catalog", name = item.Files.First().Name, id = item.Id })" class="img150 imgBorder imgpreview"/>
+                                }
+                                <span data-toggle="tooltip" data-placement="top" data-original-title="@LanguageConstants.AccessCloseCatalog">
+                                    <span class="glyphicon glyphicon-eye-close"></span>@item.TitleText
+                                </span> 
+                            }
+                        </div>
+
+                            if (index!=0 && index % 3 == 0 || index == Model.Items.Count() - 1)
+                            {
+                        @Html.Raw("</div>")
+                            }
+                        }
+                      
+                        @Html.Pager((int)Model.Count, ConfigData.PageSize)
+                    }
+                    else
+                    {
+                        <h2>Записей нет</h2>
+                    }
+
+                </div>
+            </div>
+        </div>
+        <div role="tabpanel" class="tab-pane" id="lastHistory-of-changes">
+            @Html.Partial("_LastActionsHistoryOfSection", EntityTypes.Catalog.ToString())
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(function () {
+        $.post('@Url.Action("GetCatalogSectionDTOList", "CatalogSection")',
+        function (res) {
+            $(res).each(function (index, element) {
+                var divGroup = $("<div>").attr("class", "btn-group").appendTo($("#menuCatalogs"));
+                var button = $("<button>").attr({
+                    "class": "btn btn-inverse dropdown-toggle", "data-toggle": "dropdown"
+                }).html(element.Name).appendTo(divGroup);
+                if ($(element.PublicationSection).length > 0) {
+                    var ul = $("<ul>").attr({ "class": "dropdown-menu", "role": "menu", "aria-labelledby": "dLabel" }).appendTo(divGroup);
+                    $(element.PublicationSection).each(function (index1, element1) {
+                        $("<li>").html($("<a>").attr({ "href": "@Url.Action("List")" + "?catalogSectionId=" + element1.Id + "&catalogMainSectionId=" + element.Id, "class": "dropdown-submenu" }).html(element1.Name)).appendTo(ul);
+                    });
+                    }
+            });
+        });
+    });
+</script>

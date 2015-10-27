@@ -1,0 +1,113 @@
+﻿@using Infrastructure.Web.Paging
+@using Psub.Domain.Entities
+@using psub.net.Shared
+@model Psub.DataService.HandlerPerQuery.PublicationProcess.Entities.ListPublication
+
+  <div class="btn-toolbar" id="menuPublications"></div>
+
+<div role="tabpanel">
+    <ul class="nav nav-tabs" role="tablist">
+        <li role="presentation" class="active"><a href="#publication-list" aria-controls="publication-list" role="tab" data-toggle="tab">@LanguageConstants.Publications</a></li>
+        <li role="presentation"><a href="#lastHistory-of-changes" aria-controls="lastHistory-of-changes" role="tab" data-toggle="tab">@LanguageConstants.LastActions</a></li>
+    </ul>
+    <div class="tab-content">
+        <div role="tabpanel" class="tab-pane active" id="publication-list">
+            @{
+                ViewBag.Title = "Новости/обсуждения";
+            }
+
+            <div class="btn-group" role="group">
+                @if (Model.IsEditor)
+                {
+                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                        <span class="glyphicon glyphicon-plus-sign"></span> Создать раздел\подраздел <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a href="@Url.Action("CreateMainSection", "Publication")">Раздел</a></li>
+                        <li><a href="@Url.Action("CreateSection", "Publication")">Подраздел (отображается для всех)</a></li>
+                    </ul>
+                    
+                    <a href="@Url.Action("Create")" class="btn btn-primary"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>&nbsp;Создать новость</a>
+                }
+            </div>
+
+            @Html.Partial("_Sections")
+            <div class="row">
+                <div class="col-md-12">
+                    @if (Model.Items.Any())
+                    {
+                        @Html.Pager((int)Model.Count, ConfigData.PageSize)
+                        foreach (var item in Model.Items)
+                        {
+                            <div class="row well" style="margin: 5px;">
+                                <h1>
+                                    @if (item.IsView)
+                                    {
+                                        <a href="@Url.Action("Details", new { id = item.Id })">@item.TitleText</a>
+                                    @*if (!item.IsPublic)
+                                    {
+                                    <span data-toggle="tooltip" data-placement="top" data-original-title="@LanguageConstants.LimitedAccess">
+                                        <span class="glyphicon glyphicon-eye-close"></span>
+                                    </span> 
+                                    }*@
+                                    }
+                                    else
+                                    {
+                                        <span data-toggle="tooltip" data-placement="top" data-original-title="@LanguageConstants.AccessClosePublication">
+                                            <span class="glyphicon glyphicon-eye-close"></span>@item.TitleText
+                                        </span> 
+                                    }
+
+                                </h1>
+                                <p class="text-info">
+                                    <b>Автор: @item.Creator</b>
+                                </p>
+
+                                <p>
+                                    @Html.Raw(item.TextPreview)
+                                </p>
+                                @if (item.IsView)
+                                {
+                                    <p>
+                                        <a href="@Url.Action("Details", new { id = item.Id })" class="btn btn-primary">Читать дальше <span class="glyphicon glyphicon-arrow-right"></span></a>
+                                    </p> 
+                                }
+
+                            </div>
+                        }
+                        @Html.Pager((int)Model.Count, ConfigData.PageSize)
+                    }
+                    else
+                    {
+                        <h2>Записей нет</h2>
+                    }
+
+                </div>
+            </div>
+        </div>
+         <div role="tabpanel" class="tab-pane" id="lastHistory-of-changes">
+            @Html.Partial("_LastActionsHistoryOfSection", EntityTypes.Publication.ToString())
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(function () {
+        $.post('@Url.Action("GetPublicationSectionDTOList", "PublicationSection")',
+        function (res) {
+            $(res).each(function (index, element) {
+                var divGroup = $("<div>").attr("class", "btn-group").appendTo($("#menuPublications"));
+                var button = $("<button>").attr({
+                    "class": "btn btn-inverse dropdown-toggle", "data-toggle": "dropdown"
+                }).html(element.Name).appendTo(divGroup);
+                if ($(element.PublicationSection).length > 0) {
+                    var ul = $("<ul>").attr({ "class": "dropdown-menu", "role": "menu", "aria-labelledby": "dLabel" }).appendTo(divGroup);
+                    $(element.PublicationSection).each(function (index1, element1) {
+                        $("<li>").html($("<a>").attr({ "href": "@Url.Action("List", "Publication")" + "?publicationSectionId=" + element1.Id + "&publicationMainSectionId=" + element.Id, "class": "dropdown-submenu" }).html(element1.Name)).appendTo(ul);
+                       });
+                       }
+
+               });
+           });
+    });
+</script>

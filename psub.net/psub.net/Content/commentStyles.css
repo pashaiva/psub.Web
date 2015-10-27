@@ -1,0 +1,51 @@
+﻿.comments {
+    list-style: none;
+}
+
+    .comments .comment .commentContent .avatar {
+        margin-right: 10px;
+        float: left;
+    }
+
+        .comments .comment .commentContent .avatar img {
+            height: 64px;
+            width: 64px;
+        }
+
+        .comments .comment .commentContent .avatar .defaultAvatar {
+            background-repeat: no-repeat;
+            height: 64px;
+            width: 64px;
+        }
+
+    .comments .comment .commentContent .content.avatarPadding {
+        padding-left: 64px;
+    }
+
+    .comments .comment .info time {
+        font-size: 10px;
+        color: #666;
+        line-height: 20px;
+        height: 20px;
+        margin-right: 5px;
+    }
+
+li .comment {
+    border-top: 1px solid darkgray;
+    padding: 2px 10px 2px 10px;
+    margin: 5px 10px 5px 10px;
+}
+
+ul .comment {
+    border-top: 1px solid darkgray;
+    padding: 10px 10px 10px 10px;
+    margin: 5px 10px 5px 10px;
+}
+
+.commentButton {
+    margin: 5px !important;
+}
+
+.commentsBlock .clearFix {
+    clear: both;
+}

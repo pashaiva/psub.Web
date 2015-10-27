@@ -1,0 +1,18 @@
+﻿@using Psub.DataService.CommonViewModels
+@model string
+@{
+    var templateInfo = ViewData.TemplateInfo;
+    var guid = Guid.NewGuid().ToString();
+}
+
+@Html.TextBoxFor(m => m)
+<div id="@(guid)">
+</div>
+<script type="text/javascript">
+    $(function () {
+        var res = new CheckExistingRecord($('#@templateInfo.HtmlFieldPrefix'), 
+        $("#@(guid)"), 
+        "@Url.Action("CheckExistingRecordContragentName", (string)@ViewData.ModelMetadata.AdditionalValues[ViewDataObjectNames.CheckExistingRecordController])",
+        5);
+    });
+</script>

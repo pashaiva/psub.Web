@@ -1,0 +1,7 @@
+﻿@if(Request.IsAuthenticated) {
+    <text>Добро пожаловать, <strong>@User.Identity.Name  </strong>! <a href="@Url.Action("PrivateRoom","User")">Личный кабинет</a>
+    [ @Html.ActionLink("Выход", "LogOff", "Account") ]</text>
+}
+else {
+    @:[ @Html.ActionLink("Вход", "LogOn", "Account") ]
+}

@@ -1,0 +1,97 @@
+﻿@using Psub.DataService.DTO
+@{
+    ViewBag.Title = "Редактирование меню";
+}
+
+<script src="~/Scripts/Custom/jquery.simpleajaxdataloader.js"></script>
+<h2>Меню</h2>
+
+<table style="border: 0;">
+    <tr style="border: 0;">
+        <td style="border: 0; vertical-align: top;">
+            <p><b>Главные разделы</b></p>
+            <div id="mainMenuList">
+            </div>
+            <button id="addMainMenu">Добавить</button>
+        </td>
+        <td style="border: 0; vertical-align: top;">
+            <p><b>Подразделы</b></p>
+            <div id="subMenuList">
+            </div>
+            <button id="addSubMenu">Добавить</button>
+        </td>
+    </tr>
+</table>
+
+<div style="display: none" id="addCatalogMainSection">
+    Название раздела:
+    <input type="text" id="textCatalogMainSection" />
+
+    <button id="createCatalogMainSection">Создать</button>
+</div>
+
+<div style="display: none" id="addCatalogSection">
+    Название раздела:
+    <input type="text" id="textCatalogSection" />
+    <p>@Html.DropDownList("CatalogMainSectionDTOList", new SelectList((List<PublicationMainSectionDTO>)ViewData["CreateCatalogMainSection"], "Id", "Name"))</p>
+    <button id="createCatalogSection">Создать</button>
+</div>
+
+<script type="text/javascript">
+    jQuery(function () {
+
+        updateMainMenuList();
+        updateSubMenuList();
+
+        $("#addMainMenu").click(function () {
+            $("#addCatalogMainSection").dialog({ modal: true, height: 200, width: 350, title: 'Добавить подраздел' });
+        });
+
+        $("#addSubMenu").click(function () {
+            $("#addCatalogSection").dialog({ modal: true, height: 200, width: 350, title: 'Добавить главный раздел' });
+        });
+
+        $("#createCatalogMainSection").click(function () {
+            $.post('@Url.Action("CreateCatalogMainSection", "CatalogSection")' + "?name=" + encodeURIComponent($("#textCatalogMainSection").val()),
+         function () {
+             updateMainMenuList();
+             $("#addCatalogMainSection").dialog("close");
+         });
+        });
+
+        $("#createCatalogSection").click(function () {
+            $.post('@Url.Action("CreateCatalogSection", "CatalogSection")' + "?name=" + encodeURIComponent($("#textCatalogSection").val()) + "&CatalogMainSectionId=" + $("select#CatalogMainSectionDTOList").val(),
+            function () {
+                updateSubMenuList();
+                $("#addCatalogSection").dialog("close");
+            });
+        });
+
+        function updateMainMenuList() {
+            $("#mainMenuList").simpleAjaxDataLoader({
+                serviceUrl: '@Url.Action("GetCatalogMainSectionList")',
+                ejsTemplate: '@Url.Content("~/Scripts/ejsTemplates/PublicationSection.ejs")',
+                progressImage: '@Url.Content("~/Images/progress.gif")',
+                serviceDelete: '@Url.Action("DeleteCatalogMainSection")'
+            });
+
+            $.post('@Url.Action("GetCatalogMainSectionList", "CatalogSection")',
+            function (res) {
+                $("#CatalogMainSectionDTOList").empty();
+                $(res).each(function (index, element) {
+                    $('<option>').val(element.Id).html(element.Name).appendTo("#CatalogMainSectionDTOList");
+                });
+            });
+
+        }
+        function updateSubMenuList() {
+            $("#subMenuList").simpleAjaxDataLoader({
+                serviceUrl: '@Url.Action("GetCatalogSectionList")',
+                ejsTemplate: '@Url.Content("~/Scripts/ejsTemplates/PublicationSection.ejs")',
+                progressImage: '@Url.Content("~/Images/progress.gif")',
+                serviceDelete: '@Url.Action("DeleteCatalogSection")'
+            });
+        }
+
+    });
+</script>

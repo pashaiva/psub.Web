@@ -1,0 +1,30 @@
+﻿@using Psub.DataService.CommonViewModels
+@using UESPDataManager.DTO.Templates
+@using UESPDataManager.DTO.ViewModels
+@using DocumentFlow.Web.Extensions
+@model UserControlViewModel
+@{
+    var controlGuid = Guid.NewGuid().ToString();
+    var templateInfo = ViewData.TemplateInfo;
+
+    var fieldGuid = templateInfo.GetFullHtmlFieldName<UserControlViewModel, string>(x => x.Guid);
+    var fieldName =templateInfo.GetFullHtmlFieldName<UserControlViewModel, string>(x => x.Name);
+}
+<a id="@controlGuid" href="javascript:void(0)">Указать</a>
+<div id="@fieldName">@Html.DisplayFor(m => Model.Name)</div>
+@Html.HiddenFor(m => m.Guid)
+
+<script type="text/javascript">
+    $(function () {
+        $('#@controlGuid').uespUserPicker({
+            searchUrl: '@Url.Action("FindUsers", "User")',
+            directionUrl: '@Url.Action("Direction", "User")',
+            gipUrl: '@Url.Action("Gips", "User")',
+            divisionChiefUrl: '@Url.Action("DivisionChiefs", "User")',
+            valueCtrlId: '#@fieldGuid',
+            nameCtrlId: '#@fieldName',
+            title: '@Html.LabelFor(m => m)',
+            mode: '@ViewData.ModelMetadata.AdditionalValues[ViewDataObjectNames.UserControlMode]'
+        });
+    });
+</script>

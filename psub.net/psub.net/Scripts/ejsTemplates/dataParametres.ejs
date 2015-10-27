@@ -1,0 +1,20 @@
+﻿<% if(data.length == 0) { %>
+<tr>
+  <td>Нет узлов</td>
+</tr>  
+<% } else { %>
+	<thead>
+	<tr>
+		<th>Наименование</th>
+		<th>Значение</th>		
+	</tr>
+	</thead>
+	<tbody>
+  <% for(var i=0; i<data.length; i++) { %>
+      <tr >
+	    <td><%= data[i].Name %></td>
+		<td><%= data[i].Value %></td>	    
+      </tr>
+<% } %>
+</tbody>
+<% } %>

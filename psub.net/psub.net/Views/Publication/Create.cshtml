@@ -1,0 +1,12 @@
+﻿@model Psub.DataService.HandlerPerQuery.PublicationProcess.Entities.PublicationCreateGetViewModel
+
+@{
+    ViewBag.Title = "Новая публикация";
+}
+@using (Html.BeginForm("Create", "Publication", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+     @Html.ValidationSummary(false)
+    
+    @Html.EditorForModel()
+    <button type="submit" class="btn btn-primary">Сохранить</button>
+}

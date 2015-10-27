@@ -1,0 +1,40 @@
+﻿@using psub.net.Shared
+@model Psub.DataService.HandlerPerQuery.SectionProcess.Entities.SectionEditGetViewModel
+
+@{
+    ViewBag.Title = LanguageConstants.EditSection;
+}
+
+<h2>@LanguageConstants.EditSection</h2>
+
+@using (Html.BeginForm("EditSection", "Publication", FormMethod.Post))
+{
+    <div>@Html.ValidationSummary()</div>
+
+    <table class="table table-striped table-bordered table-hover">
+        @Html.HiddenFor(m => m.Id)
+        <tr>
+            <th>
+                @Html.LabelFor(model => model.Name)
+            </th>
+            <td class="table-bordered">
+                @Html.EditorFor(model => model.Name)
+            </td>
+        </tr>
+        <tr>
+            <th>
+                @Html.LabelFor(model => model.MainSectionId)
+            </th>
+            <td class="table-bordered">
+                @Html.DropDownListFor(m => m.MainSectionId, new SelectList(Model.MainSections, "Id", "Name"))
+            </td>
+        </tr>
+    </table>
+    <div class="btn-group">
+        <button type="submit" class="btn btn-primary">
+            Сохранить
+        </button>
+        <a href="@Url.Action("DeleteSection", new { Model.Id })" class="btn btn-danger">@LanguageConstants.Delete</a>
+    </div>
+  
+}

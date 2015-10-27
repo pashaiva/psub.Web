@@ -1,0 +1,97 @@
+﻿@using Psub.DataService.DTO
+@{
+    ViewBag.Title = "Редактирование меню";
+}
+
+<script src="~/Scripts/Custom/jquery.simpleajaxdataloader.js"></script>
+<h2>Меню</h2>
+
+<table style="border: 0;">
+    <tr style="border: 0;">
+        <td style="border: 0; vertical-align: top;">
+            <p><b>Главные разделы</b></p>
+            <div id="mainMenuList">
+            </div>
+            <button id="addMainMenu">Добавить</button>
+        </td>
+        <td style="border: 0; vertical-align: top;">
+            <p><b>Подразделы</b></p>
+            <div id="subMenuList">
+            </div>
+            <button id="addSubMenu">Добавить</button>
+        </td>
+    </tr>
+</table>
+
+<div style="display: none" id="addPublicationMainSection">
+    Название раздела:
+    <input type="text" id="textPublicationMainSection" />
+
+    <button id="createPublicationMainSection">Создать</button>
+</div>
+
+<div style="display: none" id="addPublicationSection">
+    Название раздела:
+    <input type="text" id="textPublicationSection" />
+    <p>@Html.DropDownList("publicationMainSectionDTOList", new SelectList((List<PublicationMainSectionDTO>)ViewData["CreatePublicationMainSection"], "Id", "Name"))</p>
+    <button id="createPublicationSection">Создать</button>
+</div>
+
+<script type="text/javascript">
+    jQuery(function () {
+
+        updateMainMenuList();
+        updateSubMenuList();
+
+        $("#addMainMenu").click(function () {
+            $("#addPublicationMainSection").dialog({ modal: true, height: 200, width: 350, title: 'Добавить подраздел' });
+        });
+
+        $("#addSubMenu").click(function () {
+            $("#addPublicationSection").dialog({ modal: true, height: 200, width: 350, title: 'Добавить главный раздел' });
+        });
+
+        $("#createPublicationMainSection").click(function () {
+            $.post('@Url.Action("CreatePublicationMainSection", "PublicationSection")' + "?name=" + encodeURIComponent($("#textPublicationMainSection").val()),
+         function () {
+             updateMainMenuList();
+             $("#addPublicationMainSection").dialog("close");
+         });
+        });
+
+        $("#createPublicationSection").click(function () {
+            $.post('@Url.Action("CreatePublicationSection", "PublicationSection")' + "?name=" + encodeURIComponent($("#textPublicationSection").val()) + "&publicationMainSectionId=" + $("select#publicationMainSectionDTOList").val(),
+            function () {
+                updateSubMenuList();
+                $("#addPublicationSection").dialog("close");
+            });
+        });
+
+        function updateMainMenuList() {
+            $("#mainMenuList").simpleAjaxDataLoader({
+                serviceUrl: '@Url.Action("GetPublicationMainSectionList")',
+                ejsTemplate: '@Url.Content("~/Scripts/ejsTemplates/publicationSection.ejs")',
+                progressImage: '@Url.Content("~/Images/progress.gif")',
+                serviceDelete: '@Url.Action("DeletePublicationMainSection")'
+            });
+
+            $.post('@Url.Action("GetPublicationMainSectionList", "PublicationSection")',
+            function (res) {
+                $("#publicationMainSectionDTOList").empty();
+                $(res).each(function (index, element) {
+                    $('<option>').val(element.Id).html(element.Name).appendTo("#publicationMainSectionDTOList");
+                });
+            });
+
+        }
+        function updateSubMenuList() {
+            $("#subMenuList").simpleAjaxDataLoader({
+                serviceUrl: '@Url.Action("GetPublicationSectionList")',
+                ejsTemplate: '@Url.Content("~/Scripts/ejsTemplates/publicationSection.ejs")',
+                progressImage: '@Url.Content("~/Images/progress.gif")',
+                serviceDelete: '@Url.Action("DeletePublicationSection")'
+            });
+        }
+
+    });
+</script>
