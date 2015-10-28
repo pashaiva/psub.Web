@@ -11,6 +11,9 @@ namespace psub.net
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
                         "~/Scripts/jquery-{version}.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/jqueryold").Include(
+                        "~/Scripts/jquery-1.10.2.min.js"));
+
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                         "~/Scripts/jquery.validate*"));
               
@@ -23,9 +26,29 @@ namespace psub.net
                       "~/Scripts/bootstrap.js",
                       "~/Scripts/respond.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/scripts").Include(
+                     "~/Scripts/ejs.js",
+                     "~/Scripts/Custom/CommentsBuilder.js",
+                     "~/Scripts/Custom/customModalDialog.js",
+                     "~/Scripts/CKEditor/ckeditor.js",
+                     "~/Scripts/CKEditor/config.js",
+                     "~/Scripts/Custom/actionLogList.js",
+                     "~/Scripts/Custom/CommentsBuilder.js",
+                     "~/Scripts/Custom/CommentsBuilder.js"));
+                       
             bundles.Add(new StyleBundle("~/Content/css").Include(
+                      "~/Content/Site.css",
+                      "~/Content/themes/base/jquery-ui.css",
                       "~/Content/bootstrap.css",
-                      "~/Content/site.css"));
+                      "~/Content/bootstrap-theme.css",
+                      "~/Content/commentStyles.css"));
+
+            bundles.Add(new StyleBundle("~/Content/FancyBox2.1").Include(
+                    "~/Scripts/FancyBox2.1/jquery.fancybox.css"));
+
+            bundles.Add(new ScriptBundle("~/Scripts/FancyBox2.1").Include(
+                  "~/Scripts/FancyBox2.1/jquery.fancybox.pack.js",
+                  "~/Scripts/FancyBox2.1/jquery.fancybox.js"));
         }
     }
 }

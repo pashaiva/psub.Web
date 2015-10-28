@@ -1,9 +1,34 @@
-﻿.body {
-    padding: 5px;
-    margin: 5px;
+﻿.nav > li > a {
+    font-size: 18px;
 }
 
-.padding5{
+.navbar {
+    margin-bottom: 0px !important;
+}
+
+.navbar-LoginPartial {
+    float: left;
+    height: 50px;
+    padding: 15px 15px;
+    font-size: 14px;
+    line-height: 20px;
+    vertical-align: middle;
+    color: #e8eef4;
+}
+
+    .navbar-LoginPartial:hover,
+    .navbar-LoginPartial:focus {
+        text-decoration: none;
+    }
+
+@media (min-width: 768px) {
+    .navbar > .container .navbar-LoginPartial,
+    .navbar > .container-fluid .navbar-LoginPartial {
+        margin-left: -15px;
+    }
+}
+
+.padding5 {
     margin-left: 1px !important;
     margin-right: 1px !important;
     margin-top: 1px !important;
@@ -65,7 +90,7 @@ html {
 body {
     background-color: #fff;
     /*background: url("../Content/themes/base/images/backgrnd.png") repeat;*/
-    border-top: solid 10px #000;
+    border-top: solid 3px #000;
     color: #333;
     font-size: .85em;
     font-family: "Segoe UI", Verdana, Helvetica, Sans-Serif;
@@ -131,23 +156,23 @@ h4, h5, h6 {
 }
 
 h1 {
-    font-size: 2em;
+    font-size: 1.75em !important;
 }
 
 h2 {
-    font-size: 1.75em;
+    font-size: 1.55em !important;
 }
 
 h3 {
-    font-size: 1.2em;
+    font-size: 1.2em !important;
 }
 
 h4 {
-    font-size: 1.1em;
+    font-size: 1.1em !important;
 }
 
 h5, h6 {
-    font-size: 1em;
+    font-size: 1em !important;
 }
 
     h5 a:link, h5 a:visited, h5 a:active {
@@ -159,8 +184,15 @@ h5, h6 {
 /* main layout
 ----------------------------------------------------------*/
 .content-wrapper {
-       margin: 5px 50px 5px 50px;
+    margin: 5px 50px 5px 50px;
 }
+
+@media only screen and (max-width: 850px) {
+    .content-wrapper {
+        margin: 2px 2px 2px 2px;
+    }
+}
+
 
 #body {
     background-color: #efeeef;

@@ -1,7 +1,14 @@
-﻿@if(Request.IsAuthenticated) {
-    <text>Добро пожаловать, <strong>@User.Identity.Name  </strong>! <a href="@Url.Action("PrivateRoom","User")">Личный кабинет</a>
-    [ @Html.ActionLink("Выход", "LogOff", "Account") ]</text>
-}
-else {
-    @:[ @Html.ActionLink("Вход", "LogOn", "Account") ]
-}
+﻿<div style="line-height">
+    @if (Request.IsAuthenticated)
+    {
+        <text>Добро пожаловать, <strong>@User.Identity.Name  </strong>! <a href="@Url.Action("PrivateRoom","User")">Личный кабинет</a>
+        <a href="@Url.Action("LogOff", "Account")" class="btn btn-danger btn-xs">Выход&nbsp;<span class="glyphicon glyphicon-log-out"></span></a>
+        </text>
+    }
+    else
+    {
+        <div class="btn-group"><a href="@Url.Action("LogOn", "Account")" class="btn btn-success btn-xs">Вход&nbsp;<span class="glyphicon glyphicon-log-in"></span></a>
+<a href="@Url.Action("Register", "Account")" class="btn btn-primary btn-xs">Регистрация&nbsp;<span class="glyphicon glyphicon-magnet"></span></a></div>
+       
+    }
+</div>
