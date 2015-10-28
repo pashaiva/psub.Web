@@ -42,14 +42,18 @@ namespace psub.net
             else
                 HttpContext.Current.Session["Message"] = exception.Message;
 
-            var message = new MailMessage();
-            message.To.Add(new MailAddress("pashaiva@mail.ru"));
-            message.Subject = "psub.net error";
-            message.Body = exception.Message;
-            message.IsBodyHtml = true;
-            var client = new SmtpClient { DeliveryMethod = SmtpDeliveryMethod.Network };
-            client.Send(message);
-
+            try
+            {
+                var message = new MailMessage();
+                message.To.Add(new MailAddress("pashaiva@mail.ru"));
+                message.Subject = "psub.net error";
+                message.Body = exception.Message;
+                message.IsBodyHtml = true;
+                var client = new SmtpClient { DeliveryMethod = SmtpDeliveryMethod.Network };
+                client.Send(message);
+            }
+            catch { }
+                   
             Response.Redirect(@"~/Exception/Error");
         }
     }
