@@ -2,13 +2,13 @@
     @if (Request.IsAuthenticated)
     {
         <text>Добро пожаловать, <strong>@User.Identity.Name  </strong>! <a href="@Url.Action("PrivateRoom","User")">Личный кабинет</a>
-        <a href="@Url.Action("LogOff", "Account")" class="btn btn-danger btn-xs">Выход&nbsp;<span class="glyphicon glyphicon-log-out"></span></a>
+        <a href="@Url.Action("LogOff", "Account")" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-log-out"></span>&nbsp;Выход</a>
         </text>
     }
     else
     {
-        <div class="btn-group"><a href="@Url.Action("LogOn", "Account")" class="btn btn-success btn-xs">Вход&nbsp;<span class="glyphicon glyphicon-log-in"></span></a>
-<a href="@Url.Action("Register", "Account")" class="btn btn-primary btn-xs">Регистрация&nbsp;<span class="glyphicon glyphicon-magnet"></span></a></div>
+        <div class="btn-group"><a href="@Url.Action("LogOn", "Account")" class="btn btn-success btn-xs"><span class="glyphicon glyphicon-log-in"></span>&nbsp;Вход</a>
+<a href="@Url.Action("Register", "Account")" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-magnet"></span>&nbsp;Регистрация</a></div>
        
     }
 </div>
