@@ -46,7 +46,7 @@ namespace psub.Web.Controllers
                 }
                 if (model.NickName.ToLower().Trim() == "gh")
                     return RedirectToAction("GHIPI", "GHIPI");
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("PrivateRoom", "User");
             }
             ModelState.AddModelError("", "Имя пользователя или пароль указаны неверно.");
 

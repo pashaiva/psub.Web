@@ -34,7 +34,13 @@ namespace Psub.Controllers
         {
             if (Request.IsAuthenticated)
             {
-                return View(_controlObjectService.GetControlObjectList(_userService.GetCurrentUser()));
+                var resultList = _controlObjectService.GetControlObjectList(_userService.GetCurrentUser());
+
+                if (resultList.Count > 1)
+                    return View(resultList);
+
+                if (resultList != null && resultList.Any())
+                    return RedirectToAction("Details", new { id = resultList.First().Id });
             }
             return RedirectToAction("AccessIsClosed", "Exception");
         }
@@ -59,10 +65,10 @@ namespace Psub.Controllers
             foreach (var dataParameter in name1)
             {
                 dataParemeters.Add(new DataParameterDTO
-                    {
-                        Name = dataParameter,
-                        Value = val1[index]
-                    });
+                {
+                    Name = dataParameter,
+                    Value = val1[index]
+                });
                 index++;
             }
 
@@ -90,11 +96,11 @@ namespace Psub.Controllers
             try
             {
                 _controlObjectService.SaveOrUpdate(new ControlObjectDTO
-                           {
-                               Id = id,
-                               Name = name,
-                               Discription = discription
-                           });
+                {
+                    Id = id,
+                    Name = name,
+                    Discription = discription
+                });
                 return Json(true);
             }
             catch (Exception)
@@ -112,11 +118,11 @@ namespace Psub.Controllers
                              where !string.IsNullOrEmpty(reley)
                              select reley.Split('|')
                                  into stat
-                                 select new RelayDataDTO
-                                     {
-                                         Id = Convert.ToInt32(stat[0]),
-                                         Value = stat[1] == "true"
-                                     }).ToList();
+                             select new RelayDataDTO
+                             {
+                                 Id = Convert.ToInt32(stat[0]),
+                                 Value = stat[1] == "true"
+                             }).ToList();
 
             _relayDataService.SaveOrUpdateList(relayList);
 
