@@ -101,6 +101,10 @@
 </html>
 <script type="text/javascript">
     $(function () {
+        $('input[type=checkbox]').addClass("form-control");
+
+        $('input[type=checkbox]').attr("style","width:30px;");
+
         $("#qwe").click(function () {
             $.post("@Url.Action("SetPin", "ControlObject")" + "?guid=4532e447-3558-499b-af86-528b1d06bea5&name=49&val=1", function (res) {
                 alert(res);
