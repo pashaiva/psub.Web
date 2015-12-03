@@ -8,7 +8,7 @@ namespace Psub.DataService.DTO
         public int Id { get; set; }
         [Display(Name = "Наименование")]
         public string Name { get; set; }
-        [Display(Name = "Описанеи")]
+        [Display(Name = "Описание")]
         public string Discription { get; set; }
         [Display(Name = "Клиент")]
         public ClientDTO Client { get; set; }

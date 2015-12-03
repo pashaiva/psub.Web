@@ -23,15 +23,15 @@
                 </div>
             </form>
             <p>
-                <button id="saveControlObject" title="Сохранить объект">
-                    <img src="~/Images/save.png" alt="Сохранить объект" title="Сохранить объект" />
+                <button id="saveControlObject" title="Сохранить объект" class="btn btn-primary">
+                    <span class="glyphicon glyphicon-floppy-disk"></span>&nbsp;Сохранить
                 </button>
             </p>
         </fieldset>
     </div>
 </div>
 <div class="row">
-    <div class="col-md-6">
+    <div class="col-md-12">
         <h3>Параметры объекта</h3>
         <div id="dataParameters"></div>
         <h3>Состояние систем</h3>
@@ -59,32 +59,30 @@
                     </td>
                     <td>@Html.DisplayFor(modelItem => relay.LastUpdate)</td>
                     <td>
-                        <button class="editRelayData"  onclick="JavaScript:document.location='@Url.Action("Edit", "RelayData", new { id = relay.Id })';" title="Редактировать" >
-                            <img src="~/Images/edit.png" alt="Редактировать" title="Редактировать" />
-                        </button>
-                        <button class="deleteRelayData" date-id="@relay.Id" title="Удалить" >
-                            <img src="~/Images/remove.png" alt="Удалить" title="Удалить" />
-                        </button>
+                        <div class="btn-group">
+                            <button class="editRelayData btn btn-primary btn-xs" onclick="JavaScript:document.location='@Url.Action("Edit", "RelayData", new { id = relay.Id })';" title="Редактировать">
+                                <span class="glyphicon glyphicon-pencil"></span>&nbsp;Редактировать
+                            </button>
+                            <button class="deleteRelayData btn btn-danger btn-xs" date-id="@relay.Id" title="Удалить">
+                                <span class="glyphicon glyphicon-trash"></span>&nbsp;Удалить
+                            </button>
+                        </div>
                     </td>
                 </tr>
             }
 
         </table>
-        <button id="saveRelayData" title="Сохранить датчики">
-            <img src="~/Images/save.png" alt="Сохранить датчики" title="Сохранить датчики" />
-        </button>
-        <p>
-            <button class="createRelayData"  onclick="JavaScript:document.location='@Url.Action("Create", "RelayData", new { id = Model.Id })';" title="Создать" >
-                <img src="~/Images/add.png" alt="Создать" title="Создать" />
+        <div class="btn-group">
+            <button id="saveRelayData" class="btn btn-primary" title="Сохранить датчики">
+                <span class="glyphicon glyphicon-floppy-disk"></span>&nbsp;Сохранить
             </button>
-        </p>
+
+            <a class="createRelayData btn btn-primary" href="@Url.Action("Create", "RelayData", new { id = Model.Id })" title="Создать">
+                <span class="glyphicon glyphicon-plus-sign"></span>&nbsp;Создать
+            </a>
+        </div>
     </div>
-
-
-
-
 </div>
-
 <div>
     <div id="container" style="width: inherit;"></div>
 </div>
@@ -135,12 +133,13 @@
 
         $(".deleteRelayData").click(function () {
             var button = this;
-            $.post('@Url.Action("Delete", "RelayData")' + '?id=' + $(button).attr("date-id"),
-                function (res) {
-                    if (res) {
-                        $(button).parent().parent().hide("slow");
-                    }
-                });
+            if (confirm("Удалить параметр?"))
+                $.post('@Url.Action("Delete", "RelayData")' + '?id=' + $(button).attr("date-id"),
+                    function (res) {
+                        if (res) {
+                            $(button).parent().parent().hide("slow");
+                        }
+                    });
         });
 
         $("#saveControlObject").click(function () {
@@ -198,7 +197,7 @@
                         var tr = $("<tr>").append($("<th>").html("Наименование")).append($("<th>").html("Значение")).append($("<th>").html("Параметр обнавлен")).appendTo(table);
 
                         $(res).each(function (index, element) {
-                            var buttonGraph = $("<button>").html("график").attr({ "name1": element.Name }).click(function () {
+                            var buttonGraph = $("<button>").html("<span class='glyphicon glyphicon-stats'></span>&nbsp;график").attr({ "name1": element.Name, "class": "btn btn-primary btn-xs" }).click(function () {
                                 $.post('@Url.Action("GetParametres", "ControlObject")?paramName=' + $(this).attr("name1"),
                                        function (res) {
                                            var yname = $(buttonGraph).attr("name1");
@@ -213,11 +212,12 @@
                                        });
                                 dialog.showDialog();
                             });
-                            var buttonCline = $("<button>").html("сброс").attr("name1", element.Name).click(function () {
-                                $.post('@Url.Action("ClineDateParameter", "ControlObject")?id=@Model.Id&name=' + $(this).attr("name1"),
-                                     function (res1) {
-                                         alert("История показаний датчика удалена!");
-                                     });
+                            var buttonCline = $("<button>").html("сброс").attr({ "name1": element.Name, "class": "btn btn-danger btn-xs" }).click(function () {
+                                if (confirm("Удалить все данные этого параметра?"))
+                                    $.post('@Url.Action("ClineDateParameter", "ControlObject")?id=@Model.Id&name=' + $(this).attr("name1"),
+                                         function (res1) {
+                                             alert("История показаний датчика удалена!");
+                                         });
                             });
                             var tr1 = $("<tr>")
                                 .append($("<td>").html(element.Name))
@@ -292,26 +292,26 @@
         setTimeout('refreshPage();', 120000);
     });
 
-        function refreshData() {
-            $("#dataParameters").simpleAjaxDataLoader({
-                serviceUrl: '@Url.Action("DataParameters", new { id = Model.Id })',
-                ejsTemplate: '@Url.Content("~/Scripts/ejsTemplates/dataParametres.ejs")',
-                progressImage: '@Url.Content("~/Images/progress.gif")'
-            });
+    function refreshData() {
+        $("#dataParameters").simpleAjaxDataLoader({
+            serviceUrl: '@Url.Action("DataParameters", new { id = Model.Id })',
+            ejsTemplate: '@Url.Content("~/Scripts/ejsTemplates/dataParametres.ejs")',
+            progressImage: '@Url.Content("~/Images/progress.gif")'
+        });
 
-            setTimeout('refreshData();', 1000);
-        }
+        setTimeout('refreshData();', 1000);
+    }
 
-        function refreshLog() {
-            $("#actionLog").uespSimpleActionLogList({
-                serviceUrl: '@Url.Action("GetActionLogList", "ControlObject", new { id = Model.Id })',
-                closeImageLink: '@Url.Content(@"~/Images/pointer_left.png")',
-                openImageLink: '@Url.Content(@"~/Images/pointer_down.png")'
-            });
-        }
+    function refreshLog() {
+        $("#actionLog").uespSimpleActionLogList({
+            serviceUrl: '@Url.Action("GetActionLogList", "ControlObject", new { id = Model.Id })',
+            closeImageLink: '@Url.Content(@"~/Images/pointer_left.png")',
+            openImageLink: '@Url.Content(@"~/Images/pointer_down.png")'
+        });
+    }
 
-        function refreshPage() {
-            window.location.reload();
-            setTimeout('refreshPage();', 120000);
-        }
+    function refreshPage() {
+        window.location.reload();
+        setTimeout('refreshPage();', 120000);
+    }
 </script>

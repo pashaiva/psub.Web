@@ -13,9 +13,16 @@
     <meta name="Keywords" content="@ViewBag.Keywords">
     @Html.Partial("_html5shiv")
 
-    @Scripts.Render("~/bundles/jqueryold")
-    @Styles.Render("~/Content/css")
     @*<link href="~/Content/bootstrap.css" rel="stylesheet" />*@
+
+    @Styles.Render("~/Content/FancyBox2.1",
+    "~/Content/css")
+    @Scripts.Render("~/bundles/jqueryold",
+    "~/bundles/modernizr",
+    "~/bundles/jqueryval",
+    "~/bundles/bootstrap",
+    "~/bundles/scripts",
+    "~/Scripts/FancyBox2.1")
 
 </head>
 <body>
@@ -88,12 +95,7 @@
         </div>
     </footer>
 
-    @Styles.Render("~/Content/FancyBox2.1")
-    @Scripts.Render("~/bundles/modernizr",
-    "~/bundles/jqueryval",
-    "~/bundles/bootstrap",
-    "~/bundles/scripts",
-    "~/Scripts/FancyBox2.1")
+   
 
 </body>
 </html>
