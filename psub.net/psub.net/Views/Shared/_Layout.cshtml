@@ -15,6 +15,7 @@
 
     @Scripts.Render("~/bundles/jqueryold")
     @Styles.Render("~/Content/css")
+    @*<link href="~/Content/bootstrap.css" rel="stylesheet" />*@
 
 </head>
 <body>
@@ -59,12 +60,12 @@
                             <li>@Html.ActionLink("Каталог", "List", "Catalog")</li>
                             @*<li>@Html.ActionLink("О программе", "About", "Home")</li>*@
                             <li>@Html.ActionLink("Контакт", "Contact", "Home")</li>
-                                                    </ul>
+                        </ul>
                         @*<div>
-                            <span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-                        </div>*@
+                                <span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                            </div>*@
                         <div class="nav navbar-nav navbar-right navbar-LoginPartial">
-                           @Html.Partial("_LoginPartial")
+                            @Html.Partial("_LoginPartial")
                         </div>
                     </div><!-- /.navbar-collapse -->
                 </div><!-- /.container-fluid -->
